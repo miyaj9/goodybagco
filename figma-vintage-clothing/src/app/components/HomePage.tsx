@@ -1,0 +1,495 @@
+import { useState } from "react";
+import { ProductCard, type Product } from "./ProductCard";
+import { ArrowRight } from "lucide-react";
+import bagPileImg from "../../imports/Image_2-1.jpeg";
+import robertoCavalliSkirtImg from "../../imports/roberto-cavalli-tiger-tattoo-skirt.png";
+import cavalliSkirtFullImg from "../../imports/cavalli-skirt-gallery/01-full.png";
+import cavalliSkirtTigerImg from "../../imports/cavalli-skirt-gallery/02-tiger-detail.png";
+import cavalliSkirtLabelImg from "../../imports/cavalli-skirt-gallery/03-label-zipper.png";
+import cavalliSkirtAmourSideImg from "../../imports/cavalli-skirt-gallery/04-amour-side.png";
+import cavalliSkirtAmourDetailImg from "../../imports/cavalli-skirt-gallery/05-amour-detail.png";
+import robertoCavalliDressImg from "../../imports/roberto-cavalli-mid-length-dress.png";
+import chanelSunglassesImg from "../../imports/chanel-coco-mark-frameless-sunglasses.png";
+import chanelSunglassesThreeQuarterImg from "../../imports/chanel-sunglasses-gallery/01-three-quarter.png";
+import chanelSunglassesFrontImg from "../../imports/chanel-sunglasses-gallery/02-front.png";
+import chanelSunglassesLogoDetailImg from "../../imports/chanel-sunglasses-gallery/03-logo-detail.png";
+import chanelSunglassesLogoDetailAltImg from "../../imports/chanel-sunglasses-gallery/04-logo-detail-alt.png";
+import chanelSunglassesSideImg from "../../imports/chanel-sunglasses-gallery/05-side.png";
+import chanelSunglassesSideAltImg from "../../imports/chanel-sunglasses-gallery/06-side-alt.png";
+import chanelSunglassesBridgeDetailImg from "../../imports/chanel-sunglasses-gallery/07-bridge-detail.png";
+import fendiBagImg from "../../imports/fendi-baguette-phone-pouch-bag.png";
+import gucciSandalsImg from "../../imports/gucci-gg-horsebit-mule-sandals-cutout.png";
+import gucciSandalsPairTopImg from "../../imports/gucci-sandals-gallery/01-pair-top.png";
+import gucciSandalsSolesImg from "../../imports/gucci-sandals-gallery/02-soles.png";
+import gucciSandalsInsoleLogoImg from "../../imports/gucci-sandals-gallery/03-insole-logo.png";
+import alaiaPumpsImg from "../../imports/alaia-heart-cut-out-pumps.png";
+import alaiaPumpsPairTopImg from "../../imports/alaia-pumps-gallery/01-pair-top.png";
+import alaiaPumpsHeelViewImg from "../../imports/alaia-pumps-gallery/02-heel-view.png";
+import alaiaPumpsSoleProfileImg from "../../imports/alaia-pumps-gallery/03-sole-profile.png";
+import alaiaPumpsThreeQuarterImg from "../../imports/alaia-pumps-gallery/04-three-quarter.png";
+import justCavalliLeggingsImg from "../../imports/just-cavalli-leopard-print-leggings.png";
+import dsquared2BeltImg from "../../imports/dsquared2-belt.png";
+import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
+import consignFeatureImg from "../../imports/consign-feature-background.png";
+import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
+
+export const ALL_PRODUCTS: Product[] = [
+  {
+    id: 9,
+    name: "Tiger Tattoo Print Skirt",
+    brand: "Roberto Cavalli",
+    price: 1111,
+    size: "S",
+    era: "Vintage",
+    condition: "Great",
+    category: "Bottoms",
+    color: "White",
+    collection: "Spring/Summer 2003 Collection by Roberto Cavalli",
+    fabric: "97% Cotton, 2% Elastane, 1% Polyamide",
+    measurements: {
+      waist: '28.5"',
+      hip: '32"',
+      length: '26"',
+    },
+    details: ["Graphic print", "Glitter accents", "Slit pockets", "Zip & button closure"],
+    image: robertoCavalliSkirtImg,
+    images: [
+      robertoCavalliSkirtImg,
+      cavalliSkirtFullImg,
+      cavalliSkirtTigerImg,
+      cavalliSkirtLabelImg,
+      cavalliSkirtAmourSideImg,
+      cavalliSkirtAmourDetailImg,
+    ],
+    imageBackground: "#000000",
+  },
+  {
+    id: 16,
+    name: "Mid-length Dress",
+    brand: "Roberto Cavalli",
+    price: 365,
+    size: "TBD",
+    era: "Vintage",
+    condition: "TBD",
+    category: "Tops",
+    color: "Leopard Print",
+    details: ["Leopard print", "Spaghetti straps", "Deep V-neck", "RC logo at neckline"],
+    image: robertoCavalliDressImg,
+  },
+  {
+    id: 10,
+    name: "Metal Coco Mark Frameless Sunglasses",
+    brand: "Chanel",
+    price: 850,
+    size: "One Size",
+    era: "TBD",
+    condition: "Great",
+    category: "Accessories",
+    color: "Light Purple",
+    serialNumber: "AC1751014",
+    details: ["Coco Mark", "Frameless", "Metal frame"],
+    image: chanelSunglassesImg,
+    images: [
+      chanelSunglassesImg,
+      chanelSunglassesThreeQuarterImg,
+      chanelSunglassesFrontImg,
+      chanelSunglassesLogoDetailImg,
+      chanelSunglassesLogoDetailAltImg,
+      chanelSunglassesSideImg,
+      chanelSunglassesSideAltImg,
+      chanelSunglassesBridgeDetailImg,
+    ],
+  },
+  {
+    id: 11,
+    name: "Baguette Phone Pouch Bag",
+    brand: "Fendi",
+    price: 700,
+    size: "One Size",
+    era: "TBD",
+    condition: "Good",
+    category: "Bags",
+    color: "Black",
+    material: "Leather",
+    hardware: "Silver Tone",
+    measurements: {
+      height: "10 cm",
+      length: "18 cm",
+      width: "2 cm",
+      handleDrop: "2.5 cm",
+    },
+    image: fendiBagImg,
+    availableSoon: true,
+  },
+  {
+    id: 12,
+    name: "GG Canvas Horsebit Mule Sandals",
+    brand: "Gucci",
+    price: 430,
+    size: "IT 35",
+    era: "Vintage",
+    condition: "Good",
+    category: "Shoes",
+    color: "Orange and Pink",
+    material: "Leather",
+    details: ["Gucci monogram print", "Horsebit detail", "Mule sandal silhouette"],
+    image: gucciSandalsImg,
+    images: [
+      gucciSandalsImg,
+      gucciSandalsPairTopImg,
+      gucciSandalsSolesImg,
+      gucciSandalsInsoleLogoImg,
+    ],
+  },
+  {
+    id: 13,
+    name: "Heart Cut Out Pumps",
+    brand: "Alaïa",
+    price: 925,
+    size: "38.5",
+    era: "TBD",
+    condition: "New with Tags",
+    category: "Shoes",
+    color: "Red",
+    senserId: "33594239",
+    brandId: "AA3M053CK150",
+    composition: "Upper: Calfskin 60%, Polyurethanes 40%; Sole: Calfskin 95%, Rubber 5%",
+    description: "Mules with heart-shaped cutouts on the toe, featuring a pointed toe design.",
+    details: ["Dust bag", "Box"],
+    image: alaiaPumpsPairTopImg,
+    images: [
+      alaiaPumpsPairTopImg,
+      alaiaPumpsImg,
+      alaiaPumpsHeelViewImg,
+      alaiaPumpsSoleProfileImg,
+      alaiaPumpsThreeQuarterImg,
+    ],
+  },
+  {
+    id: 14,
+    name: "Leopard Print Leggings",
+    brand: "Just Cavalli",
+    price: 80,
+    size: "42",
+    era: "Vintage",
+    condition: "Excellent",
+    category: "Bottoms",
+    details: ["Leopard print", "Floral and butterfly motifs", "Gold star waistband"],
+    image: justCavalliLeggingsImg,
+    imageBackground: "#000000",
+  },
+  {
+    id: 15,
+    name: "DS2 Logo Belt",
+    brand: "Dsquared2",
+    price: 80,
+    size: "TBD",
+    era: "TBD",
+    condition: "New with tags",
+    category: "Accessories",
+    color: "Brown",
+    material: "Leather",
+    details: ["DS2 logo buckle", "American flag motif", "Silver-tone hardware"],
+    image: dsquared2BeltImg,
+  },
+];
+
+const CATS = ["All", "Tops", "Bottoms", "Accessories", "Bags", "Shoes"];
+const FONT = "'Urbanist', sans-serif";
+
+// One column of the conveyor — different objectPosition shows a different crop of the bag photo
+function ConveyorColumn({ pos, duration, delay }: { pos: string; duration: number; delay: number }) {
+  // 8 tiles + 8 duplicates = 16 total. Animating -50% scrolls through one full set seamlessly.
+  const tiles = Array.from({ length: 16 });
+  return (
+    <div style={{ overflow: "hidden", position: "relative", height: "100%" }}>
+      <div
+        style={{
+          animation: `conveyorDown ${duration}s linear ${delay}s infinite`,
+          willChange: "transform",
+        }}
+      >
+        {tiles.map((_, i) => (
+          <div
+            key={i}
+            style={{
+              width: "100%",
+              aspectRatio: "2 / 3",
+              overflow: "hidden",
+              flexShrink: 0,
+            }}
+          >
+            <img
+              src={bagPileImg}
+              alt=""
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: pos,
+                display: "block",
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const COLS = [
+  { pos: "20% 15%",  duration: 110, delay:   0  },
+  { pos: "75% 20%",  duration: 150, delay: -38  },
+  { pos: "25% 72%",  duration: 95, delay: -19  },
+  { pos: "70% 75%",  duration: 130, delay: -65  },
+];
+
+interface HomePageProps {
+  cart: Product[];
+  onAddToCart: (product: Product) => void;
+  onNavigate: (page: "consignment" | "returns") => void;
+}
+
+export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
+  const [cat, setCat] = useState("All");
+  const cartIds = new Set(cart.map((p) => p.id));
+  const filtered = cat === "All" ? ALL_PRODUCTS : ALL_PRODUCTS.filter((p) => p.category === cat);
+
+  return (
+    <main style={{ fontFamily: FONT, backgroundColor: "#FFFFFF" }}>
+
+      {/* Keyframes — defined once at top level */}
+      <style>{`
+        @keyframes conveyorDown {
+          0%   { transform: translateY(-50%); }
+          100% { transform: translateY(0%);   }
+        }
+        .ticker-anim {
+          display: inline-block;
+          animation: tickerScroll 70s linear infinite;
+        }
+        @keyframes tickerScroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+      `}</style>
+
+      {/* ── HERO ── */}
+      <section style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
+
+        {/* Conveyor columns */}
+        <div style={{
+          position: "absolute", inset: 0,
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "3px",
+          backgroundColor: "#000",
+        }}>
+          {COLS.map((c, i) => (
+            <ConveyorColumn key={i} pos={c.pos} duration={c.duration} delay={c.delay} />
+          ))}
+        </div>
+
+        {/* Dark overlay */}
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.65) 100%)",
+        }} />
+
+        {/* Text */}
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 10,
+          display: "flex", flexDirection: "column",
+          alignItems: "center", justifyContent: "center",
+          textAlign: "center", padding: "0 24px",
+        }}>
+          <p style={{
+            fontSize: "0.6rem", letterSpacing: "0.32em",
+            textTransform: "uppercase", color: "#FAFA5A",
+            fontWeight: 700, marginBottom: "18px",
+          }}>
+            Curated Vintage & Luxury Designer Finds
+          </p>
+          <h1 style={{
+            fontSize: "clamp(2.8rem, 9vw, 8rem)",
+            fontWeight: 900, textTransform: "uppercase",
+            letterSpacing: "-0.02em", lineHeight: 0.92,
+            color: "#FFFFFF",
+            textShadow: "0 2px 48px rgba(0,0,0,0.6)",
+            fontFamily: FONT,
+          }}>
+            The Goody<br />Bag Collection
+          </h1>
+          <p style={{
+            fontSize: "0.82rem", letterSpacing: "0.1em",
+            color: "rgba(255,255,255,0.65)", marginTop: "20px",
+            fontWeight: 300, maxWidth: "340px", lineHeight: 1.7,
+          }}>
+            Rare pre-loved pieces, hand-picked and 100% authenticated.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "32px", justifyContent: "center" }}>
+            <button
+              onClick={() => document.getElementById("new-in")?.scrollIntoView({ behavior: "smooth" })}
+              style={{
+                display: "flex", alignItems: "center", gap: "10px",
+                padding: "14px 28px",
+                backgroundColor: "#FAFA5A", color: "#0D0D0D",
+                fontSize: "0.65rem", letterSpacing: "0.22em",
+                textTransform: "uppercase", fontWeight: 800,
+                fontFamily: FONT, border: "none", cursor: "pointer",
+                transition: "opacity 0.15s",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.8"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
+            >
+              Shop New In <ArrowRight size={13} strokeWidth={2.5} />
+            </button>
+            <button
+              onClick={() => onNavigate("consignment")}
+              style={{
+                display: "flex", alignItems: "center", gap: "10px",
+                padding: "14px 28px",
+                backgroundColor: "transparent", color: "#FFFFFF",
+                fontSize: "0.65rem", letterSpacing: "0.22em",
+                textTransform: "uppercase", fontWeight: 700,
+                fontFamily: FONT, border: "1px solid rgba(255,255,255,0.5)",
+                cursor: "pointer", transition: "border-color 0.15s",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#FFFFFF"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.5)"; }}
+            >
+              Sell With Us
+            </button>
+          </div>
+        </div>
+
+        {/* Bottom corners */}
+        <p style={{ position: "absolute", bottom: 20, right: 24, zIndex: 10, fontSize: "0.6rem", letterSpacing: "0.26em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontWeight: 600 }}>
+          Want In? →
+        </p>
+        <p style={{ position: "absolute", bottom: 20, left: 24, zIndex: 10, fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
+          Scroll to explore
+        </p>
+      </section>
+
+      {/* ── Ticker ── */}
+      <div style={{ backgroundColor: "#0D0D0D", overflow: "hidden", whiteSpace: "nowrap" }}>
+        <p className="ticker-anim" style={{ padding: "12px 0", fontSize: "0.6rem", letterSpacing: "0.26em", textTransform: "uppercase", color: "#FAFA5A", fontWeight: 600 }}>
+          {Array(16).fill("100% Authenticated  ·  Hand-Picked  ·  Rare Finds  ·  Fast Shipping  ·  Verified Before Shipping  ·  ").join("")}
+        </p>
+      </div>
+
+      {/* ── New In ── */}
+      <section id="new-in" style={{ padding: "48px 40px" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid #0D0D0D" }}>
+          <h2 style={{ fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700 }}>New In</h2>
+          <span style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888" }}>{filtered.length} Items</span>
+        </div>
+
+        <div style={{ display: "flex", gap: "24px", overflowX: "auto", padding: "16px 0 32px", scrollbarWidth: "none" }}>
+          {CATS.map((c) => (
+            <button key={c} onClick={() => setCat(c)} style={{
+              flexShrink: 0, fontSize: "0.65rem", letterSpacing: "0.2em",
+              textTransform: "uppercase", fontWeight: c === cat ? 700 : 500,
+              color: c === cat ? "#0D0D0D" : "#888888",
+              borderBottom: c === cat ? "1.5px solid #0D0D0D" : "1.5px solid transparent",
+              paddingBottom: "3px", background: "none", border: "none",
+              borderBottomStyle: "solid",
+              cursor: "pointer", fontFamily: FONT,
+            }}>
+              {c}
+            </button>
+          ))}
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "16px 16px" }}>
+          {filtered.map((p) => (
+            <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} inCart={cartIds.has(p.id)} />
+          ))}
+        </div>
+      </section>
+
+      {/* ── Three-panel strip ── */}
+      <section style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", borderTop: "1px solid #0D0D0D", borderBottom: "1px solid #0D0D0D" }}>
+        {[
+          { img: newInFreshDropsImg, label: "New In", caption: "Fresh drops every week." },
+          { img: authenticatedFeatureImg, label: "Inquiry", caption: "For inquiries or offers, contact us directly." },
+          { img: consignFeatureImg, label: "Consign", caption: "Keep 80% of each sale." },
+        ].map(({ img, label, caption }, i) => (
+          <div key={label} style={{ position: "relative", overflow: "hidden", minHeight: "360px", borderRight: i < 2 ? "1px solid #0D0D0D" : "none", cursor: "pointer" }}>
+            <img src={img} alt={label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+            <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.3)" }} />
+            <div style={{ position: "absolute", bottom: 24, left: 24, right: 24 }}>
+              <p style={{ fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: "#FAFA5A", marginBottom: "4px" }}>{label}</p>
+              <p style={{ fontSize: "0.88rem", color: "#FFFFFF", fontWeight: 400 }}>{caption}</p>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* ── Authenticity ── */}
+      <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: "1px solid #0D0D0D" }}>
+        <div style={{ padding: "64px", display: "flex", flexDirection: "column", justifyContent: "center", borderRight: "1px solid #0D0D0D" }}>
+          <p style={{ fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 600, color: "#888888", marginBottom: "20px" }}>Our Promise</p>
+          <h2 style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.01em", lineHeight: 1.0, color: "#0D0D0D" }}>
+            100%<br />Authenticity.<br />
+            <span style={{ color: "#FAFA5A", WebkitTextStroke: "1.5px #0D0D0D" }}>No Exceptions.</span>
+          </h2>
+          <p style={{ fontSize: "0.88rem", lineHeight: 1.78, color: "#888888", fontWeight: 400, maxWidth: "380px", marginTop: "20px" }}>
+            If we can't verify it, we don't sell it. Items come with a verification card from Entrupy.
+          </p>
+          <p style={{ fontSize: "0.78rem", lineHeight: 1.72, color: "#888888", fontWeight: 400, maxWidth: "420px", marginTop: "12px" }}>
+            100% money-back guarantee: In the improbable scenario of a sale of an inauthentic item, you will receive a 100% refund, including shipping.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginTop: "40px" }}>
+            {[{ n: "2×", l: "Quality checks" }, { n: "Entrupy", l: "Verification card" }, { n: "100%", l: "Money-back guarantee" }].map(({ n, l }) => (
+              <div key={l} style={{ borderTop: "1px solid #0D0D0D", paddingTop: "12px" }}>
+                <p style={{ fontSize: "1.8rem", fontWeight: 800, color: "#0D0D0D", lineHeight: 1 }}>{n}</p>
+                <p style={{ fontSize: "0.65rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888888", marginTop: "4px" }}>{l}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style={{ overflow: "hidden", backgroundColor: "#F4F4F4", minHeight: "480px" }}>
+          <img src="https://images.unsplash.com/photo-1621036382228-d728f0d09e33?w=800&h=960&fit=crop&auto=format" alt="Authenticated vintage" style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: "480px" }} />
+        </div>
+      </section>
+
+      {/* ── Consignment banner ── */}
+      <section style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "32px", padding: "48px 64px", backgroundColor: "#0D0D0D" }}>
+        <div>
+          <p style={{ fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 600, color: "#888888", marginBottom: "10px" }}>Sell With Us</p>
+          <h2 style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)", fontWeight: 800, color: "#FFFFFF", textTransform: "uppercase", letterSpacing: "-0.01em", lineHeight: 1.05 }}>
+            Your closet,<br />your income.
+          </h2>
+        </div>
+        <button
+          onClick={() => onNavigate("consignment")}
+          style={{ display: "flex", alignItems: "center", gap: "12px", padding: "16px 32px", backgroundColor: "#FAFA5A", color: "#0D0D0D", fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 800, fontFamily: FONT, border: "none", cursor: "pointer" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.85"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
+        >
+          Start Consigning <ArrowRight size={13} strokeWidth={2.5} />
+        </button>
+      </section>
+
+      {/* ── Footer ── */}
+      <footer style={{ borderTop: "1px solid #0D0D0D" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px 32px", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", flexWrap: "wrap", gap: "12px" }}>
+          <span style={{ fontWeight: 700, color: "#0D0D0D" }}>The Goody Bag Collection</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+            <button
+              onClick={() => onNavigate("returns")}
+              style={{ background: "none", border: "none", cursor: "pointer", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", fontFamily: FONT, transition: "color 0.15s" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#0D0D0D"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#888888"; }}
+            >
+              Return Policy
+            </button>
+            <span>© 2026 · All items verified</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+  );
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DasherMart | Miya Jordan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<nav>
+  <a href="../index.html" class="nav-name">Miya Jordan</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#work">Work</a></li>
+    <li><a href="../index.html#about">About</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero case-study-hero" id="main">
+  <a href="../index.html" class="back-link">← Back to work</a>
+  <p class="hero-eyebrow">Case study 03</p>
+  <div class="wip-badge"><span class="wip-dot"></span>In progress</div>
+  <h1 class="hero-title">DasherMart</h1>
+  <p class="hero-subtitle">Instacart vs DasherMart</p>
+  <p class="hero-body">DasherMart is a fictional gig economy platform designed to deliver groceries and fast food through an algorithmically managed system. It was created not to replace Instacart, but to reimagine it. Specifically, to ask: what would this platform look like if it were actually designed for the worker, not just around them?</p>
+  <div class="project-tags">
+    <span class="tag dark">AI ethics</span>
+    <span class="tag">Gig economy</span>
+    <span class="tag">Systems design</span>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">Overview</p>
+  <div class="case-study-content">
+    <p>This project started with a simple observation: Instacart shoppers are penalized by a system that was never designed to understand their reality. Performance scores drop because a store was out of stock. Ratings suffer because a customer rejected a substitution the shopper had no choice but to make. There is no appeal, no context, no way for the worker to say: this wasn't my fault.</p>
+    <p>DasherMart is my response to that. A fictional platform, but a real design argument: that algorithmic labor systems can be built with fairness and worker dignity as a core requirement, not an afterthought. This case study documents the problem, the design decisions I made, and the accountability system I built to give workers transparency and a mechanism for recourse.</p>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">Problem</p>
+  <div class="case-study-content">
+    <p>Instacart shoppers operate under constant algorithmic pressure. Every substitution, every unavailable item, every delayed delivery is logged and scored, even when the shopper had no control over the outcome. The result is a workforce making fear-based decisions: accepting replacements that don't make sense, rushing through shops, or avoiding certain batches altogether to protect a performance score that determines their income.</p>
+    <p><strong>Three specific pain points drove this project:</strong></p>
+    <ul>
+      <li>Shoppers make indecisive decisions out of fear of performance dings for things outside their control</li>
+      <li>When items are out of stock, shoppers face pressure to find replacements with no clear guidance or protection if the customer rejects them</li>
+      <li>The algorithm treats all failures equally. It has no mechanism for context, fairness, or worker input</li>
+    </ul>
+    <p>The deeper problem is a power imbalance: stakeholders and customers have voice in the system, workers don't. And when workers suffer, the entire chain suffers. Customers get worse service, companies lose reliable shoppers, and trust erodes on all sides.</p>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">Process</p>
+  <div class="case-study-content">
+    <p>The accountability system gives shoppers a way to flag unfair outcomes, see a clear breakdown of what happened, and escalate to an audit team when the algorithm gets it wrong.</p>
+  </div>
+  <figure class="case-study-figure">
+    <a href="../images/dashermart-process.pdf" target="_blank" rel="noopener noreferrer" class="case-study-figure__link">
+    <img
+      src="../images/dashermart-process.png"
+      alt="DasherMart accountability process flowchart from shopper data collection through issue flagging, fairness assessment, compensation or notification, and audit escalation."
+      loading="lazy"
+      decoding="async"
+      width="1976"
+      height="1138"
+    />
+    </a>
+    <figcaption>Accountability flow from flagged issues through fairness review, worker recourse, and audit escalation. <a href="../images/dashermart-process.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a> for full resolution.</figcaption>
+  </figure>
+  <div class="prototype-embed prototype-embed--app">
+    <iframe
+      src="https://mockup-magic-wand-30.lovable.app"
+      title="DasherMart prototype"
+      loading="lazy"
+      allowfullscreen
+    ></iframe>
+    <p class="prototype-embed__link">
+      <a href="https://mockup-magic-wand-30.lovable.app" target="_blank" rel="noopener noreferrer">Open prototype in a new tab ↗</a>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">Outcome</p>
+  <div class="case-study-content">
+    <p>The final outcome of this project was a high-fidelity prototype that reimagines how gig economy platforms could support workers through transparency, accountability, and fairer algorithmic decision-making. Rather than treating every negative outcome as a worker performance issue, DasherMart introduces a contextual accountability system that allows shoppers to document circumstances outside their control, view the factors affecting their ratings, and request human review when automated decisions appear unfair.</p>
+    <p>Through this project, I learned that many challenges within gig economy platforms are not simply interface problems but systems-design problems. Designing for worker dignity required moving beyond traditional usability considerations and examining how algorithms distribute power, responsibility, and opportunity. This process reinforced the importance of transparency, explainability, and human oversight in AI-driven labor systems.</p>
+    <p>If developed further, future iterations would include user testing with current Instacart and delivery-platform workers, expanded appeal workflows, and additional features that help workers understand how platform decisions are made. Ultimately, DasherMart demonstrates how digital labor platforms can be redesigned to balance operational efficiency with fairness, giving workers a meaningful voice in systems that directly affect their livelihoods.</p>
+  </div>
+</section>
+
+<footer>
+  <span>Miya Jordan, HCI Graduate Student</span>
+  <span>2026</span>
+</footer>
+
+</body>
+</html>

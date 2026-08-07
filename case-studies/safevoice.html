@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeVoice | Miya Jordan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<nav>
+  <a href="../index.html" class="nav-name">Miya Jordan</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#work">Work</a></li>
+    <li><a href="../index.html#about">About</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero case-study-hero" id="main">
+  <a href="../index.html" class="back-link">← Back to work</a>
+  <p class="hero-eyebrow">Case study 01</p>
+  <h1 class="hero-title">SafeVoice</h1>
+  <p class="hero-subtitle">Designed an AI-Enhanced App</p>
+  <p class="hero-body">An in-car app that gives every driver a hands-free, automatic way to audio-record traffic stops, built for anyone who has ever felt unprotected, mistreated, or unsure of their rights on the side of the road.</p>
+  <div class="project-tags">
+    <span class="tag dark">AI design</span>
+    <span class="tag">Equity</span>
+    <span class="tag">In-car UX</span>
+    <span class="tag">Safety</span>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">Overview</p>
+  <div class="case-study-content">
+    <p>SafeVoice is an in-car application that gives drivers a hands-free way to audio-record encounters with law enforcement during traffic stops.</p>
+    <p>It is built for anyone who has ever felt vulnerable, mistreated, or unsure of their rights during a traffic stop, whether facing discrimination, an unwarranted citation, or an officer abusing their authority. SafeVoice runs quietly in the background of your car system, so when a stop happens, documentation does too. No reaching for a phone. No breaking focus. Just a reliable record of what actually occurred.</p>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">Problem</p>
+  <div class="case-study-content">
+    <p>Traffic stops can be stressful, unpredictable, and sometimes unsafe, regardless of who you are. Whether facing unwarranted citations, unclear legal situations, or encounters where power is being abused, drivers often have no reliable way to document what happens in the moment. Hands must stay visible, phones are hard to access safely, and the pressure of the situation makes real-time documentation nearly impossible.</p>
+    <p>Existing tools weren't designed for this context. SafeVoice is an in-car audio recording system that activates when you need it, without requiring the driver to do anything that could escalate the situation. It exists to give every driver a quiet, reliable witness.</p>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">Process</p>
+  <div class="case-study-content">
+    <p>SafeVoice is designed to activate automatically when a traffic stop is detected, request consent, and handle recording, encryption, and secure storage without requiring the driver to reach for a phone.</p>
+  </div>
+  <figure class="case-study-figure">
+    <a href="../images/safevoice-flowchart.pdf" target="_blank" rel="noopener noreferrer" class="case-study-figure__link">
+    <img
+      src="../images/safevoice-flowchart.png"
+      alt="SafeVoice flowchart: police stop detected via GPS and sensors, user consent requested, then audio recording with party disclosure, on-device AES-256 encryption, secure cloud storage, verification, and recording saved, or recording cancelled if permission is denied."
+      loading="lazy"
+      decoding="async"
+      width="1451"
+      height="1339"
+    />
+    </a>
+    <figcaption>End-to-end flow from stop detection through encrypted recording and secure storage. <a href="../images/safevoice-flowchart.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a> for full resolution.</figcaption>
+  </figure>
+  <div class="prototype-embed">
+    <iframe
+      src="https://truce-slot-12974616.figma.site"
+      title="SafeVoice prototype"
+      loading="lazy"
+      allowfullscreen
+    ></iframe>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">Outcome</p>
+  <div class="case-study-content">
+    <p>SafeVoice exists as a fully conceptualized in-car application with a working prototype, designed to address a gap that no existing tool currently fills. The core features (automatic siren detection, manual trigger, hands-free recording, and the Trusted Loved One connection) were each designed in response to a specific failure point drivers face during traffic stops: inaccessible phones, escalating tension, and the feeling of being completely alone in the moment.</p>
+    <p><strong>Key design decisions that came out of this project:</strong></p>
+    <ul>
+      <li>Automatic activation via siren detection removes the burden of action from the driver entirely, which matters most when stress is highest</li>
+      <li>Manual trigger preserves user control for situations where sirens aren't present but tension is</li>
+      <li>The Trusted Loved One feature reframes the app from a documentation tool into a safety network, so someone always knows what's happening</li>
+    </ul>
+    <p><strong>What's next:</strong> The logical next step is usability testing with real drivers across different demographics (particularly older drivers, given the beginner-friendly design goal) and legal research into recording consent laws by state, which would directly affect how the app notifies both parties that recording has begun.</p>
+    <p><strong>What I'd do differently:</strong> I would conduct user interviews earlier in the process to validate the siren detection threshold: how long should sirens be detected before recording triggers? That number needs to come from users, not assumptions.</p>
+  </div>
+</section>
+
+<footer>
+  <span>Miya Jordan, HCI Graduate Student</span>
+  <span>2026</span>
+</footer>
+
+</body>
+</html>
