@@ -413,7 +413,7 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
       <section style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", borderTop: "1px solid #0D0D0D", borderBottom: "1px solid #0D0D0D" }}>
         {[
           { img: newInFreshDropsImg, label: "New In", caption: "Fresh drops every week." },
-          { img: authenticatedFeatureImg, label: "Inquiry", caption: "For inquiries or offers, contact us directly." },
+          { img: authenticatedFeatureImg, label: "Inquiries", caption: "For inquiries or offers, contact us directly." },
           { img: consignFeatureImg, label: "Consign", caption: "Keep 80% of each sale." },
         ].map(({ img, label, caption }, i) => (
           <div key={label} style={{ position: "relative", overflow: "hidden", minHeight: "360px", borderRight: i < 2 ? "1px solid #0D0D0D" : "none", cursor: "pointer" }}>

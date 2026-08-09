@@ -26,7 +26,7 @@ export function Navbar({ activePage, onNavigate, cartCount }: NavbarProps) {
         style={{ backgroundColor: "#0D0D0D" }}
       >
         <p style={{ color: "#FAFA5A", fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 600 }}>
-          Free Domestic Shipping on Orders Over $300
+          Free Domestic Shipping on Orders Over $100
         </p>
       </div>
 
