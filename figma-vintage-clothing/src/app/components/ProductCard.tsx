@@ -241,13 +241,15 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
             }}
           />
 
-          {/* Wishlist */}
+          {/* Wishlist — always visible on touch; hover-reveal on desktop */}
           <button
             onClick={(e) => { e.stopPropagation(); setLiked(!liked); }}
-            className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center bg-white transition-opacity duration-200"
-            style={{ opacity: hovered || liked ? 1 : 0, border: "1px solid rgba(0,0,0,0.12)" }}
+            className={`absolute top-2.5 right-2.5 flex h-10 w-10 items-center justify-center bg-white transition-opacity duration-200 md:h-7 md:w-7 ${
+              liked ? "opacity-100" : "opacity-100 md:opacity-0 md:group-hover:opacity-100"
+            }`}
+            style={{ border: "1px solid rgba(0,0,0,0.12)" }}
           >
-            <Heart size={13} strokeWidth={1.8} fill={liked ? "#FF3EA5" : "none"} color={liked ? "#FF3EA5" : "#0D0D0D"} />
+            <Heart size={14} strokeWidth={1.8} fill={liked ? "#FF3EA5" : "none"} color={liked ? "#FF3EA5" : "#0D0D0D"} />
           </button>
 
           {hasGallery && (
@@ -255,9 +257,9 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
               <button
                 aria-label="Previous photo"
                 onClick={showPrevPhoto}
-                className="absolute left-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center bg-white transition-opacity duration-200"
+                className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center bg-white transition-opacity duration-200 md:h-7 md:w-7"
                 style={{
-                  opacity: hovered ? 1 : 0.85,
+                  opacity: 0.92,
                   border: "1px solid rgba(0,0,0,0.12)",
                   zIndex: 2,
                 }}
@@ -267,9 +269,9 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
               <button
                 aria-label="Next photo"
                 onClick={showNextPhoto}
-                className="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center bg-white transition-opacity duration-200"
+                className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center bg-white transition-opacity duration-200 md:h-7 md:w-7"
                 style={{
-                  opacity: hovered ? 1 : 0.85,
+                  opacity: 0.92,
                   border: "1px solid rgba(0,0,0,0.12)",
                   zIndex: 2,
                 }}
@@ -277,7 +279,7 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
                 <ChevronRight size={14} strokeWidth={2} color="#0D0D0D" />
               </button>
               <div
-                className="absolute bottom-12 left-0 right-0 flex items-center justify-center gap-1.5"
+                className="absolute bottom-14 left-0 right-0 flex items-center justify-center gap-1.5 md:bottom-12"
                 style={{ zIndex: 2, pointerEvents: "none" }}
               >
                 {gallery.map((_, index) => (
@@ -297,15 +299,15 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
             </>
           )}
 
-          {/* Add to bag — slides up on hover */}
+          {/* Add to bag — always visible on mobile; hover-reveal on desktop */}
           <div
-            className="absolute bottom-0 left-0 right-0 transition-transform duration-300"
-            style={{ transform: hovered ? "translateY(0)" : "translateY(100%)", zIndex: 3 }}
+            className="absolute bottom-0 left-0 right-0 transition-transform duration-300 translate-y-0 md:translate-y-full md:group-hover:translate-y-0"
+            style={{ zIndex: 3 }}
           >
             <button
               onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
               disabled={inCart || !canAddToBag}
-              className="w-full py-3 transition-colors duration-150"
+              className="w-full py-3.5 transition-colors duration-150 md:py-3"
               style={{
                 backgroundColor: inCart || !canAddToBag ? "#888888" : "#FAFA5A",
                 color: "#0D0D0D",
@@ -349,30 +351,30 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
 
       {detailsOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-8"
+          className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:px-4 sm:py-8"
           style={{ backgroundColor: "rgba(0,0,0,0.55)", fontFamily: FONT }}
           onClick={closeDetails}
         >
           <div
-            className="relative grid w-full max-w-4xl overflow-hidden bg-white md:grid-cols-2"
-            style={{ height: "min(90vh, 760px)", maxHeight: "90vh" }}
+            className="relative grid h-[92dvh] w-full max-w-4xl overflow-y-auto overflow-x-hidden bg-white sm:h-auto sm:max-h-[90vh] sm:overflow-hidden md:grid-cols-2"
+            style={{ maxHeight: "min(92dvh, 760px)" }}
             onClick={(e) => e.stopPropagation()}
           >
             <button
               aria-label="Close product details"
               onClick={closeDetails}
-              className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center bg-white"
+              className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center bg-white sm:h-8 sm:w-8 sm:right-4 sm:top-4"
               style={{ border: "1px solid rgba(0,0,0,0.12)" }}
             >
               <X size={16} strokeWidth={1.8} />
             </button>
 
-            <div className="flex flex-col gap-3" style={{ minHeight: 0, backgroundColor: imageBackground }}>
+            <div className="flex min-h-[42vh] flex-col gap-3 sm:min-h-0" style={{ backgroundColor: imageBackground }}>
               <button
                 type="button"
                 aria-label="Open photo fullscreen"
                 onClick={openLightbox}
-                className="relative flex-1 min-h-0 overflow-hidden"
+                className="relative min-h-[42vh] flex-1 overflow-hidden sm:min-h-0"
                 style={{ cursor: "zoom-in", border: "none", padding: 0, background: "transparent" }}
               >
                 <img
@@ -425,15 +427,14 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
             </div>
 
             <div
-              className="overflow-y-auto p-8 md:p-10"
+              className="overflow-visible p-5 sm:overflow-y-auto sm:p-8 md:p-10"
               style={{ minHeight: 0, overscrollBehavior: "contain" }}
               onWheel={(e) => e.stopPropagation()}
-              onTouchMove={(e) => e.stopPropagation()}
             >
               <p style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#888888", fontWeight: 600 }}>
                 {product.brand}
               </p>
-              <h2 style={{ marginTop: "8px", fontSize: "2rem", lineHeight: 1.05, fontWeight: 800, color: "#0D0D0D" }}>
+              <h2 style={{ marginTop: "8px", fontSize: "clamp(1.4rem, 5vw, 2rem)", lineHeight: 1.05, fontWeight: 800, color: "#0D0D0D" }}>
                 {product.name}
               </h2>
               <p style={{ marginTop: "12px", fontSize: "1.25rem", fontWeight: 700, color: "#0D0D0D" }}>

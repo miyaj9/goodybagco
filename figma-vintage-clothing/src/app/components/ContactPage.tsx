@@ -57,13 +57,47 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 export function ContactPage() {
   return (
     <main style={{ fontFamily: FONT, backgroundColor: "#FFFFFF", minHeight: "100vh" }}>
+      <style>{`
+        .contact-header {
+          border-bottom: 1px solid #0D0D0D;
+          padding: 36px 20px 28px;
+        }
+        .contact-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          border-bottom: 1px solid #0D0D0D;
+        }
+        .contact-details,
+        .contact-faq {
+          padding: 36px 20px;
+        }
+        .contact-details {
+          border-bottom: 1px solid #0D0D0D;
+        }
+        @media (min-width: 768px) {
+          .contact-header {
+            padding: 48px 40px 32px;
+          }
+          .contact-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+          .contact-details,
+          .contact-faq {
+            padding: 48px 40px;
+          }
+          .contact-details {
+            border-bottom: none;
+            border-right: 1px solid #0D0D0D;
+          }
+        }
+      `}</style>
 
       {/* Header */}
-      <div style={{ borderBottom: "1px solid #0D0D0D", padding: "48px 40px 32px" }}>
+      <div className="contact-header">
         <p style={{ fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginBottom: "10px" }}>
           Get In Touch
         </p>
-        <h1 style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.02em", lineHeight: 0.95, color: "#0D0D0D" }}>
+        <h1 style={{ fontSize: "clamp(2rem, 8vw, 4rem)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.02em", lineHeight: 0.95, color: "#0D0D0D" }}>
           We'd Love to<br />Hear From You.
         </h1>
         <p style={{ fontSize: "0.92rem", color: "#888888", lineHeight: 1.75, fontWeight: 300, maxWidth: "520px", marginTop: "18px" }}>
@@ -71,10 +105,10 @@ export function ContactPage() {
         </p>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: "1px solid #0D0D0D" }}>
+      <div className="contact-grid">
 
         {/* Left — contact details */}
-        <div style={{ borderRight: "1px solid #0D0D0D", padding: "48px 40px" }}>
+        <div className="contact-details">
 
           {[
             {
@@ -113,7 +147,7 @@ export function ContactPage() {
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  style={{ fontSize: "1rem", fontWeight: 600, color: "#0D0D0D", textDecoration: "none", borderBottom: "1.5px solid #0D0D0D", paddingBottom: "1px", transition: "opacity 0.15s" }}
+                  style={{ fontSize: "1rem", fontWeight: 600, color: "#0D0D0D", textDecoration: "none", borderBottom: "1.5px solid #0D0D0D", paddingBottom: "1px", transition: "opacity 0.15s", wordBreak: "break-word" }}
                   onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.5"; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
                 >
@@ -129,7 +163,7 @@ export function ContactPage() {
         </div>
 
         {/* Right — FAQ */}
-        <div style={{ padding: "48px 40px" }}>
+        <div className="contact-faq">
           <p style={{ fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700, color: "#0D0D0D", marginBottom: "24px" }}>
             Frequently Asked Questions
           </p>
@@ -144,7 +178,7 @@ export function ContactPage() {
 
       {/* Footer */}
       <footer style={{ borderTop: "1px solid #0D0D0D" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px 32px", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", flexWrap: "wrap", gap: "12px" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px 20px", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", flexWrap: "wrap", gap: "12px" }}>
           <span style={{ fontWeight: 700, color: "#0D0D0D" }}>The Goody Bag Collection</span>
           <span>© 2026 · All items verified · Sustainably sourced vintage</span>
         </div>

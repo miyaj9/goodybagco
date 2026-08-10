@@ -258,7 +258,7 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
   return (
     <main style={{ fontFamily: FONT, backgroundColor: "#FFFFFF" }}>
 
-      {/* Keyframes — defined once at top level */}
+      {/* Keyframes + mobile layout */}
       <style>{`
         @keyframes conveyorDown {
           0%   { transform: translateY(-50%); }
@@ -272,19 +272,143 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
         }
+        .hero-section {
+          position: relative;
+          width: 100%;
+          height: 100vh;
+          height: 100dvh;
+          overflow: hidden;
+        }
+        .hero-conveyor {
+          position: absolute;
+          inset: 0;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3px;
+          background-color: #000;
+        }
+        .hero-conveyor > :nth-child(n + 3) {
+          display: none;
+        }
+        .new-in-section {
+          padding: 32px 16px;
+        }
+        .product-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+        .feature-strip {
+          display: grid;
+          grid-template-columns: 1fr;
+          border-top: 1px solid #0D0D0D;
+          border-bottom: 1px solid #0D0D0D;
+        }
+        .feature-strip-panel {
+          position: relative;
+          overflow: hidden;
+          min-height: 260px;
+          border-bottom: 1px solid #0D0D0D;
+          cursor: pointer;
+        }
+        .feature-strip-panel:last-child {
+          border-bottom: none;
+        }
+        .auth-section {
+          display: grid;
+          grid-template-columns: 1fr;
+          border-bottom: 1px solid #0D0D0D;
+        }
+        .auth-copy {
+          padding: 40px 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          border-bottom: 1px solid #0D0D0D;
+        }
+        .auth-stats {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-top: 32px;
+        }
+        .consign-banner {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          flex-direction: column;
+          gap: 24px;
+          padding: 40px 20px;
+          background-color: #0D0D0D;
+        }
+        .hero-ctas {
+          flex-direction: column;
+          align-items: stretch;
+          width: min(100%, 280px);
+        }
+        .hero-ctas button {
+          justify-content: center;
+          width: 100%;
+        }
+        @media (min-width: 640px) {
+          .hero-conveyor {
+            grid-template-columns: repeat(4, 1fr);
+          }
+          .hero-conveyor > :nth-child(n + 3) {
+            display: block;
+          }
+          .hero-ctas {
+            flex-direction: row;
+            align-items: center;
+            width: auto;
+          }
+          .hero-ctas button {
+            width: auto;
+          }
+          .new-in-section {
+            padding: 48px 40px;
+          }
+          .product-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+          }
+          .feature-strip {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          .feature-strip-panel {
+            min-height: 360px;
+            border-bottom: none;
+            border-right: 1px solid #0D0D0D;
+          }
+          .feature-strip-panel:last-child {
+            border-right: none;
+          }
+          .auth-section {
+            grid-template-columns: 1fr 1fr;
+          }
+          .auth-copy {
+            padding: 64px;
+            border-bottom: none;
+            border-right: 1px solid #0D0D0D;
+          }
+          .auth-stats {
+            gap: 20px;
+            margin-top: 40px;
+          }
+          .consign-banner {
+            flex-direction: row;
+            align-items: center;
+            gap: 32px;
+            padding: 48px 64px;
+          }
+        }
       `}</style>
 
       {/* ── HERO ── */}
-      <section style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
+      <section className="hero-section">
 
         {/* Conveyor columns */}
-        <div style={{
-          position: "absolute", inset: 0,
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "3px",
-          backgroundColor: "#000",
-        }}>
+        <div className="hero-conveyor">
           {COLS.map((c, i) => (
             <ConveyorColumn key={i} pos={c.pos} duration={c.duration} delay={c.delay} />
           ))}
@@ -327,7 +451,7 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
           }}>
             Rare pre-loved pieces, hand-picked and 100% authenticated.
           </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "32px", justifyContent: "center" }}>
+          <div className="hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "32px", justifyContent: "center" }}>
             <button
               onClick={() => document.getElementById("new-in")?.scrollIntoView({ behavior: "smooth" })}
               style={{
@@ -380,20 +504,20 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
       </div>
 
       {/* ── New In ── */}
-      <section id="new-in" style={{ padding: "48px 40px" }}>
+      <section id="new-in" className="new-in-section">
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid #0D0D0D" }}>
           <h2 style={{ fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700 }}>New In</h2>
           <span style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888" }}>{filtered.length} Items</span>
         </div>
 
-        <div style={{ display: "flex", gap: "24px", overflowX: "auto", padding: "16px 0 32px", scrollbarWidth: "none" }}>
+        <div style={{ display: "flex", gap: "20px", overflowX: "auto", padding: "16px 0 28px", scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
           {CATS.map((c) => (
             <button key={c} onClick={() => setCat(c)} style={{
               flexShrink: 0, fontSize: "0.65rem", letterSpacing: "0.2em",
               textTransform: "uppercase", fontWeight: c === cat ? 700 : 500,
               color: c === cat ? "#0D0D0D" : "#888888",
               borderBottom: c === cat ? "1.5px solid #0D0D0D" : "1.5px solid transparent",
-              paddingBottom: "3px", background: "none", border: "none",
+              paddingBottom: "8px", paddingTop: "8px", background: "none", border: "none",
               borderBottomStyle: "solid",
               cursor: "pointer", fontFamily: FONT,
             }}>
@@ -402,7 +526,7 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
           ))}
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "16px 16px" }}>
+        <div className="product-grid">
           {filtered.map((p) => (
             <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} inCart={cartIds.has(p.id)} />
           ))}
@@ -410,13 +534,13 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
       </section>
 
       {/* ── Three-panel strip ── */}
-      <section style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", borderTop: "1px solid #0D0D0D", borderBottom: "1px solid #0D0D0D" }}>
+      <section className="feature-strip">
         {[
           { img: newInFreshDropsImg, label: "New In", caption: "Fresh drops every week." },
           { img: authenticatedFeatureImg, label: "Inquiries", caption: "For inquiries or offers, contact us directly." },
           { img: consignFeatureImg, label: "Consign", caption: "Keep 80% of each sale." },
-        ].map(({ img, label, caption }, i) => (
-          <div key={label} style={{ position: "relative", overflow: "hidden", minHeight: "360px", borderRight: i < 2 ? "1px solid #0D0D0D" : "none", cursor: "pointer" }}>
+        ].map(({ img, label, caption }) => (
+          <div key={label} className="feature-strip-panel">
             <img src={img} alt={label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
             <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.3)" }} />
             <div style={{ position: "absolute", bottom: 24, left: 24, right: 24 }}>
@@ -428,8 +552,8 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
       </section>
 
       {/* ── Authenticity ── */}
-      <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: "1px solid #0D0D0D" }}>
-        <div style={{ padding: "64px", display: "flex", flexDirection: "column", justifyContent: "center", borderRight: "1px solid #0D0D0D" }}>
+      <section className="auth-section">
+        <div className="auth-copy">
           <p style={{ fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 600, color: "#888888", marginBottom: "20px" }}>Our Promise</p>
           <h2 style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.01em", lineHeight: 1.0, color: "#0D0D0D" }}>
             100%<br />Authenticity.<br />
@@ -441,7 +565,7 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
           <p style={{ fontSize: "0.78rem", lineHeight: 1.72, color: "#888888", fontWeight: 400, maxWidth: "420px", marginTop: "12px" }}>
             100% money-back guarantee: In the improbable scenario of a sale of an inauthentic item, you will receive a 100% refund, including shipping.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginTop: "40px" }}>
+          <div className="auth-stats">
             {[{ n: "2×", l: "Quality checks" }, { n: "Entrupy", l: "Verification card" }, { n: "100%", l: "Money-back guarantee" }].map(({ n, l }) => (
               <div key={l} style={{ borderTop: "1px solid #0D0D0D", paddingTop: "12px" }}>
                 <p style={{ fontSize: "1.8rem", fontWeight: 800, color: "#0D0D0D", lineHeight: 1 }}>{n}</p>
@@ -450,13 +574,13 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
             ))}
           </div>
         </div>
-        <div style={{ overflow: "hidden", backgroundColor: "#F4F4F4", minHeight: "480px" }}>
-          <img src="https://images.unsplash.com/photo-1621036382228-d728f0d09e33?w=800&h=960&fit=crop&auto=format" alt="Authenticated vintage" style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: "480px" }} />
+        <div style={{ overflow: "hidden", backgroundColor: "#F4F4F4", minHeight: "280px" }}>
+          <img src="https://images.unsplash.com/photo-1621036382228-d728f0d09e33?w=800&h=960&fit=crop&auto=format" alt="Authenticated vintage" style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: "280px" }} />
         </div>
       </section>
 
       {/* ── Consignment banner ── */}
-      <section style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "32px", padding: "48px 64px", backgroundColor: "#0D0D0D" }}>
+      <section className="consign-banner">
         <div>
           <p style={{ fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 600, color: "#888888", marginBottom: "10px" }}>Sell With Us</p>
           <h2 style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)", fontWeight: 800, color: "#FFFFFF", textTransform: "uppercase", letterSpacing: "-0.01em", lineHeight: 1.05 }}>
@@ -465,7 +589,7 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
         </div>
         <button
           onClick={() => onNavigate("consignment")}
-          style={{ display: "flex", alignItems: "center", gap: "12px", padding: "16px 32px", backgroundColor: "#FAFA5A", color: "#0D0D0D", fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 800, fontFamily: FONT, border: "none", cursor: "pointer" }}
+          style={{ display: "flex", alignItems: "center", gap: "12px", padding: "16px 28px", backgroundColor: "#FAFA5A", color: "#0D0D0D", fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 800, fontFamily: FONT, border: "none", cursor: "pointer", width: "fit-content" }}
           onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.85"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
         >

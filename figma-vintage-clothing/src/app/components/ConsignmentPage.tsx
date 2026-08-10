@@ -60,7 +60,7 @@ export function ConsignmentPage() {
 
       {/* Hero */}
       <section className="grid grid-cols-1 md:grid-cols-2" style={{ borderBottom: "1px solid #0D0D0D" }}>
-        <div className="flex flex-col justify-center p-10 md:p-16 order-2 md:order-1" style={{ borderRight: "1px solid #0D0D0D" }}>
+        <div className="flex flex-col justify-center p-6 sm:p-10 md:p-16 order-2 md:order-1" style={{ borderRight: "1px solid #0D0D0D" }}>
           <p style={{ fontSize: "0.62rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 600, color: "#888888", marginBottom: "20px" }}>
             Sell With Us
           </p>
@@ -93,16 +93,15 @@ export function ConsignmentPage() {
 
       {/* How it works */}
       <section style={{ borderBottom: "1px solid #0D0D0D", backgroundColor: "#0D0D0D" }}>
-        <div className="max-w-7xl mx-auto px-8 md:px-10 py-12">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 py-12">
           <p style={{ fontSize: "0.62rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 600, color: "#888888", marginBottom: "32px" }}>
             The Process
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
-            {STEPS.map(({ n, title, desc }, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-0">
+            {STEPS.map(({ n, title, desc }) => (
               <div
                 key={n}
-                className="pr-8 py-2"
-                style={{ borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.1)" : "none", paddingLeft: i > 0 ? "32px" : "0" }}
+                className="py-2 sm:pr-8 sm:pl-8 sm:border-l sm:border-white/10 first:sm:border-l-0 first:sm:pl-0"
               >
                 <p style={{ fontSize: "2.2rem", fontWeight: 800, color: "#FAFA5A", lineHeight: 1, marginBottom: "12px" }}>{n}</p>
                 <p style={{ fontSize: "0.82rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#FFFFFF", marginBottom: "8px" }}>{title}</p>
