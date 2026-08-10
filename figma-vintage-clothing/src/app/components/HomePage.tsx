@@ -176,7 +176,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 15,
     name: "DS2 Logo Belt",
     brand: "Dsquared2",
-    price: 80,
+    price: 100,
     size: "TBD",
     era: "TBD",
     condition: "New with tags",
