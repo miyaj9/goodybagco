@@ -9,7 +9,6 @@ const SECTIONS = [
       "Buyer's remorse",
       "Incorrect fit or sizing",
       "Personal preference",
-      "Delayed delivery caused by the shipping carrier",
     ],
   },
   {
@@ -46,7 +45,8 @@ export function ReturnPolicyPage() {
         </h1>
         <p style={{ fontSize: "0.92rem", color: "#888888", lineHeight: 1.75, fontWeight: 300, maxWidth: "580px", marginTop: "18px" }}>
           At The Goody Bag Collection, we specialize in carefully curated vintage and luxury designer pieces. Due to the unique and often one-of-a-kind nature of our inventory,{" "}
-          <strong style={{ color: "#0D0D0D", fontWeight: 700 }}>all sales are final.</strong>
+          <strong style={{ color: "#0D0D0D", fontWeight: 700 }}>sales are generally final.</strong>{" "}
+          Limited exceptions apply if an item arrives significantly not as described — see below for how to reach us.
         </p>
       </div>
 

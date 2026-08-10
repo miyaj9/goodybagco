@@ -6,7 +6,7 @@ const FONT = "'Urbanist', sans-serif";
 const FAQS = [
   {
     q: "Are your items authentic?",
-    a: "Yes. Every designer item is carefully sourced and inspected. Items come with a verification card from Entrupy.",
+    a: "Yes. We source every piece from trusted authentic sellers, then double-verify each item with Entrupy. Every order includes an Entrupy verification card.",
   },
   {
     q: "Do you accept consignments?",

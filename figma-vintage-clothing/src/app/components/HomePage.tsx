@@ -13,10 +13,7 @@ import chanelSunglassesImg from "../../imports/chanel-coco-mark-frameless-sungla
 import chanelSunglassesThreeQuarterImg from "../../imports/chanel-sunglasses-gallery/01-three-quarter.png";
 import chanelSunglassesFrontImg from "../../imports/chanel-sunglasses-gallery/02-front.png";
 import chanelSunglassesLogoDetailImg from "../../imports/chanel-sunglasses-gallery/03-logo-detail.png";
-import chanelSunglassesLogoDetailAltImg from "../../imports/chanel-sunglasses-gallery/04-logo-detail-alt.png";
 import chanelSunglassesSideImg from "../../imports/chanel-sunglasses-gallery/05-side.png";
-import chanelSunglassesSideAltImg from "../../imports/chanel-sunglasses-gallery/06-side-alt.png";
-import chanelSunglassesBridgeDetailImg from "../../imports/chanel-sunglasses-gallery/07-bridge-detail.png";
 import fendiBagImg from "../../imports/fendi-baguette-phone-pouch-bag.png";
 import gucciSandalsImg from "../../imports/gucci-gg-horsebit-mule-sandals-cutout.png";
 import gucciSandalsPairTopImg from "../../imports/gucci-sandals-gallery/01-pair-top.png";
@@ -94,10 +91,7 @@ export const ALL_PRODUCTS: Product[] = [
       chanelSunglassesThreeQuarterImg,
       chanelSunglassesFrontImg,
       chanelSunglassesLogoDetailImg,
-      chanelSunglassesLogoDetailAltImg,
       chanelSunglassesSideImg,
-      chanelSunglassesSideAltImg,
-      chanelSunglassesBridgeDetailImg,
     ],
   },
   {
@@ -560,7 +554,7 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
             <span style={{ color: "#FAFA5A", WebkitTextStroke: "1.5px #0D0D0D" }}>No Exceptions.</span>
           </h2>
           <p style={{ fontSize: "0.88rem", lineHeight: 1.78, color: "#888888", fontWeight: 400, maxWidth: "380px", marginTop: "20px" }}>
-            If we can't verify it, we don't sell it. Items come with a verification card from Entrupy.
+            We source every piece from trusted authentic sellers, then double-verify each item with Entrupy before it ships. If we can't verify it, we don't sell it. Every order includes an Entrupy verification card.
           </p>
           <p style={{ fontSize: "0.78rem", lineHeight: 1.72, color: "#888888", fontWeight: 400, maxWidth: "420px", marginTop: "12px" }}>
             100% money-back guarantee: In the improbable scenario of a sale of an inauthentic item, you will receive a 100% refund, including shipping.
