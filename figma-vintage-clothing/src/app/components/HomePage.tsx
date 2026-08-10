@@ -77,7 +77,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 10,
     name: "Metal Coco Mark Frameless Sunglasses",
     brand: "Chanel",
-    price: 850,
+    price: 700,
     size: "One Size",
     era: "TBD",
     condition: "Great",
