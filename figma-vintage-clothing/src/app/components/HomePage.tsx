@@ -12,8 +12,8 @@ import robertoCavalliDressImg from "../../imports/roberto-cavalli-mid-length-dre
 import chanelSunglassesImg from "../../imports/chanel-coco-mark-frameless-sunglasses.png";
 import chanelSunglassesThreeQuarterImg from "../../imports/chanel-sunglasses-gallery/01-three-quarter.png";
 import chanelSunglassesFrontImg from "../../imports/chanel-sunglasses-gallery/02-front.png";
-import chanelSunglassesLogoDetailImg from "../../imports/chanel-sunglasses-gallery/03-logo-detail.png";
-import chanelSunglassesSideImg from "../../imports/chanel-sunglasses-gallery/05-side.png";
+import chanelSunglassesLogoDetailAltImg from "../../imports/chanel-sunglasses-gallery/04-logo-detail-alt.png";
+import chanelSunglassesBridgeDetailImg from "../../imports/chanel-sunglasses-gallery/07-bridge-detail.png";
 import fendiBagImg from "../../imports/fendi-baguette-phone-pouch-bag.png";
 import gucciSandalsImg from "../../imports/gucci-gg-horsebit-mule-sandals-cutout.png";
 import gucciSandalsPairTopImg from "../../imports/gucci-sandals-gallery/01-pair-top.png";
@@ -90,8 +90,8 @@ export const ALL_PRODUCTS: Product[] = [
       chanelSunglassesImg,
       chanelSunglassesThreeQuarterImg,
       chanelSunglassesFrontImg,
-      chanelSunglassesLogoDetailImg,
-      chanelSunglassesSideImg,
+      chanelSunglassesLogoDetailAltImg,
+      chanelSunglassesBridgeDetailImg,
     ],
   },
   {
