@@ -28,6 +28,7 @@ export interface Product {
   senserId?: string;
   brandId?: string;
   composition?: string;
+  origin?: string;
   description?: string;
   measurements?: Record<string, string | undefined>;
   details?: string[];
@@ -509,6 +510,12 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
                   <div>
                     <dt style={{ letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", fontSize: "0.65rem", fontWeight: 700 }}>Composition</dt>
                     <dd className="mt-1">{product.composition}</dd>
+                  </div>
+                )}
+                {product.origin && (
+                  <div>
+                    <dt style={{ letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", fontSize: "0.65rem", fontWeight: 700 }}>Origin</dt>
+                    <dd className="mt-1">{product.origin}</dd>
                   </div>
                 )}
                 {product.collection && (
