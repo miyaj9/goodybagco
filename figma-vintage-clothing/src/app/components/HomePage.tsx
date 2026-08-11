@@ -26,6 +26,14 @@ import alaiaPumpsSoleProfileImg from "../../imports/alaia-pumps-gallery/03-sole-
 import alaiaPumpsThreeQuarterImg from "../../imports/alaia-pumps-gallery/04-three-quarter.png";
 import justCavalliLeggingsImg from "../../imports/just-cavalli-leopard-print-leggings.png";
 import dsquared2BeltImg from "../../imports/dsquared2-belt.png";
+import dgFloralCapriFrontImg from "../../imports/dg-floral-capri-gallery/01-front.png";
+import dgFloralCapriBackImg from "../../imports/dg-floral-capri-gallery/02-back.png";
+import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/03-label.png";
+import dgFloralCapriPocketTabImg from "../../imports/dg-floral-capri-gallery/04-pocket-tab.png";
+import dgFloralCapriButtonImg from "../../imports/dg-floral-capri-gallery/05-button-detail.png";
+import jpgCropTeeFrontImg from "../../imports/jpg-crop-top-gallery/01-front.png";
+import jpgCropTeeBackImg from "../../imports/jpg-crop-top-gallery/02-back.png";
+import jpgCropTeeLabelImg from "../../imports/jpg-crop-top-gallery/03-label.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
@@ -170,6 +178,50 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Bottoms",
     details: ["Leopard print", "Floral and butterfly motifs", "Gold star waistband"],
     image: justCavalliLeggingsImg,
+    imageBackground: "#000000",
+  },
+  {
+    id: 17,
+    name: "Floral Capri",
+    brand: "Dolce & Gabbana",
+    price: 150,
+    size: "42 IT",
+    era: "Vintage",
+    condition: "Good",
+    category: "Bottoms",
+    color: "Cream / Red Floral",
+    measurements: {
+      waist: '31"',
+      inseam: '22"',
+    },
+    details: ["Floral print", "Capri length", "Five-pocket design", "Branded D&G hardware"],
+    image: dgFloralCapriFrontImg,
+    images: [
+      dgFloralCapriFrontImg,
+      dgFloralCapriBackImg,
+      dgFloralCapriLabelImg,
+      dgFloralCapriPocketTabImg,
+      dgFloralCapriButtonImg,
+    ],
+    imageBackground: "#000000",
+  },
+  {
+    id: 18,
+    name: "Crop Tee",
+    brand: "Jean Paul Gaultier",
+    price: 125,
+    size: "XS",
+    era: "TBD",
+    condition: "Good",
+    category: "Tops",
+    color: "White",
+    details: ["Cropped length", "Curved front seams", "Embroidered logo", "Short sleeve"],
+    image: jpgCropTeeFrontImg,
+    images: [
+      jpgCropTeeFrontImg,
+      jpgCropTeeBackImg,
+      jpgCropTeeLabelImg,
+    ],
     imageBackground: "#000000",
   },
   {
