@@ -109,7 +109,7 @@ export const ALL_PRODUCTS: Product[] = [
     brand: "Fendi",
     price: 700,
     size: "One Size",
-    era: "Vintage",
+    era: "Y2K / 2000s",
     condition: "Good",
     category: "Bags",
     color: "Black",
