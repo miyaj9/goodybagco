@@ -15,6 +15,10 @@ import chanelSunglassesFrontImg from "../../imports/chanel-sunglasses-gallery/02
 import chanelSunglassesLogoDetailAltImg from "../../imports/chanel-sunglasses-gallery/04-logo-detail-alt.png";
 import chanelSunglassesBridgeDetailImg from "../../imports/chanel-sunglasses-gallery/07-bridge-detail.png";
 import fendiBagImg from "../../imports/fendi-baguette-phone-pouch-bag.png";
+import fendiBagFrontImg from "../../imports/fendi-bag-gallery/01-front.png";
+import fendiBagThreeQuarterImg from "../../imports/fendi-bag-gallery/02-three-quarter.png";
+import fendiBagBackImg from "../../imports/fendi-bag-gallery/03-back.png";
+import fendiBagInteriorImg from "../../imports/fendi-bag-gallery/04-interior.png";
 import gucciSandalsImg from "../../imports/gucci-gg-horsebit-mule-sandals-cutout.png";
 import gucciSandalsPairTopImg from "../../imports/gucci-sandals-gallery/01-pair-top.png";
 import gucciSandalsSolesImg from "../../imports/gucci-sandals-gallery/02-soles.png";
@@ -121,7 +125,15 @@ export const ALL_PRODUCTS: Product[] = [
       width: "2 cm",
       handleDrop: "2.5 cm",
     },
-    image: fendiBagImg,
+    image: fendiBagFrontImg,
+    images: [
+      fendiBagFrontImg,
+      fendiBagThreeQuarterImg,
+      fendiBagBackImg,
+      fendiBagInteriorImg,
+      fendiBagImg,
+    ],
+    imageBackground: "#000000",
     availableSoon: true,
   },
   {
