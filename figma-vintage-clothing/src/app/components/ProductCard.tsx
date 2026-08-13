@@ -33,6 +33,7 @@ export interface Product {
   measurements?: Record<string, string | undefined>;
   details?: string[];
   availableSoon?: boolean;
+  sold?: boolean;
 }
 
 interface ProductCardProps {
@@ -69,15 +70,18 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
   } | null>(null);
   const hasPrice = typeof product.price === "number";
   const availableSoon = Boolean(product.availableSoon);
-  const canAddToBag = hasPrice && !availableSoon;
+  const sold = Boolean(product.sold);
+  const canAddToBag = hasPrice && !availableSoon && !sold;
   const priceLabel = hasPrice ? `$${product.price!.toLocaleString()}` : "Price TBD";
-  const bagLabel = availableSoon
-    ? "Available Soon"
-    : !hasPrice
-      ? "Price TBD"
-      : inCart
-        ? "Added to Bag"
-        : "Add to Bag";
+  const bagLabel = sold
+    ? "Sold"
+    : availableSoon
+      ? "Available Soon"
+      : !hasPrice
+        ? "Price TBD"
+        : inCart
+          ? "Added to Bag"
+          : "Add to Bag";
   const gallery = (product.images && product.images.length > 0 ? product.images : [product.image]).map(resolveImageSrc);
   const imageSrc = resolveImageSrc(product.image);
   const activeGallerySrc = gallery[galleryIndex] ?? imageSrc;
@@ -342,7 +346,12 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
               <span style={{ fontSize: "0.78rem", color: "#aaa", textDecoration: "line-through" }}>${product.originalPrice.toLocaleString()}</span>
             )}
           </div>
-          {availableSoon && (
+          {sold && (
+            <p style={{ fontSize: "0.65rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginTop: "4px" }}>
+              Sold
+            </p>
+          )}
+          {availableSoon && !sold && (
             <p style={{ fontSize: "0.65rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginTop: "4px" }}>
               Available Soon
             </p>
@@ -441,7 +450,12 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
               <p style={{ marginTop: "12px", fontSize: "1.25rem", fontWeight: 700, color: "#0D0D0D" }}>
                 {priceLabel}
               </p>
-              {availableSoon && (
+              {sold && (
+                <p style={{ marginTop: "6px", fontSize: "0.68rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", fontWeight: 700 }}>
+                  Sold
+                </p>
+              )}
+              {availableSoon && !sold && (
                 <p style={{ marginTop: "6px", fontSize: "0.68rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", fontWeight: 700 }}>
                   Available Soon
                 </p>

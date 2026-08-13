@@ -39,7 +39,7 @@ export function CheckoutPage({
     }
   }, [checkoutStatus, onPurchase]);
 
-  const purchasable = cart.filter((p) => typeof p.price === "number" && !p.availableSoon);
+  const purchasable = cart.filter((p) => typeof p.price === "number" && !p.availableSoon && !p.sold);
   const subtotal = purchasable.reduce((s, p) => s + (p.price ?? 0), 0);
   const shipping = subtotal > 0 && subtotal < 100 ? 12 : 0;
   const total = subtotal + shipping;
@@ -65,6 +65,7 @@ export function CheckoutPage({
             size: item.size,
             image: toAbsoluteImageUrl(item.image),
             availableSoon: item.availableSoon,
+            sold: item.sold,
           })),
         }),
       });
@@ -156,9 +157,11 @@ export function CheckoutPage({
                     <p style={{ fontSize: "0.95rem", fontWeight: 500, color: "#0D0D0D" }}>{item.name}</p>
                     <p style={{ fontSize: "0.78rem", color: "#888888", marginTop: "3px" }}>Size {item.size} · {item.era} · {item.condition}</p>
                     <p style={{ fontSize: "0.6rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888888", marginTop: "6px" }}>
-                      {item.availableSoon
-                        ? "Available Soon — not included in checkout"
-                        : "✓ Authenticated · Entrupy verification card included"}
+                      {item.sold
+                        ? "Sold — not included in checkout"
+                        : item.availableSoon
+                          ? "Available Soon — not included in checkout"
+                          : "✓ Authenticated · Entrupy verification card included"}
                     </p>
                   </div>
                   <div className="flex flex-col items-end justify-between">

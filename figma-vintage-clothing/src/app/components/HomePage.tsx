@@ -180,6 +180,7 @@ export const ALL_PRODUCTS: Product[] = [
       alaiaPumpsSoleProfileImg,
       alaiaPumpsThreeQuarterImg,
     ],
+    sold: true,
   },
   {
     id: 14,
