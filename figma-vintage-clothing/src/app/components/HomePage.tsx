@@ -8,7 +8,6 @@ import cavalliSkirtTigerImg from "../../imports/cavalli-skirt-gallery/02-tiger-d
 import cavalliSkirtLabelImg from "../../imports/cavalli-skirt-gallery/03-label-zipper.png";
 import cavalliSkirtAmourSideImg from "../../imports/cavalli-skirt-gallery/04-amour-side.png";
 import cavalliSkirtAmourDetailImg from "../../imports/cavalli-skirt-gallery/05-amour-detail.png";
-import robertoCavalliDressImg from "../../imports/roberto-cavalli-mid-length-dress.png";
 import chanelSunglassesImg from "../../imports/chanel-coco-mark-frameless-sunglasses.png";
 import chanelSunglassesThreeQuarterImg from "../../imports/chanel-sunglasses-gallery/01-three-quarter.png";
 import chanelSunglassesFrontImg from "../../imports/chanel-sunglasses-gallery/02-front.png";
@@ -70,20 +69,6 @@ export const ALL_PRODUCTS: Product[] = [
       cavalliSkirtAmourDetailImg,
     ],
     imageBackground: "#000000",
-  },
-  {
-    id: 16,
-    name: "Mid-length Dress",
-    brand: "Roberto Cavalli",
-    price: 365,
-    size: "TBD",
-    era: "Vintage",
-    condition: "TBD",
-    category: "Tops",
-    color: "Leopard Print",
-    origin: "France",
-    details: ["Leopard print", "Spaghetti straps", "Deep V-neck", "RC logo at neckline"],
-    image: robertoCavalliDressImg,
   },
   {
     id: 10,
