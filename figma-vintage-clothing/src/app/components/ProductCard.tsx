@@ -242,9 +242,40 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
             style={{
               objectFit: imageFit,
               objectPosition: "center",
-              transform: hovered && imageFit === "cover" ? "scale(1.05)" : "scale(1)",
+              transform: hovered && imageFit === "cover" && !sold ? "scale(1.05)" : "scale(1)",
+              filter: sold ? "grayscale(0.35) brightness(0.92)" : "none",
             }}
           />
+
+          {sold && (
+            <>
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ backgroundColor: "rgba(13,13,13,0.28)", zIndex: 2 }}
+              />
+              <div
+                className="absolute left-0 right-0 top-1/2 z-[4] flex -translate-y-1/2 items-center justify-center py-3"
+                style={{
+                  backgroundColor: "#0D0D0D",
+                  borderTop: "2px solid #FAFA5A",
+                  borderBottom: "2px solid #FAFA5A",
+                }}
+              >
+                <span
+                  style={{
+                    color: "#FAFA5A",
+                    fontSize: "0.95rem",
+                    letterSpacing: "0.32em",
+                    textTransform: "uppercase",
+                    fontWeight: 900,
+                    fontFamily: FONT,
+                  }}
+                >
+                  Sold
+                </span>
+              </div>
+            </>
+          )}
 
           {/* Wishlist — always visible on touch; hover-reveal on desktop */}
           <button
@@ -252,7 +283,7 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
             className={`absolute top-2.5 right-2.5 flex h-10 w-10 items-center justify-center bg-white transition-opacity duration-200 md:h-7 md:w-7 ${
               liked ? "opacity-100" : "opacity-100 md:opacity-0 md:group-hover:opacity-100"
             }`}
-            style={{ border: "1px solid rgba(0,0,0,0.12)" }}
+            style={{ border: "1px solid rgba(0,0,0,0.12)", zIndex: 5 }}
           >
             <Heart size={14} strokeWidth={1.8} fill={liked ? "#FF3EA5" : "none"} color={liked ? "#FF3EA5" : "#0D0D0D"} />
           </button>
@@ -341,16 +372,36 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
             {product.size} · {product.era}
           </p>
           <div className="flex items-center gap-2 mt-1.5">
-            <span style={{ fontSize: "0.9rem", fontWeight: 600, color: "#0D0D0D" }}>{priceLabel}</span>
+            <span
+              style={{
+                fontSize: "0.9rem",
+                fontWeight: 600,
+                color: sold ? "#888888" : "#0D0D0D",
+                textDecoration: sold ? "line-through" : "none",
+              }}
+            >
+              {priceLabel}
+            </span>
             {product.originalPrice && (
               <span style={{ fontSize: "0.78rem", color: "#aaa", textDecoration: "line-through" }}>${product.originalPrice.toLocaleString()}</span>
             )}
+            {sold && (
+              <span
+                style={{
+                  fontSize: "0.62rem",
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  fontWeight: 800,
+                  color: "#0D0D0D",
+                  backgroundColor: "#FAFA5A",
+                  padding: "3px 7px",
+                  border: "1px solid #0D0D0D",
+                }}
+              >
+                Sold
+              </span>
+            )}
           </div>
-          {sold && (
-            <p style={{ fontSize: "0.65rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginTop: "4px" }}>
-              Sold
-            </p>
-          )}
           {availableSoon && !sold && (
             <p style={{ fontSize: "0.65rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginTop: "4px" }}>
               Available Soon
@@ -447,11 +498,32 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
               <h2 style={{ marginTop: "8px", fontSize: "clamp(1.4rem, 5vw, 2rem)", lineHeight: 1.05, fontWeight: 800, color: "#0D0D0D" }}>
                 {product.name}
               </h2>
-              <p style={{ marginTop: "12px", fontSize: "1.25rem", fontWeight: 700, color: "#0D0D0D" }}>
+              <p
+                style={{
+                  marginTop: "12px",
+                  fontSize: "1.25rem",
+                  fontWeight: 700,
+                  color: sold ? "#888888" : "#0D0D0D",
+                  textDecoration: sold ? "line-through" : "none",
+                }}
+              >
                 {priceLabel}
               </p>
               {sold && (
-                <p style={{ marginTop: "6px", fontSize: "0.68rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", fontWeight: 700 }}>
+                <p
+                  style={{
+                    marginTop: "10px",
+                    display: "inline-block",
+                    fontSize: "0.72rem",
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "#0D0D0D",
+                    fontWeight: 900,
+                    backgroundColor: "#FAFA5A",
+                    padding: "8px 14px",
+                    border: "1.5px solid #0D0D0D",
+                  }}
+                >
                   Sold
                 </p>
               )}
