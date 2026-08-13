@@ -133,7 +133,7 @@ export const ALL_PRODUCTS: Product[] = [
       fendiBagInteriorImg,
       fendiBagImg,
     ],
-    imageBackground: "#000000",
+    imageBackground: "#FFFFFF",
     availableSoon: true,
   },
   {
