@@ -47,7 +47,7 @@ export async function handler(event) {
   let subtotalCents = 0;
 
   for (const item of items) {
-    if (item?.availableSoon) continue;
+    if (item?.availableSoon || item?.sold) continue;
     const priceDollars = Number(item?.price);
     if (!Number.isFinite(priceDollars) || priceDollars <= 0) continue;
 
