@@ -31,8 +31,6 @@ import dsquared2BeltImg from "../../imports/dsquared2-belt.png";
 import dgFloralCapriFrontImg from "../../imports/dg-floral-capri-gallery/01-front.png";
 import dgFloralCapriBackImg from "../../imports/dg-floral-capri-gallery/02-back.png";
 import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/03-label.png";
-import dgFloralCapriPocketTabImg from "../../imports/dg-floral-capri-gallery/04-pocket-tab.png";
-import dgFloralCapriButtonImg from "../../imports/dg-floral-capri-gallery/05-button-detail.png";
 import jpgCropTeeFrontImg from "../../imports/jpg-crop-top-gallery/01-front.png";
 import jpgCropTeeBackImg from "../../imports/jpg-crop-top-gallery/02-back.png";
 import jpgCropTeeLabelImg from "../../imports/jpg-crop-top-gallery/03-label.png";
@@ -188,6 +186,7 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Bottoms",
     color: "Cream / Red Floral",
     origin: "Italy",
+    fabric: "97% Cotton, 3% Elastane",
     measurements: {
       waist: '31"',
       inseam: '22"',
@@ -198,10 +197,8 @@ export const ALL_PRODUCTS: Product[] = [
       dgFloralCapriFrontImg,
       dgFloralCapriBackImg,
       dgFloralCapriLabelImg,
-      dgFloralCapriPocketTabImg,
-      dgFloralCapriButtonImg,
     ],
-    imageBackground: "#000000",
+    imageBackground: "#FFFFFF",
   },
   {
     id: 18,
