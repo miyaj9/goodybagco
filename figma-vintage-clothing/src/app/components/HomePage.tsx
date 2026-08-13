@@ -120,7 +120,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 12,
     name: "GG Canvas Horsebit Mule Sandals",
     brand: "Gucci",
-    price: 430,
+    price: 350,
     size: "IT 35",
     era: "Vintage",
     condition: "Good",
