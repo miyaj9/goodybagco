@@ -232,7 +232,7 @@ export const ALL_PRODUCTS: Product[] = [
     price: 925,
     size: "38.5",
     era: "Contemporary / 2020s",
-    condition: "New with Tags",
+    condition: "Great",
     category: "Shoes",
     color: "Raspberry",
     senserId: "33594239",
