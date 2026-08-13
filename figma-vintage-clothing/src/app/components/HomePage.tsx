@@ -132,7 +132,6 @@ export const ALL_PRODUCTS: Product[] = [
       fendiBagInteriorImg,
     ],
     imageBackground: "#000000",
-    availableSoon: true,
   },
   {
     id: 12,
