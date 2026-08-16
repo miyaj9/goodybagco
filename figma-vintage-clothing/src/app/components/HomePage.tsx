@@ -31,7 +31,8 @@ import justCavalliSnakeskinDressImg from "../../imports/just-cavalli-snakeskin-d
 import dsquared2BeltImg from "../../imports/dsquared2-belt.png";
 import dgFloralCapriFrontImg from "../../imports/dg-floral-capri-gallery/01-front.png";
 import dgFloralCapriBackImg from "../../imports/dg-floral-capri-gallery/02-back.png";
-import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/03-label.png";
+import dgFloralCapriDetailImg from "../../imports/dg-floral-capri-gallery/03-detail.png";
+import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/04-label.png";
 import jpgCropTeeFrontImg from "../../imports/jpg-crop-top-gallery/01-front.png";
 import jpgCropTeeBackImg from "../../imports/jpg-crop-top-gallery/02-back.png";
 import jpgCropTeeLabelImg from "../../imports/jpg-crop-top-gallery/03-label.png";
@@ -175,9 +176,10 @@ export const ALL_PRODUCTS: Product[] = [
     images: [
       dgFloralCapriFrontImg,
       dgFloralCapriBackImg,
+      dgFloralCapriDetailImg,
       dgFloralCapriLabelImg,
     ],
-    imageBackground: "#FFFFFF",
+    imageBackground: "#000000",
   },
   {
     id: 14,
