@@ -140,10 +140,18 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
     else setZoom(2.25);
   };
 
+  const goToPrevPhoto = () => {
+    if (!hasGallery) return;
+    setGalleryIndex((current) => (current - 1 + gallery.length) % gallery.length);
+  };
+
+  const goToNextPhoto = () => {
+    if (!hasGallery) return;
+    setGalleryIndex((current) => (current + 1) % gallery.length);
+  };
+
   const handleImagePointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (!isZoomed) return;
     e.currentTarget.setPointerCapture(e.pointerId);
-    setIsDragging(true);
     dragRef.current = {
       pointerId: e.pointerId,
       startX: e.clientX,
@@ -151,11 +159,13 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
       originX: pan.x,
       originY: pan.y,
     };
+    if (isZoomed) setIsDragging(true);
   };
 
   const handleImagePointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== e.pointerId) return;
+    if (!isZoomed) return;
     setPan({
       x: drag.originX + (e.clientX - drag.startX),
       y: drag.originY + (e.clientY - drag.startY),
@@ -163,9 +173,20 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
   };
 
   const handleImagePointerUp = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (dragRef.current?.pointerId !== e.pointerId) return;
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== e.pointerId) return;
+
+    const dx = e.clientX - drag.startX;
+    const dy = e.clientY - drag.startY;
     dragRef.current = null;
     setIsDragging(false);
+
+    // Horizontal flick changes photo even while zoomed; short drags still pan.
+    const swipeThreshold = isZoomed ? 110 : 56;
+    if (hasGallery && Math.abs(dx) > swipeThreshold && Math.abs(dx) > Math.abs(dy) * 1.35) {
+      if (dx > 0) goToPrevPhoto();
+      else goToNextPhoto();
+    }
   };
 
   useEffect(() => {
@@ -199,8 +220,10 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
         e.stopPropagation();
         closeLightbox();
       } else if (e.key === "ArrowLeft" && hasGallery) {
+        e.preventDefault();
         setGalleryIndex((current) => (current - 1 + gallery.length) % gallery.length);
       } else if (e.key === "ArrowRight" && hasGallery) {
+        e.preventDefault();
         setGalleryIndex((current) => (current + 1) % gallery.length);
       }
     };
@@ -669,7 +692,7 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
           style={{ backgroundColor: "rgba(0,0,0,0.94)", fontFamily: FONT }}
           onClick={closeLightbox}
         >
-          <div className="absolute top-4 right-4 z-20 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+          <div className="absolute top-4 right-4 z-30 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
             <button
               type="button"
               aria-label="Zoom out"
@@ -703,25 +726,25 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
               <button
                 type="button"
                 aria-label="Previous photo"
-                onClick={(e) => { e.stopPropagation(); setGalleryIndex((current) => (current - 1 + gallery.length) % gallery.length); }}
-                className="absolute left-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white"
+                onClick={(e) => { e.stopPropagation(); goToPrevPhoto(); }}
+                className="absolute left-3 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center bg-white sm:left-5"
               >
-                <ChevronLeft size={18} strokeWidth={2} color="#0D0D0D" />
+                <ChevronLeft size={22} strokeWidth={2} color="#0D0D0D" />
               </button>
               <button
                 type="button"
                 aria-label="Next photo"
-                onClick={(e) => { e.stopPropagation(); setGalleryIndex((current) => (current + 1) % gallery.length); }}
-                className="absolute right-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white"
+                onClick={(e) => { e.stopPropagation(); goToNextPhoto(); }}
+                className="absolute right-3 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center bg-white sm:right-5"
               >
-                <ChevronRight size={18} strokeWidth={2} color="#0D0D0D" />
+                <ChevronRight size={22} strokeWidth={2} color="#0D0D0D" />
               </button>
             </>
           )}
 
           <div
             ref={zoomStageRef}
-            className="relative flex-1 min-h-0 overflow-hidden touch-none"
+            className={`relative min-h-0 flex-1 overflow-hidden touch-none ${hasGallery ? "mx-14 sm:mx-20" : ""}`}
             onClick={(e) => e.stopPropagation()}
             onDoubleClick={handleLightboxDoubleClick}
             onPointerDown={handleImagePointerDown}
@@ -746,13 +769,47 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
             />
           </div>
 
-          <p
-            className="pb-5 text-center"
-            style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            Scroll or use +/− to zoom · Drag to pan · Esc to close
-          </p>
+          {hasGallery && (
+            <div
+              className="z-30 flex flex-col items-center gap-3 px-4 pb-5 pt-2"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center gap-2">
+                {gallery.map((_, index) => (
+                  <button
+                    key={`${product.id}-lightbox-dot-${index}`}
+                    type="button"
+                    aria-label={`Go to photo ${index + 1}`}
+                    onClick={() => setGalleryIndex(index)}
+                    style={{
+                      width: index === galleryIndex ? "16px" : "6px",
+                      height: "6px",
+                      borderRadius: "999px",
+                      backgroundColor: index === galleryIndex ? "#FAFA5A" : "rgba(255,255,255,0.55)",
+                      border: "none",
+                      padding: 0,
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+              </div>
+              <p
+                style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
+              >
+                {galleryIndex + 1} / {gallery.length} · Arrows or swipe for photos · Scroll to zoom · Esc to close
+              </p>
+            </div>
+          )}
+
+          {!hasGallery && (
+            <p
+              className="pb-5 text-center"
+              style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              Scroll or use +/− to zoom · Drag to pan · Esc to close
+            </p>
+          )}
         </div>
       )}
     </>
