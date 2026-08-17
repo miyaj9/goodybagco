@@ -33,9 +33,6 @@ import dgFloralCapriFrontImg from "../../imports/dg-floral-capri-gallery/01-fron
 import dgFloralCapriBackImg from "../../imports/dg-floral-capri-gallery/02-back.png";
 import dgFloralCapriDetailImg from "../../imports/dg-floral-capri-gallery/03-detail.png";
 import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/04-label.png";
-import jpgCropTeeFrontImg from "../../imports/jpg-crop-top-gallery/01-front.png";
-import jpgCropTeeBackImg from "../../imports/jpg-crop-top-gallery/02-back.png";
-import jpgCropTeeLabelImg from "../../imports/jpg-crop-top-gallery/03-label.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
@@ -192,25 +189,6 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Bottoms",
     details: ["Leopard print", "Floral and butterfly motifs", "Gold star waistband"],
     image: justCavalliLeggingsImg,
-    imageBackground: "#000000",
-  },
-  {
-    id: 18,
-    name: "Crop Tee",
-    brand: "Jean Paul Gaultier",
-    price: 125,
-    size: "XS",
-    era: "Y2K / 2000s",
-    condition: "Good",
-    category: "Tops",
-    color: "White",
-    details: ["Cropped length", "Curved front seams", "Embroidered logo", "Short sleeve"],
-    image: jpgCropTeeFrontImg,
-    images: [
-      jpgCropTeeFrontImg,
-      jpgCropTeeBackImg,
-      jpgCropTeeLabelImg,
-    ],
     imageBackground: "#000000",
   },
   {
