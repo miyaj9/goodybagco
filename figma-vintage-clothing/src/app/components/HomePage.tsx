@@ -28,7 +28,9 @@ import alaiaPumpsSoleProfileImg from "../../imports/alaia-pumps-gallery/03-sole-
 import alaiaPumpsThreeQuarterImg from "../../imports/alaia-pumps-gallery/04-three-quarter.png";
 import justCavalliLeggingsImg from "../../imports/just-cavalli-leopard-print-leggings.png";
 import justCavalliSnakeskinDressImg from "../../imports/just-cavalli-snakeskin-dress-gallery/01-front.png";
-import dsquared2BeltImg from "../../imports/dsquared2-belt.png";
+import dsquared2BeltBuckleImg from "../../imports/dsquared2-belt-gallery/01-buckle.png";
+import dsquared2BeltCoiledImg from "../../imports/dsquared2-belt-gallery/02-coiled.png";
+import dsquared2BeltAngleImg from "../../imports/dsquared2-belt-gallery/03-angle.png";
 import dgFloralCapriFrontImg from "../../imports/dg-floral-capri-gallery/01-front.png";
 import dgFloralCapriBackImg from "../../imports/dg-floral-capri-gallery/02-back.png";
 import dgFloralCapriDetailImg from "../../imports/dg-floral-capri-gallery/03-detail.png";
@@ -200,10 +202,16 @@ export const ALL_PRODUCTS: Product[] = [
     era: "Contemporary / 2020s",
     condition: "New with tags",
     category: "Accessories",
-    color: "Brown",
+    color: "Black",
     material: "Leather",
     details: ["DS2 logo buckle", "American flag motif", "Silver-tone hardware"],
-    image: dsquared2BeltImg,
+    image: dsquared2BeltBuckleImg,
+    images: [
+      dsquared2BeltBuckleImg,
+      dsquared2BeltCoiledImg,
+      dsquared2BeltAngleImg,
+    ],
+    imageBackground: "#000000",
   },
   {
     id: 13,
