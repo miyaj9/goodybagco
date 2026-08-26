@@ -35,6 +35,9 @@ import dgFloralCapriFrontImg from "../../imports/dg-floral-capri-gallery/01-fron
 import dgFloralCapriBackImg from "../../imports/dg-floral-capri-gallery/02-back.png";
 import dgFloralCapriDetailImg from "../../imports/dg-floral-capri-gallery/03-detail.png";
 import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/04-label.png";
+import jpgMeshTattooDressFrontImg from "../../imports/jpg-mesh-tattoo-dress-gallery/01-front.png";
+import jpgMeshTattooDressFrontAltImg from "../../imports/jpg-mesh-tattoo-dress-gallery/02-front-alt.png";
+import jpgMeshTattooDressBackImg from "../../imports/jpg-mesh-tattoo-dress-gallery/03-back.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
@@ -153,6 +156,25 @@ export const ALL_PRODUCTS: Product[] = [
     images: [justCavalliSnakeskinDressImg],
     imageBackground: "#000000",
     availableSoon: true,
+  },
+  {
+    id: 20,
+    name: "Mesh Tattoo Dress",
+    brand: "Jean Paul Gaultier",
+    price: 200,
+    size: "Small",
+    era: "Contemporary / 2023",
+    condition: "Good",
+    category: "Tops",
+    color: "Brown / Black",
+    details: ["Mesh fabric", "Tattoo print", "Sleeveless bodycon", "Printed necklace & snake motifs"],
+    image: jpgMeshTattooDressFrontImg,
+    images: [
+      jpgMeshTattooDressFrontImg,
+      jpgMeshTattooDressFrontAltImg,
+      jpgMeshTattooDressBackImg,
+    ],
+    imageBackground: "#000000",
   },
   {
     id: 17,
