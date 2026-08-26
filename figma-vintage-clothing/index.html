@@ -15,6 +15,20 @@
     <body>
       
       <div id="root"></div>
+      <!-- Netlify Forms detection (required for SPA submissions) -->
+      <form name="consignment" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="bot-field" />
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <input type="text" name="brand" />
+        <input type="text" name="size" />
+        <input type="text" name="era" />
+        <input type="text" name="asking" />
+        <input type="text" name="condition" />
+        <textarea name="description"></textarea>
+        <input type="file" name="photos" multiple />
+      </form>
       <script type="module" src="/src/main.tsx"></script>
       
     </body>

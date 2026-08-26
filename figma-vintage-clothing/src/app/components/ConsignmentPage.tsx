@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { ArrowRight, CheckCircle, Upload, ShieldCheck } from "lucide-react";
+import { useState, type FormEvent } from "react";
+import { ArrowRight, CheckCircle, Upload, ShieldCheck, X } from "lucide-react";
 
 const FONT = "'Urbanist', sans-serif";
+const MAX_PHOTOS = 8;
+const MAX_PHOTO_BYTES = 10 * 1024 * 1024;
 
 function Field({ label, placeholder, type = "text", value, onChange, required = true }: {
   label: string; placeholder: string; type?: string; value: string; onChange: (v: string) => void; required?: boolean;
@@ -30,10 +32,94 @@ const STEPS = [
   { n: "04", title: "You Get Paid", desc: "Keep 80% of the sale, transferred within 5 business days." },
 ];
 
+const EMPTY_FORM = {
+  name: "",
+  email: "",
+  phone: "",
+  brand: "",
+  description: "",
+  size: "",
+  condition: "",
+  asking: "",
+  era: "",
+};
+
 export function ConsignmentPage() {
   const [done, setDone] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", brand: "", description: "", size: "", condition: "", asking: "", era: "" });
-  const set = (k: string) => (v: string) => setForm({ ...form, [k]: v });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [photos, setPhotos] = useState<File[]>([]);
+  const [form, setForm] = useState(EMPTY_FORM);
+  const set = (k: keyof typeof EMPTY_FORM) => (v: string) => setForm((prev) => ({ ...prev, [k]: v }));
+
+  const resetForm = () => {
+    setDone(false);
+    setError("");
+    setPhotos([]);
+    setForm(EMPTY_FORM);
+  };
+
+  const onPhotosSelected = (files: FileList | null) => {
+    if (!files?.length) return;
+    const next = [...photos];
+    for (const file of Array.from(files)) {
+      if (!file.type.startsWith("image/")) {
+        setError("Photos must be JPEG or PNG images.");
+        continue;
+      }
+      if (file.size > MAX_PHOTO_BYTES) {
+        setError("Each photo must be under 10MB.");
+        continue;
+      }
+      if (next.length >= MAX_PHOTOS) {
+        setError(`You can upload up to ${MAX_PHOTOS} photos.`);
+        break;
+      }
+      next.push(file);
+    }
+    setPhotos(next);
+  };
+
+  const removePhoto = (index: number) => {
+    setPhotos((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+    setSubmitting(true);
+
+    try {
+      const data = new FormData();
+      data.append("form-name", "consignment");
+      data.append("bot-field", "");
+      data.append("name", form.name.trim());
+      data.append("email", form.email.trim());
+      data.append("phone", form.phone.trim());
+      data.append("brand", form.brand.trim());
+      data.append("size", form.size.trim());
+      data.append("era", form.era.trim());
+      data.append("asking", form.asking.trim());
+      data.append("condition", form.condition);
+      data.append("description", form.description.trim());
+      photos.forEach((file) => data.append("photos", file, file.name));
+
+      const response = await fetch("/", {
+        method: "POST",
+        body: data,
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not send your submission. Please try again or email thegoodybagco@outlook.com.");
+      }
+
+      setDone(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   if (done) return (
     <main className="min-h-screen flex flex-col items-center justify-center px-8 text-center" style={{ fontFamily: FONT }}>
@@ -46,7 +132,7 @@ export function ConsignmentPage() {
         Our team will review your submission and reach out to <strong style={{ color: "#0D0D0D" }}>{form.email || "your email"}</strong> within 48 hours.
       </p>
       <button
-        onClick={() => setDone(false)}
+        onClick={resetForm}
         className="flex items-center gap-3 mt-8 px-7 py-3.5 hover:opacity-75 transition-opacity"
         style={{ backgroundColor: "#0D0D0D", color: "#FFFFFF", fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, fontFamily: FONT }}
       >
@@ -121,7 +207,20 @@ export function ConsignmentPage() {
           Submit a Piece
         </h2>
 
-        <form onSubmit={(e) => { e.preventDefault(); setDone(true); }} className="space-y-8">
+        <form
+          name="consignment"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
+          className="space-y-8"
+        >
+          <input type="hidden" name="form-name" value="consignment" />
+          <p className="hidden" aria-hidden="true">
+            <label>
+              Don’t fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+            </label>
+          </p>
 
           <div>
             <p style={{ fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, borderBottom: "1px solid #0D0D0D", paddingBottom: "8px", marginBottom: "14px" }}>
@@ -188,8 +287,40 @@ export function ConsignmentPage() {
                 <p style={{ fontSize: "0.82rem", color: "#0D0D0D", fontWeight: 500 }}>Upload photos</p>
                 <p style={{ fontSize: "0.7rem", color: "#888888", marginTop: "2px" }}>Front, back, labels, details — JPEG or PNG up to 10MB</p>
               </div>
-              <input type="file" accept="image/*" multiple className="hidden" />
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                className="hidden"
+                onChange={(e) => {
+                  onPhotosSelected(e.target.files);
+                  e.target.value = "";
+                }}
+              />
             </label>
+            {photos.length > 0 && (
+              <ul className="mt-3 space-y-2">
+                {photos.map((file, index) => (
+                  <li
+                    key={`${file.name}-${index}`}
+                    className="flex items-center justify-between gap-3 px-3 py-2"
+                    style={{ backgroundColor: "#FAFAFA", border: "1px solid rgba(0,0,0,0.1)" }}
+                  >
+                    <span style={{ fontSize: "0.78rem", color: "#0D0D0D", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      {file.name}
+                    </span>
+                    <button
+                      type="button"
+                      aria-label={`Remove ${file.name}`}
+                      onClick={() => removePhoto(index)}
+                      className="shrink-0"
+                    >
+                      <X size={14} strokeWidth={2} color="#888888" />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <div className="flex gap-3 p-4 bg-[#F4F4F4]">
@@ -200,12 +331,17 @@ export function ConsignmentPage() {
             </p>
           </div>
 
+          {error && (
+            <p style={{ fontSize: "0.8rem", color: "#B42318", lineHeight: 1.5 }}>{error}</p>
+          )}
+
           <button
             type="submit"
-            className="w-full py-4 flex items-center justify-center gap-3 hover:opacity-80 transition-opacity"
+            disabled={submitting}
+            className="w-full py-4 flex items-center justify-center gap-3 hover:opacity-80 transition-opacity disabled:opacity-60"
             style={{ backgroundColor: "#0D0D0D", color: "#FFFFFF", fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, fontFamily: FONT }}
           >
-            Submit My Piece <ArrowRight size={13} strokeWidth={2} />
+            {submitting ? "Sending..." : <>Submit My Piece <ArrowRight size={13} strokeWidth={2} /></>}
           </button>
         </form>
       </section>
