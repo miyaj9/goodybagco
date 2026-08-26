@@ -104,7 +104,7 @@ export function ConsignmentPage() {
       data.append("description", form.description.trim());
       photos.forEach((file) => data.append("photos", file, file.name));
 
-      const response = await fetch("/", {
+      const response = await fetch("/__forms.html", {
         method: "POST",
         body: data,
       });
