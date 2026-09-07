@@ -71,6 +71,7 @@ export const ALL_PRODUCTS: Product[] = [
       cavalliSkirtAmourDetailImg,
     ],
     imageBackground: "#000000",
+    sold: true,
   },
   {
     id: 10,
