@@ -236,7 +236,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 14,
     name: "Leopard Print Leggings",
     brand: "Just Cavalli",
-    price: 50,
+    price: 85,
     size: "42",
     era: "Vintage",
     condition: "Excellent",
