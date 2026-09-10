@@ -38,11 +38,40 @@ import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/04-labe
 import jpgMeshTattooDressFrontImg from "../../imports/jpg-mesh-tattoo-dress-gallery/01-front.png";
 import jpgMeshTattooDressFrontAltImg from "../../imports/jpg-mesh-tattoo-dress-gallery/02-front-alt.png";
 import jpgMeshTattooDressBackImg from "../../imports/jpg-mesh-tattoo-dress-gallery/03-back.png";
+import emilioPucciBootsPairImg from "../../imports/emilio-pucci-platform-boots-gallery/01-pair.png";
+import emilioPucciBootsSideImg from "../../imports/emilio-pucci-platform-boots-gallery/02-side.png";
+import emilioPucciBootsProfileImg from "../../imports/emilio-pucci-platform-boots-gallery/03-profile.png";
+import emilioPucciBootsSolesImg from "../../imports/emilio-pucci-platform-boots-gallery/04-soles.png";
+import emilioPucciBootsTopImg from "../../imports/emilio-pucci-platform-boots-gallery/05-top.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
 
 export const ALL_PRODUCTS: Product[] = [
+  {
+    id: 21,
+    name: "Black Patent Leather & Mesh Platform Boots",
+    brand: "Emilio Pucci",
+    price: 450,
+    size: "IT 37",
+    era: "Vintage",
+    condition: "Good",
+    category: "Shoes",
+    color: "Black",
+    collection: "Runway Spring 2009",
+    origin: "Italy",
+    material: "Patent leather & mesh",
+    details: ["Peep-toe platform", "Mesh cage panels", "Silver-tone stiletto heel", "Rear zip"],
+    image: emilioPucciBootsPairImg,
+    images: [
+      emilioPucciBootsPairImg,
+      emilioPucciBootsSideImg,
+      emilioPucciBootsProfileImg,
+      emilioPucciBootsSolesImg,
+      emilioPucciBootsTopImg,
+    ],
+    imageBackground: "#000000",
+  },
   {
     id: 9,
     name: "Tiger Tattoo Print Skirt",
