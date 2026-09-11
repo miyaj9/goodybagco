@@ -244,6 +244,7 @@ export const ALL_PRODUCTS: Product[] = [
     details: ["Leopard print", "Floral and butterfly motifs", "Gold star waistband"],
     image: justCavalliLeggingsImg,
     imageBackground: "#000000",
+    sold: true,
   },
   {
     id: 15,
