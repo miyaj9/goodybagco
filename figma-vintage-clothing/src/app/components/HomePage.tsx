@@ -41,8 +41,8 @@ import jpgMeshTattooDressBackImg from "../../imports/jpg-mesh-tattoo-dress-galle
 import emilioPucciBootsPairImg from "../../imports/emilio-pucci-platform-boots-gallery/01-pair.png";
 import emilioPucciBootsSideImg from "../../imports/emilio-pucci-platform-boots-gallery/02-side.png";
 import emilioPucciBootsProfileImg from "../../imports/emilio-pucci-platform-boots-gallery/03-profile.png";
-import emilioPucciBootsSolesImg from "../../imports/emilio-pucci-platform-boots-gallery/04-soles.png";
-import emilioPucciBootsTopImg from "../../imports/emilio-pucci-platform-boots-gallery/05-top.png";
+import emilioPucciBootsAngleImg from "../../imports/emilio-pucci-platform-boots-gallery/04-angle.png";
+import emilioPucciBootsSolesImg from "../../imports/emilio-pucci-platform-boots-gallery/05-soles.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
@@ -67,8 +67,8 @@ export const ALL_PRODUCTS: Product[] = [
       emilioPucciBootsPairImg,
       emilioPucciBootsSideImg,
       emilioPucciBootsProfileImg,
+      emilioPucciBootsAngleImg,
       emilioPucciBootsSolesImg,
-      emilioPucciBootsTopImg,
     ],
     imageBackground: "#000000",
   },
