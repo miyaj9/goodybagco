@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ProductCard, type Product } from "./ProductCard";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Search, X } from "lucide-react";
 import bagPileImg from "../../imports/Image_2-1.jpeg";
 import robertoCavalliSkirtImg from "../../imports/roberto-cavalli-tiger-tattoo-skirt.png";
 import cavalliSkirtFullImg from "../../imports/cavalli-skirt-gallery/01-full.png";
@@ -43,6 +43,10 @@ import emilioPucciBootsSideImg from "../../imports/emilio-pucci-platform-boots-g
 import emilioPucciBootsProfileImg from "../../imports/emilio-pucci-platform-boots-gallery/03-profile.png";
 import emilioPucciBootsAngleImg from "../../imports/emilio-pucci-platform-boots-gallery/04-angle.png";
 import emilioPucciBootsSolesImg from "../../imports/emilio-pucci-platform-boots-gallery/05-soles.png";
+import versaceAevitasPairImg from "../../imports/versace-aevitas-fuchsia-gallery/01-pair.png";
+import versaceAevitasSolesImg from "../../imports/versace-aevitas-fuchsia-gallery/02-soles.png";
+import versaceAevitasTopImg from "../../imports/versace-aevitas-fuchsia-gallery/03-top.png";
+import versaceAevitasBackImg from "../../imports/versace-aevitas-fuchsia-gallery/04-back.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
@@ -69,6 +73,27 @@ export const ALL_PRODUCTS: Product[] = [
       emilioPucciBootsSideImg,
       emilioPucciBootsProfileImg,
       emilioPucciBootsSolesImg,
+    ],
+    imageBackground: "#000000",
+  },
+  {
+    id: 22,
+    name: "Aevitas Fuchsia Satin Platform Pumps",
+    brand: "Versace",
+    price: 600,
+    size: "IT 39",
+    era: "Contemporary",
+    condition: "Good",
+    category: "Shoes",
+    color: "Fuchsia",
+    material: "Satin",
+    details: ["Double platform", "Crystal ankle strap", "Medusa hardware", "Block heel"],
+    image: versaceAevitasPairImg,
+    images: [
+      versaceAevitasPairImg,
+      versaceAevitasTopImg,
+      versaceAevitasBackImg,
+      versaceAevitasSolesImg,
     ],
     imageBackground: "#000000",
   },
@@ -348,12 +373,34 @@ interface HomePageProps {
   cart: Product[];
   onAddToCart: (product: Product) => void;
   onNavigate: (page: "consignment" | "returns") => void;
+  searchFocusToken?: number;
 }
 
-export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
+const DESIGNERS = Array.from(new Set(ALL_PRODUCTS.map((p) => p.brand))).sort((a, b) =>
+  a.localeCompare(b, undefined, { sensitivity: "base" }),
+);
+
+export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }: HomePageProps) {
   const [cat, setCat] = useState("All");
+  const [designerQuery, setDesignerQuery] = useState("");
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
   const cartIds = new Set(cart.map((p) => p.id));
-  const filtered = cat === "All" ? ALL_PRODUCTS : ALL_PRODUCTS.filter((p) => p.category === cat);
+
+  useEffect(() => {
+    if (!searchFocusToken) return;
+    const section = document.getElementById("new-in");
+    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(() => searchInputRef.current?.focus(), 280);
+  }, [searchFocusToken]);
+
+  const query = designerQuery.trim().toLowerCase();
+  const filtered = ALL_PRODUCTS.filter((p) => {
+    if (cat !== "All" && p.category !== cat) return false;
+    if (!query) return true;
+    return p.brand.toLowerCase().includes(query);
+  });
+
+  const selectedDesigner = DESIGNERS.find((brand) => brand.toLowerCase() === query) ?? null;
 
   return (
     <main style={{ fontFamily: FONT, backgroundColor: "#FFFFFF" }}>
@@ -609,6 +656,104 @@ export function HomePage({ cart, onAddToCart, onNavigate }: HomePageProps) {
           <h2 style={{ fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700 }}>New In</h2>
           <span style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888" }}>{filtered.length} Items</span>
         </div>
+
+        <div style={{ position: "relative", marginTop: "18px", marginBottom: "8px" }}>
+          <label htmlFor="designer-search" className="sr-only">Search by designer</label>
+          <Search
+            size={15}
+            strokeWidth={1.8}
+            color="#888888"
+            style={{ position: "absolute", left: "14px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
+          />
+          <input
+            id="designer-search"
+            ref={searchInputRef}
+            type="search"
+            value={designerQuery}
+            onChange={(e) => setDesignerQuery(e.target.value)}
+            placeholder="Search by designer..."
+            autoComplete="off"
+            className="w-full outline-none"
+            style={{
+              padding: "12px 42px 12px 40px",
+              border: "1px solid rgba(0,0,0,0.15)",
+              backgroundColor: "#FAFAFA",
+              fontSize: "0.88rem",
+              fontFamily: FONT,
+              color: "#0D0D0D",
+            }}
+            onFocus={(e) => { e.currentTarget.style.borderColor = "#0D0D0D"; }}
+            onBlur={(e) => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.15)"; }}
+          />
+          {designerQuery && (
+            <button
+              type="button"
+              aria-label="Clear designer search"
+              onClick={() => setDesignerQuery("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center"
+            >
+              <X size={14} strokeWidth={2} color="#888888" />
+            </button>
+          )}
+        </div>
+
+        <div style={{ marginBottom: "4px" }}>
+          <p style={{ fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginBottom: "10px" }}>
+            Designers
+          </p>
+          <div style={{ display: "flex", gap: "8px", overflowX: "auto", paddingBottom: "4px", scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
+            <button
+              type="button"
+              onClick={() => setDesignerQuery("")}
+              style={{
+                flexShrink: 0,
+                padding: "8px 12px",
+                fontSize: "0.62rem",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                fontWeight: !selectedDesigner ? 700 : 500,
+                color: "#0D0D0D",
+                backgroundColor: !selectedDesigner ? "#FAFA5A" : "#FFFFFF",
+                border: "1px solid #0D0D0D",
+                cursor: "pointer",
+                fontFamily: FONT,
+              }}
+            >
+              All
+            </button>
+            {DESIGNERS.map((brand) => {
+              const active = selectedDesigner === brand;
+              return (
+                <button
+                  key={brand}
+                  type="button"
+                  onClick={() => setDesignerQuery(brand)}
+                  style={{
+                    flexShrink: 0,
+                    padding: "8px 12px",
+                    fontSize: "0.62rem",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    fontWeight: active ? 700 : 500,
+                    color: "#0D0D0D",
+                    backgroundColor: active ? "#FAFA5A" : "#FFFFFF",
+                    border: "1px solid #0D0D0D",
+                    cursor: "pointer",
+                    fontFamily: FONT,
+                  }}
+                >
+                  {brand}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {query && !selectedDesigner && (
+          <p style={{ fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#888888", margin: "12px 0 0" }}>
+            {filtered.length === 0 ? `No pieces found for “${designerQuery.trim()}”` : `Showing matches for “${designerQuery.trim()}”`}
+          </p>
+        )}
 
         <div style={{ display: "flex", gap: "20px", overflowX: "auto", padding: "16px 0 28px", scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
           {CATS.map((c) => (

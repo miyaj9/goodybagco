@@ -7,6 +7,7 @@ type Page = "home" | "contact" | "checkout" | "consignment" | "returns";
 interface NavbarProps {
   activePage: Page;
   onNavigate: (page: Page) => void;
+  onSearch?: () => void;
   cartCount: number;
 }
 
@@ -36,7 +37,7 @@ const linkStyle = (active: boolean): CSSProperties => ({
   fontFamily: FONT,
 });
 
-export function Navbar({ activePage, onNavigate, cartCount }: NavbarProps) {
+export function Navbar({ activePage, onNavigate, onSearch, cartCount }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -145,7 +146,11 @@ export function Navbar({ activePage, onNavigate, cartCount }: NavbarProps) {
           <button
             type="button"
             aria-label="Search"
-            className="hidden h-11 w-11 items-center justify-center opacity-80 transition-opacity hover:opacity-40 sm:flex"
+            onClick={() => {
+              setMenuOpen(false);
+              onSearch?.();
+            }}
+            className="flex h-11 w-11 items-center justify-center opacity-80 transition-opacity hover:opacity-40"
             style={{ color: "#0D0D0D" }}
           >
             <Search size={18} strokeWidth={1.8} />
@@ -221,6 +226,26 @@ export function Navbar({ activePage, onNavigate, cartCount }: NavbarProps) {
                 {label}
               </button>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                setMenuOpen(false);
+                onSearch?.();
+              }}
+              className="px-5 py-4 text-left"
+              style={{
+                fontSize: "0.78rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                fontWeight: 500,
+                color: "#0D0D0D",
+                backgroundColor: "#FFFFFF",
+                borderBottom: "1px solid rgba(13,13,13,0.08)",
+                fontFamily: FONT,
+              }}
+            >
+              Search Designers
+            </button>
           </nav>
         </div>
       )}

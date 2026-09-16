@@ -20,6 +20,7 @@ export default function App() {
   const [activePage, setActivePage] = useState<Page>("home");
   const [cart, setCart] = useState<Product[]>([]);
   const [checkoutStatus, setCheckoutStatus] = useState<CheckoutStatus>(null);
+  const [searchFocusToken, setSearchFocusToken] = useState(0);
 
   useEffect(() => {
     const status = readCheckoutStatus();
@@ -46,12 +47,27 @@ export default function App() {
     setActivePage("home");
   };
 
+  const handleOpenSearch = () => {
+    setActivePage("home");
+    setSearchFocusToken((token) => token + 1);
+  };
+
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: "'Urbanist', sans-serif" }}>
-      <Navbar activePage={activePage} onNavigate={setActivePage} cartCount={cart.length} />
+      <Navbar
+        activePage={activePage}
+        onNavigate={setActivePage}
+        onSearch={handleOpenSearch}
+        cartCount={cart.length}
+      />
 
       {activePage === "home" && (
-        <HomePage cart={cart} onAddToCart={handleAddToCart} onNavigate={setActivePage} />
+        <HomePage
+          cart={cart}
+          onAddToCart={handleAddToCart}
+          onNavigate={setActivePage}
+          searchFocusToken={searchFocusToken}
+        />
       )}
       {activePage === "checkout" && (
         <CheckoutPage
