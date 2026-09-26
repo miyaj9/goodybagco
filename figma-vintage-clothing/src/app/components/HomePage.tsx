@@ -230,6 +230,7 @@ export const ALL_PRODUCTS: Product[] = [
       jpgMeshTattooDressBackImg,
     ],
     imageBackground: "#000000",
+    sold: true,
   },
   {
     id: 17,
