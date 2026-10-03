@@ -292,6 +292,7 @@ export const ALL_PRODUCTS: Product[] = [
       dsquared2BeltAngleImg,
     ],
     imageBackground: "#000000",
+    sold: true,
   },
   {
     id: 13,
