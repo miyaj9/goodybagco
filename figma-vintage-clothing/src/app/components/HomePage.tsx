@@ -75,6 +75,7 @@ export const ALL_PRODUCTS: Product[] = [
       emilioPucciBootsSolesImg,
     ],
     imageBackground: "#000000",
+    sold: true,
   },
   {
     id: 22,
