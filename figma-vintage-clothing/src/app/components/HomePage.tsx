@@ -21,11 +21,6 @@ import gucciSandalsImg from "../../imports/gucci-gg-horsebit-mule-sandals-cutout
 import gucciSandalsPairTopImg from "../../imports/gucci-sandals-gallery/01-pair-top.png";
 import gucciSandalsSolesImg from "../../imports/gucci-sandals-gallery/02-soles.png";
 import gucciSandalsInsoleLogoImg from "../../imports/gucci-sandals-gallery/03-insole-logo.png";
-import alaiaPumpsImg from "../../imports/alaia-heart-cut-out-pumps.png";
-import alaiaPumpsPairTopImg from "../../imports/alaia-pumps-gallery/01-pair-top.png";
-import alaiaPumpsHeelViewImg from "../../imports/alaia-pumps-gallery/02-heel-view.png";
-import alaiaPumpsSoleProfileImg from "../../imports/alaia-pumps-gallery/03-sole-profile.png";
-import alaiaPumpsThreeQuarterImg from "../../imports/alaia-pumps-gallery/04-three-quarter.png";
 import justCavalliLeggingsImg from "../../imports/just-cavalli-leopard-print-leggings.png";
 import justCavalliSnakeskinDressImg from "../../imports/just-cavalli-snakeskin-dress-gallery/01-front.png";
 import dsquared2BeltBuckleImg from "../../imports/dsquared2-belt-gallery/01-buckle.png";
@@ -317,32 +312,6 @@ export const ALL_PRODUCTS: Product[] = [
       dsquared2BeltAngleImg,
     ],
     imageBackground: "#000000",
-    sold: true,
-  },
-  {
-    id: 13,
-    name: "Heart Cut Out Pumps",
-    brand: "Alaïa",
-    price: 925,
-    size: "38.5",
-    era: "Contemporary / 2020s",
-    condition: "Great",
-    category: "Shoes",
-    color: "Raspberry",
-    senserId: "33594239",
-    brandId: "AA3M053CK150",
-    composition: "Upper: Calfskin 60%, Polyurethanes 40%; Sole: Calfskin 95%, Rubber 5%",
-    origin: "Italy",
-    description: "Mules with heart-shaped cutouts on the toe, featuring a pointed toe design.",
-    details: ["Dust bag", "Box"],
-    image: alaiaPumpsPairTopImg,
-    images: [
-      alaiaPumpsPairTopImg,
-      alaiaPumpsImg,
-      alaiaPumpsHeelViewImg,
-      alaiaPumpsSoleProfileImg,
-      alaiaPumpsThreeQuarterImg,
-    ],
     sold: true,
   },
 ];
