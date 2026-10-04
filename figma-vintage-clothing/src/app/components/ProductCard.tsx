@@ -266,39 +266,8 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
               objectFit: imageFit,
               objectPosition: "center",
               transform: hovered && imageFit === "cover" && !sold ? "scale(1.05)" : "scale(1)",
-              filter: sold ? "grayscale(0.35) brightness(0.92)" : "none",
             }}
           />
-
-          {sold && (
-            <>
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ backgroundColor: "rgba(13,13,13,0.28)", zIndex: 2 }}
-              />
-              <div
-                className="absolute left-0 right-0 top-1/2 z-[4] flex -translate-y-1/2 items-center justify-center py-3"
-                style={{
-                  backgroundColor: "#0D0D0D",
-                  borderTop: "2px solid #FAFA5A",
-                  borderBottom: "2px solid #FAFA5A",
-                }}
-              >
-                <span
-                  style={{
-                    color: "#FAFA5A",
-                    fontSize: "0.95rem",
-                    letterSpacing: "0.32em",
-                    textTransform: "uppercase",
-                    fontWeight: 900,
-                    fontFamily: FONT,
-                  }}
-                >
-                  Sold
-                </span>
-              </div>
-            </>
-          )}
 
           {/* Wishlist — always visible on touch; hover-reveal on desktop */}
           <button
@@ -361,7 +330,7 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
           {/* Add to bag — always visible on mobile; hover-reveal on desktop */}
           <div
             className="absolute bottom-0 left-0 right-0 transition-transform duration-300 translate-y-0 md:translate-y-full md:group-hover:translate-y-0"
-            style={{ zIndex: 3 }}
+            style={{ zIndex: 3, display: sold ? "none" : undefined }}
           >
             <button
               onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
@@ -411,14 +380,11 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
             {sold && (
               <span
                 style={{
-                  fontSize: "0.62rem",
-                  letterSpacing: "0.18em",
+                  fontSize: "0.65rem",
+                  letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  fontWeight: 800,
-                  color: "#0D0D0D",
-                  backgroundColor: "#FAFA5A",
-                  padding: "3px 7px",
-                  border: "1px solid #0D0D0D",
+                  fontWeight: 700,
+                  color: "#888888",
                 }}
               >
                 Sold
@@ -535,16 +501,12 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
               {sold && (
                 <p
                   style={{
-                    marginTop: "10px",
-                    display: "inline-block",
+                    marginTop: "8px",
                     fontSize: "0.72rem",
-                    letterSpacing: "0.22em",
+                    letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "#0D0D0D",
-                    fontWeight: 900,
-                    backgroundColor: "#FAFA5A",
-                    padding: "8px 14px",
-                    border: "1.5px solid #0D0D0D",
+                    color: "#888888",
+                    fontWeight: 700,
                   }}
                 >
                   Sold
