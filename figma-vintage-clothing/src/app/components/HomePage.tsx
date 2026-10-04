@@ -38,6 +38,7 @@ import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/04-labe
 import jpgMeshTattooDressFrontImg from "../../imports/jpg-mesh-tattoo-dress-gallery/01-front.png";
 import jpgMeshTattooDressFrontAltImg from "../../imports/jpg-mesh-tattoo-dress-gallery/02-front-alt.png";
 import jpgMeshTattooDressBackImg from "../../imports/jpg-mesh-tattoo-dress-gallery/03-back.png";
+import cavalliTribalPantsImg from "../../imports/roberto-cavalli-tribal-pants-gallery/01-front.png";
 import emilioPucciBootsPairImg from "../../imports/emilio-pucci-platform-boots-gallery/01-pair.png";
 import emilioPucciBootsSideImg from "../../imports/emilio-pucci-platform-boots-gallery/02-side.png";
 import emilioPucciBootsProfileImg from "../../imports/emilio-pucci-platform-boots-gallery/03-profile.png";
@@ -52,6 +53,29 @@ import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
 
 export const ALL_PRODUCTS: Product[] = [
+  {
+    id: 23,
+    name: "Red & Gold Tribal Pants",
+    brand: "Roberto Cavalli",
+    price: 300,
+    size: "XS (US 4–6)",
+    era: "Vintage",
+    condition: "Good",
+    category: "Bottoms",
+    color: "Red / Gold",
+    collection: "Autumn/Winter 2002 Collection by Roberto Cavalli",
+    origin: "Italy",
+    measurements: {
+      waist: '30"',
+      hips: '36"',
+      inseam: '30"',
+      hemOpening: '19"',
+    },
+    details: ["All-over tribal print", "Fits like a US 4–6"],
+    image: cavalliTribalPantsImg,
+    images: [cavalliTribalPantsImg],
+    imageBackground: "#000000",
+  },
   {
     id: 21,
     name: "Black Patent Leather & Mesh Platform Boots",
