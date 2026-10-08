@@ -34,6 +34,7 @@ export interface Product {
   details?: string[];
   availableSoon?: boolean;
   sold?: boolean;
+  underdog?: boolean;
 }
 
 interface ProductCardProps {

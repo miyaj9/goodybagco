@@ -316,7 +316,8 @@ export const ALL_PRODUCTS: Product[] = [
   },
 ];
 
-const CATS = ["All", "Tops", "Bottoms", "Accessories", "Bags", "Shoes"];
+const UNDERDOG = "The Underdog";
+const CATS = ["All", "Tops", "Bottoms", "Accessories", "Bags", "Shoes", UNDERDOG];
 const FONT = "'Urbanist', sans-serif";
 
 // One column of the conveyor — different objectPosition shows a different crop of the bag photo
@@ -392,7 +393,11 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
 
   const query = designerQuery.trim().toLowerCase();
   const filtered = ALL_PRODUCTS.filter((p) => {
-    if (cat !== "All" && p.category !== cat) return false;
+    if (cat === UNDERDOG) {
+      if (!p.underdog) return false;
+    } else if (cat !== "All" && p.category !== cat) {
+      return false;
+    }
     if (!query) return true;
     return p.brand.toLowerCase().includes(query);
   });
@@ -768,11 +773,22 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
           ))}
         </div>
 
+        {cat === UNDERDOG && (
+          <p style={{ fontSize: "0.82rem", lineHeight: 1.55, color: "#0D0D0D", margin: "0 0 20px", maxWidth: "36rem" }}>
+            Unknown and low-profile brands at affordable prices. For shopping on a budget.
+          </p>
+        )}
+
         <div className="product-grid">
           {filtered.map((p) => (
             <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} inCart={cartIds.has(p.id)} />
           ))}
         </div>
+        {filtered.length === 0 && cat === UNDERDOG && !query && (
+          <p style={{ fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#888888", marginTop: "8px" }}>
+            No underdog pieces listed yet.
+          </p>
+        )}
       </section>
 
       {/* ── Three-panel strip ── */}
