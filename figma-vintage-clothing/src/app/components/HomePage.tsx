@@ -316,7 +316,7 @@ export const ALL_PRODUCTS: Product[] = [
   },
 ];
 
-const UNDERDOG = "The Underdog";
+const UNDERDOG = "The Underdog (Items under $150)";
 const GARMENT_CATS = ["All", "Tops", "Bottoms", "Accessories", "Bags", "Shoes"];
 const FONT = "'Urbanist', sans-serif";
 
@@ -394,7 +394,7 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
   const query = designerQuery.trim().toLowerCase();
   const filtered = ALL_PRODUCTS.filter((p) => {
     if (cat === UNDERDOG) {
-      if (!p.underdog) return false;
+      if (typeof p.price !== "number" || p.price >= 150) return false;
     } else if (cat !== "All" && p.category !== cat) {
       return false;
     }
@@ -764,9 +764,9 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
             style={{
               flexShrink: 0,
               padding: "8px 12px",
-              fontSize: "0.65rem",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
+              fontSize: "0.72rem",
+              letterSpacing: "0.02em",
+              textTransform: "none",
               fontWeight: 700,
               color: "#0D0D0D",
               backgroundColor: cat === UNDERDOG ? "#FAFA5A" : "#FFFFFF",
@@ -794,7 +794,7 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
 
         {cat === UNDERDOG && (
           <p style={{ fontSize: "0.82rem", lineHeight: 1.55, color: "#0D0D0D", margin: "0 0 20px", maxWidth: "36rem" }}>
-            Unknown and low-profile brands at affordable prices. For shopping on a budget.
+            Pieces priced under $150.
           </p>
         )}
 
