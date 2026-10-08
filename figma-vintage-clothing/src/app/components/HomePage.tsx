@@ -317,7 +317,7 @@ export const ALL_PRODUCTS: Product[] = [
 ];
 
 const UNDERDOG = "The Underdog";
-const CATS = ["All", "Tops", "Bottoms", "Accessories", "Bags", "Shoes", UNDERDOG];
+const GARMENT_CATS = ["All", "Tops", "Bottoms", "Accessories", "Bags", "Shoes"];
 const FONT = "'Urbanist', sans-serif";
 
 // One column of the conveyor — different objectPosition shows a different crop of the bag photo
@@ -757,8 +757,27 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
           </p>
         )}
 
-        <div style={{ display: "flex", gap: "20px", overflowX: "auto", padding: "16px 0 28px", scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
-          {CATS.map((c) => (
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 18px", padding: "16px 0 22px" }}>
+          <button
+            type="button"
+            onClick={() => setCat(UNDERDOG)}
+            style={{
+              flexShrink: 0,
+              padding: "8px 12px",
+              fontSize: "0.65rem",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              fontWeight: 700,
+              color: "#0D0D0D",
+              backgroundColor: cat === UNDERDOG ? "#FAFA5A" : "#FFFFFF",
+              border: "1px solid #0D0D0D",
+              cursor: "pointer",
+              fontFamily: FONT,
+            }}
+          >
+            {UNDERDOG}
+          </button>
+          {GARMENT_CATS.map((c) => (
             <button key={c} onClick={() => setCat(c)} style={{
               flexShrink: 0, fontSize: "0.65rem", letterSpacing: "0.2em",
               textTransform: "uppercase", fontWeight: c === cat ? 700 : 500,
