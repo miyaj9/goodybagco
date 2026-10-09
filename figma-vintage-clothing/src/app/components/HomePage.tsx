@@ -61,7 +61,7 @@ export const ALL_PRODUCTS: Product[] = [
     condition: "Good",
     category: "Bottoms",
     color: "Red / Gold",
-    collection: "Roberto Cavalli Autumn/Winter 2002, part of the 2001 runway",
+    collection: "Autumn/Winter 2002 Collection by Roberto Cavalli, from the 2001 runway",
     origin: "Italy",
     measurements: {
       waist: '30"',
@@ -69,7 +69,7 @@ export const ALL_PRODUCTS: Product[] = [
       inseam: '30"',
       hemOpening: '19"',
     },
-    details: ["All-over tribal print", "AW 2002", "Part of the 2001 runway"],
+    details: ["All-over tribal print"],
     image: cavalliTribalJeansFrontImg,
     images: [
       cavalliTribalJeansFrontImg,
