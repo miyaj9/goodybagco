@@ -33,7 +33,10 @@ import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/04-labe
 import jpgMeshTattooDressFrontImg from "../../imports/jpg-mesh-tattoo-dress-gallery/01-front.png";
 import jpgMeshTattooDressFrontAltImg from "../../imports/jpg-mesh-tattoo-dress-gallery/02-front-alt.png";
 import jpgMeshTattooDressBackImg from "../../imports/jpg-mesh-tattoo-dress-gallery/03-back.png";
-import cavalliTribalPantsImg from "../../imports/roberto-cavalli-tribal-pants-gallery/01-front.png";
+import cavalliTribalJeansFrontImg from "../../imports/roberto-cavalli-tribal-pants-gallery/01-front.png";
+import cavalliTribalJeansBackImg from "../../imports/roberto-cavalli-tribal-pants-gallery/02-back.png";
+import cavalliTribalJeansFrontAltImg from "../../imports/roberto-cavalli-tribal-pants-gallery/03-front-alt.png";
+import cavalliTribalJeansLabelImg from "../../imports/roberto-cavalli-tribal-pants-gallery/04-label.png";
 import emilioPucciBootsPairImg from "../../imports/emilio-pucci-platform-boots-gallery/01-pair.png";
 import emilioPucciBootsSideImg from "../../imports/emilio-pucci-platform-boots-gallery/02-side.png";
 import emilioPucciBootsProfileImg from "../../imports/emilio-pucci-platform-boots-gallery/03-profile.png";
@@ -50,15 +53,15 @@ import authenticatedFeatureImg from "../../imports/authenticated-feature-backgro
 export const ALL_PRODUCTS: Product[] = [
   {
     id: 23,
-    name: "Red & Gold Tribal Pants",
+    name: "Red & Gold Tribal Jeans",
     brand: "Roberto Cavalli",
-    price: 300,
+    price: 450,
     size: "XS but runs big",
     era: "Vintage",
     condition: "Good",
     category: "Bottoms",
     color: "Red / Gold",
-    collection: "Autumn/Winter 2002 Collection by Roberto Cavalli",
+    collection: "Roberto Cavalli Autumn/Winter 2002, part of the 2001 runway",
     origin: "Italy",
     measurements: {
       waist: '30"',
@@ -66,9 +69,14 @@ export const ALL_PRODUCTS: Product[] = [
       inseam: '30"',
       hemOpening: '19"',
     },
-    details: ["All-over tribal print"],
-    image: cavalliTribalPantsImg,
-    images: [cavalliTribalPantsImg],
+    details: ["All-over tribal print", "AW 2002", "Part of the 2001 runway"],
+    image: cavalliTribalJeansFrontImg,
+    images: [
+      cavalliTribalJeansFrontImg,
+      cavalliTribalJeansBackImg,
+      cavalliTribalJeansFrontAltImg,
+      cavalliTribalJeansLabelImg,
+    ],
     imageBackground: "#000000",
   },
   {
