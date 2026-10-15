@@ -244,7 +244,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 17,
     name: "Floral Capri",
     brand: "Dolce & Gabbana",
-    price: 150,
+    price: 70,
     size: "42 IT",
     era: "Vintage",
     condition: "Good",
