@@ -399,6 +399,9 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
     window.setTimeout(() => searchInputRef.current?.focus(), 280);
   }, [searchFocusToken]);
 
+  const selectCategory = (next: string) => {
+    setCat((current) => (current === next ? "All" : next));
+  };
   const query = designerQuery.trim().toLowerCase();
   const filtered = ALL_PRODUCTS.filter((p) => {
     if (cat === UNDERDOG) {
@@ -768,7 +771,7 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 18px", padding: "16px 0 22px" }}>
           <button
             type="button"
-            onClick={() => setCat(UNDERDOG)}
+            onClick={() => selectCategory(UNDERDOG)}
             style={{
               flexShrink: 0,
               padding: "8px 12px",
@@ -786,7 +789,7 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
             {UNDERDOG}
           </button>
           {GARMENT_CATS.map((c) => (
-            <button key={c} onClick={() => setCat(c)} style={{
+            <button key={c} onClick={() => selectCategory(c)} style={{
               flexShrink: 0, fontSize: "0.65rem", letterSpacing: "0.2em",
               textTransform: "uppercase", fontWeight: c === cat ? 700 : 500,
               color: c === cat ? "#0D0D0D" : "#888888",
