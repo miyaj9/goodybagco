@@ -49,11 +49,27 @@ import versaceAevitasBackImg from "../../imports/versace-aevitas-fuchsia-gallery
 import herveLegerDressFrontImg from "../../imports/herve-leger-bandage-dress-gallery/01-front.png";
 import cavalliAnimalKnitDressImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/01-front.png";
 import alaiaLaserCutBootsImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/01-front.png";
+import yslFuchsiaSuedePumpsImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/01-front.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
 
 export const ALL_PRODUCTS: Product[] = [
+  {
+    id: 27,
+    name: "Fuchsia Suede Pumps",
+    brand: "Yves Saint Laurent",
+    price: 65,
+    size: "TBD",
+    era: "Vintage",
+    condition: "Fair",
+    category: "Shoes",
+    color: "Fuchsia",
+    material: "Suede",
+    image: yslFuchsiaSuedePumpsImg,
+    images: [yslFuchsiaSuedePumpsImg],
+    imageBackground: "#FFFFFF",
+  },
   {
     id: 26,
     name: "Laser Cut Suede Platform Ankle Boots",
