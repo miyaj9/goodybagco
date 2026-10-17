@@ -369,7 +369,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 22,
     name: "Aevitas Fuchsia Satin Platform Pumps",
     brand: "Versace",
-    price: 600,
+    price: 400,
     size: "IT 39",
     era: "Contemporary",
     condition: "Good",
