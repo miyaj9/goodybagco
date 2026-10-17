@@ -342,6 +342,7 @@ export const ALL_PRODUCTS: Product[] = [
 ];
 
 const UNDERDOG = "The Underdog (Items under $150)";
+const RUNWAY = "As seen on the runway";
 const GARMENT_CATS = ["All", "Tops", "Bottoms", "Accessories", "Bags", "Shoes"];
 const FONT = "'Urbanist', sans-serif";
 
@@ -423,6 +424,8 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
   const filtered = ALL_PRODUCTS.filter((p) => {
     if (cat === UNDERDOG) {
       if (typeof p.price !== "number" || p.price >= 150) return false;
+    } else if (cat === RUNWAY) {
+      if (!p.collection?.trim()) return false;
     } else if (cat !== "All" && p.category !== cat) {
       return false;
     }
@@ -824,6 +827,25 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
           >
             {UNDERDOG}
           </button>
+          <button
+            type="button"
+            onClick={() => selectCategory(RUNWAY)}
+            style={{
+              flexShrink: 0,
+              padding: "8px 12px",
+              fontSize: "0.72rem",
+              letterSpacing: "0.02em",
+              textTransform: "none",
+              fontWeight: 700,
+              color: "#0D0D0D",
+              backgroundColor: cat === RUNWAY ? "#FAFA5A" : "#FFFFFF",
+              border: "1px solid #0D0D0D",
+              cursor: "pointer",
+              fontFamily: FONT,
+            }}
+          >
+            {RUNWAY}
+          </button>
           {GARMENT_CATS.map((c) => (
             <button key={c} onClick={() => selectCategory(c)} style={{
               flexShrink: 0, fontSize: "0.65rem", letterSpacing: "0.2em",
@@ -844,6 +866,11 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
             Pieces priced under $150.
           </p>
         )}
+        {cat === RUNWAY && (
+          <p style={{ fontSize: "0.82rem", lineHeight: 1.55, color: "#0D0D0D", margin: "0 0 20px", maxWidth: "36rem" }}>
+            Pieces from the runway.
+          </p>
+        )}
 
         <div className="product-grid">
           {filtered.map((p) => (
@@ -853,6 +880,11 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
         {filtered.length === 0 && cat === UNDERDOG && !query && (
           <p style={{ fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#888888", marginTop: "8px" }}>
             No underdog pieces listed yet.
+          </p>
+        )}
+        {filtered.length === 0 && cat === RUNWAY && !query && (
+          <p style={{ fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#888888", marginTop: "8px" }}>
+            No runway pieces listed yet.
           </p>
         )}
       </section>
