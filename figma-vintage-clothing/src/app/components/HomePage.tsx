@@ -112,7 +112,7 @@ export const ALL_PRODUCTS: Product[] = [
     details: ["Laser cut", "Suede", "Platform", "Ankle boots"],
     image: alaiaLaserCutBootsImg,
     images: [alaiaLaserCutBootsImg],
-    imageBackground: "#FFFFFF",
+    imageBackground: "#000000",
   },
   {
     id: 21,
@@ -217,7 +217,7 @@ export const ALL_PRODUCTS: Product[] = [
     material: "Suede",
     image: yslFuchsiaSuedePumpsImg,
     images: [yslFuchsiaSuedePumpsImg],
-    imageBackground: "#FFFFFF",
+    imageBackground: "#000000",
   },
   {
     id: 11,
