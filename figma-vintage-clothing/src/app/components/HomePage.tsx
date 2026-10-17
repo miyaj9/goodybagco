@@ -56,6 +56,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 24,
     name: "One-Shoulder Bandage Dress",
     brand: "Hervé Léger",
+    price: 100,
     size: "Small",
     era: "2010s Archive",
     condition: "Good",
@@ -65,7 +66,7 @@ export const ALL_PRODUCTS: Product[] = [
     details: ["One-shoulder", "Short sleeve", "Bandage construction", "Color-block"],
     image: herveLegerDressFrontImg,
     images: [herveLegerDressFrontImg],
-    imageBackground: "#000000",
+    imageBackground: "#FFFFFF",
   },
   {
     id: 23,
