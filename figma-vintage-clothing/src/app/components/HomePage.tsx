@@ -60,7 +60,7 @@ export const ALL_PRODUCTS: Product[] = [
     name: "Fuchsia Suede Pumps",
     brand: "Yves Saint Laurent",
     price: 65,
-    size: "TBD",
+    size: "IT 36",
     era: "Vintage",
     condition: "Fair",
     category: "Shoes",
