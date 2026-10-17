@@ -48,11 +48,27 @@ import versaceAevitasTopImg from "../../imports/versace-aevitas-fuchsia-gallery/
 import versaceAevitasBackImg from "../../imports/versace-aevitas-fuchsia-gallery/04-back.png";
 import herveLegerDressFrontImg from "../../imports/herve-leger-bandage-dress-gallery/01-front.png";
 import cavalliAnimalKnitDressImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/01-front.png";
+import alaiaLaserCutBootsImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/01-front.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
 
 export const ALL_PRODUCTS: Product[] = [
+  {
+    id: 26,
+    name: "Laser Cut Suede Platform Ankle Boots",
+    brand: "Alaïa",
+    price: 200,
+    size: "Runs a half size small",
+    era: "2010s Archive",
+    condition: "Good",
+    category: "Shoes",
+    origin: "Italy",
+    details: ["Laser cut", "Suede", "Platform", "Ankle boots"],
+    image: alaiaLaserCutBootsImg,
+    images: [alaiaLaserCutBootsImg],
+    imageBackground: "#FFFFFF",
+  },
   {
     id: 25,
     name: "Animal Print Knit Dress",
