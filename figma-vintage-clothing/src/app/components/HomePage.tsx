@@ -304,7 +304,7 @@ export const ALL_PRODUCTS: Product[] = [
     brand: "Just Cavalli",
     price: 85,
     size: "42",
-    era: "Vintage",
+    era: "Unknown",
     condition: "Excellent",
     category: "Bottoms",
     details: ["Leopard print", "Floral and butterfly motifs", "Gold star waistband"],
