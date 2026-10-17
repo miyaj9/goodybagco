@@ -59,7 +59,7 @@ export const ALL_PRODUCTS: Product[] = [
     name: "Laser Cut Suede Platform Ankle Boots",
     brand: "Alaïa",
     price: 200,
-    size: "Runs a half size small",
+    size: "IT 38 but runs a half size small",
     era: "2010s Archive",
     condition: "Good",
     category: "Shoes",
