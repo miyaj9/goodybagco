@@ -47,11 +47,26 @@ import versaceAevitasSolesImg from "../../imports/versace-aevitas-fuchsia-galler
 import versaceAevitasTopImg from "../../imports/versace-aevitas-fuchsia-gallery/03-top.png";
 import versaceAevitasBackImg from "../../imports/versace-aevitas-fuchsia-gallery/04-back.png";
 import herveLegerDressFrontImg from "../../imports/herve-leger-bandage-dress-gallery/01-front.png";
+import cavalliAnimalKnitDressImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/01-front.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
 
 export const ALL_PRODUCTS: Product[] = [
+  {
+    id: 25,
+    name: "Animal Print Knit Dress",
+    brand: "Roberto Cavalli",
+    price: 120,
+    size: "Small",
+    era: "2010s Archive",
+    condition: "Very Good",
+    category: "Tops",
+    details: ["Animal print", "Knit"],
+    image: cavalliAnimalKnitDressImg,
+    images: [cavalliAnimalKnitDressImg],
+    imageBackground: "#FFFFFF",
+  },
   {
     id: 24,
     name: "One-Shoulder Bandage Dress",
