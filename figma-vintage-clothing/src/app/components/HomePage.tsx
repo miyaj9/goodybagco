@@ -463,12 +463,19 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
           grid-template-columns: repeat(2, 1fr);
           gap: 3px;
           background-color: #000;
+          pointer-events: none;
         }
         .hero-conveyor > :nth-child(n + 3) {
           display: none;
         }
         .new-in-section {
           padding: 32px 16px;
+          scroll-margin-top: 108px;
+        }
+        @media (hover: hover) and (pointer: fine) {
+          .hero-ctas button:hover {
+            opacity: 0.85;
+          }
         }
         .product-grid {
           display: grid;
@@ -630,34 +637,46 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
           </p>
           <div className="hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "32px", justifyContent: "center" }}>
             <button
-              onClick={() => document.getElementById("new-in")?.scrollIntoView({ behavior: "smooth" })}
+              type="button"
+              onClick={() => {
+                const section = document.getElementById("new-in");
+                if (!section) return;
+                const header = document.querySelector("header");
+                const offset = header ? header.getBoundingClientRect().height + 12 : 0;
+                const top = section.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: "smooth" });
+              }}
               style={{
-                display: "flex", alignItems: "center", gap: "10px",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "10px",
+                minHeight: "48px",
                 padding: "14px 28px",
                 backgroundColor: "#FAFA5A", color: "#0D0D0D",
                 fontSize: "0.65rem", letterSpacing: "0.22em",
                 textTransform: "uppercase", fontWeight: 800,
                 fontFamily: FONT, border: "none", cursor: "pointer",
-                transition: "opacity 0.15s",
+                touchAction: "manipulation",
+                position: "relative",
+                zIndex: 2,
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.8"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
             >
               Shop New In <ArrowRight size={13} strokeWidth={2.5} />
             </button>
             <button
+              type="button"
               onClick={() => onNavigate("consignment")}
               style={{
-                display: "flex", alignItems: "center", gap: "10px",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "10px",
+                minHeight: "48px",
                 padding: "14px 28px",
                 backgroundColor: "transparent", color: "#FFFFFF",
                 fontSize: "0.65rem", letterSpacing: "0.22em",
                 textTransform: "uppercase", fontWeight: 700,
                 fontFamily: FONT, border: "1px solid rgba(255,255,255,0.5)",
-                cursor: "pointer", transition: "border-color 0.15s",
+                cursor: "pointer",
+                touchAction: "manipulation",
+                position: "relative",
+                zIndex: 2,
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#FFFFFF"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.5)"; }}
             >
               Sell With Us
             </button>
