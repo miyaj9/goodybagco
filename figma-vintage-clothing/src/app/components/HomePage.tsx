@@ -451,9 +451,14 @@ const DESIGNERS = Array.from(new Set(ALL_PRODUCTS.map((p) => p.brand))).sort((a,
   a.localeCompare(b, undefined, { sensitivity: "base" }),
 );
 
+const fold = (value: string) =>
+  value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
 export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }: HomePageProps) {
   const [cat, setCat] = useState("All");
   const [designerQuery, setDesignerQuery] = useState("");
+  const [designerMenuOpen, setDesignerMenuOpen] = useState(false);
+  const [highlightedDesigner, setHighlightedDesigner] = useState(0);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const cartIds = new Set(cart.map((p) => p.id));
 
@@ -467,7 +472,23 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
   const selectCategory = (next: string) => {
     setCat((current) => (current === next ? "All" : next));
   };
-  const query = designerQuery.trim().toLowerCase();
+  const query = designerQuery.trim();
+  const foldedQuery = fold(query);
+  const designerSuggestions = foldedQuery
+    ? DESIGNERS.filter((brand) => fold(brand).includes(foldedQuery))
+    : [];
+  const showDesignerMenu = designerMenuOpen && designerSuggestions.length > 0;
+
+  useEffect(() => {
+    setHighlightedDesigner(0);
+  }, [foldedQuery]);
+
+  const chooseDesigner = (brand: string) => {
+    setDesignerQuery(brand);
+    setDesignerMenuOpen(false);
+    searchInputRef.current?.blur();
+  };
+
   const filtered = ALL_PRODUCTS.filter((p) => {
     if (cat === UNDERDOG) {
       if (typeof p.price !== "number" || p.price >= 150) return false;
@@ -476,11 +497,11 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
     } else if (cat !== "All" && p.category !== cat) {
       return false;
     }
-    if (!query) return true;
-    return p.brand.toLowerCase().includes(query);
+    if (!foldedQuery) return true;
+    return fold(p.brand).includes(foldedQuery);
   });
 
-  const selectedDesigner = DESIGNERS.find((brand) => brand.toLowerCase() === query) ?? null;
+  const selectedDesigner = DESIGNERS.find((brand) => fold(brand) === foldedQuery) ?? null;
 
   return (
     <main style={{ fontFamily: FONT, backgroundColor: "#FFFFFF" }}>
@@ -768,8 +789,34 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
             id="designer-search"
             ref={searchInputRef}
             type="search"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded={showDesignerMenu}
+            aria-controls="designer-suggestions"
+            aria-activedescendant={showDesignerMenu ? `designer-option-${highlightedDesigner}` : undefined}
             value={designerQuery}
-            onChange={(e) => setDesignerQuery(e.target.value)}
+            onChange={(e) => {
+              setDesignerQuery(e.target.value);
+              setDesignerMenuOpen(true);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                setDesignerMenuOpen(false);
+                return;
+              }
+              if (!showDesignerMenu) return;
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+                setHighlightedDesigner((index) => (index + 1) % designerSuggestions.length);
+              } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                setHighlightedDesigner((index) => (index - 1 + designerSuggestions.length) % designerSuggestions.length);
+              } else if (e.key === "Enter") {
+                e.preventDefault();
+                const brand = designerSuggestions[highlightedDesigner];
+                if (brand) chooseDesigner(brand);
+              }
+            }}
             placeholder="Search by designer..."
             autoComplete="off"
             className="w-full outline-none"
@@ -781,18 +828,75 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
               fontFamily: FONT,
               color: "#0D0D0D",
             }}
-            onFocus={(e) => { e.currentTarget.style.borderColor = "#0D0D0D"; }}
-            onBlur={(e) => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.15)"; }}
+            onFocus={(e) => {
+              setDesignerMenuOpen(true);
+              e.currentTarget.style.borderColor = "#0D0D0D";
+            }}
+            onBlur={(e) => {
+              setDesignerMenuOpen(false);
+              e.currentTarget.style.borderColor = "rgba(0,0,0,0.15)";
+            }}
           />
           {designerQuery && (
             <button
               type="button"
               aria-label="Clear designer search"
-              onClick={() => setDesignerQuery("")}
+              onClick={() => {
+                setDesignerQuery("");
+                setDesignerMenuOpen(false);
+                searchInputRef.current?.focus();
+              }}
               className="absolute right-3 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center"
             >
               <X size={14} strokeWidth={2} color="#888888" />
             </button>
+          )}
+          {showDesignerMenu && (
+            <ul
+              id="designer-suggestions"
+              role="listbox"
+              aria-label="Designers"
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: "calc(100% + 4px)",
+                zIndex: 20,
+                margin: 0,
+                padding: "4px",
+                listStyle: "none",
+                backgroundColor: "#FFFFFF",
+                border: "1px solid #0D0D0D",
+              }}
+            >
+              {designerSuggestions.map((brand, index) => (
+                <li key={brand} role="presentation">
+                  <button
+                    id={`designer-option-${index}`}
+                    type="button"
+                    role="option"
+                    aria-selected={index === highlightedDesigner}
+                    onMouseDown={(e) => e.preventDefault()}
+                    onMouseEnter={() => setHighlightedDesigner(index)}
+                    onClick={() => chooseDesigner(brand)}
+                    style={{
+                      width: "100%",
+                      textAlign: "left",
+                      padding: "10px 12px",
+                      fontSize: "0.88rem",
+                      fontFamily: FONT,
+                      fontWeight: index === highlightedDesigner ? 700 : 500,
+                      color: "#0D0D0D",
+                      backgroundColor: index === highlightedDesigner ? "#FAFA5A" : "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {brand}
+                  </button>
+                </li>
+              ))}
+            </ul>
           )}
         </div>
 
@@ -850,52 +954,6 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
                     }}
                   >
                     {label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div>
-            <p style={{ fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginBottom: "10px" }}>
-              Designers
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-              <button
-                type="button"
-                onClick={() => setDesignerQuery("")}
-                style={{
-                  padding: "8px 12px",
-                  fontSize: "0.78rem",
-                  fontWeight: !selectedDesigner ? 700 : 500,
-                  color: "#0D0D0D",
-                  backgroundColor: !selectedDesigner ? "#FAFA5A" : "#FFFFFF",
-                  border: !selectedDesigner ? "1px solid #0D0D0D" : "1px solid rgba(13,13,13,0.18)",
-                  cursor: "pointer",
-                  fontFamily: FONT,
-                }}
-              >
-                All
-              </button>
-              {DESIGNERS.map((brand) => {
-                const active = selectedDesigner === brand;
-                return (
-                  <button
-                    key={brand}
-                    type="button"
-                    onClick={() => setDesignerQuery(selectedDesigner === brand ? "" : brand)}
-                    style={{
-                      padding: "8px 12px",
-                      fontSize: "0.78rem",
-                      fontWeight: active ? 700 : 500,
-                      color: "#0D0D0D",
-                      backgroundColor: active ? "#FAFA5A" : "#FFFFFF",
-                      border: active ? "1px solid #0D0D0D" : "1px solid rgba(13,13,13,0.18)",
-                      cursor: "pointer",
-                      fontFamily: FONT,
-                    }}
-                  >
-                    {brand}
                   </button>
                 );
               })}
