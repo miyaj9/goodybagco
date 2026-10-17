@@ -836,7 +836,7 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
                   <button
                     key={brand}
                     type="button"
-                    onClick={() => setDesignerQuery(brand)}
+                    onClick={() => setDesignerQuery(selectedDesigner === brand ? "" : brand)}
                     style={{
                       padding: "8px 12px",
                       fontSize: "0.78rem",
