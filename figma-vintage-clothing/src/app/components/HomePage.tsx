@@ -46,11 +46,27 @@ import versaceAevitasPairImg from "../../imports/versace-aevitas-fuchsia-gallery
 import versaceAevitasSolesImg from "../../imports/versace-aevitas-fuchsia-gallery/02-soles.png";
 import versaceAevitasTopImg from "../../imports/versace-aevitas-fuchsia-gallery/03-top.png";
 import versaceAevitasBackImg from "../../imports/versace-aevitas-fuchsia-gallery/04-back.png";
+import herveLegerDressFrontImg from "../../imports/herve-leger-bandage-dress-gallery/01-front.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
 
 export const ALL_PRODUCTS: Product[] = [
+  {
+    id: 24,
+    name: "One-Shoulder Bandage Dress",
+    brand: "Hervé Léger",
+    size: "Small",
+    era: "2010s Archive",
+    condition: "Good",
+    category: "Tops",
+    color: "Black / White",
+    collection: "Resort 2010 Collection by Hervé Léger by Max Azria",
+    details: ["One-shoulder", "Short sleeve", "Bandage construction", "Color-block"],
+    image: herveLegerDressFrontImg,
+    images: [herveLegerDressFrontImg],
+    imageBackground: "#000000",
+  },
   {
     id: 23,
     name: "Red & Gold Tribal Jeans",
