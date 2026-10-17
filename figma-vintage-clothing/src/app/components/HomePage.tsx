@@ -342,7 +342,7 @@ export const ALL_PRODUCTS: Product[] = [
 ];
 
 const UNDERDOG = "The Underdog (Items under $150)";
-const RUNWAY = "As seen on the runway";
+const RUNWAY = "As Seen on the Runway";
 const GARMENT_CATS = ["All", "Tops", "Bottoms", "Accessories", "Bags", "Shoes"];
 const FONT = "'Urbanist', sans-serif";
 
