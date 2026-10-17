@@ -749,55 +749,110 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
           )}
         </div>
 
-        <div style={{ marginBottom: "4px" }}>
-          <p style={{ fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginBottom: "10px" }}>
-            Designers
-          </p>
-          <div style={{ display: "flex", gap: "8px", overflowX: "auto", paddingBottom: "4px", scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
-            <button
-              type="button"
-              onClick={() => setDesignerQuery("")}
-              style={{
-                flexShrink: 0,
-                padding: "8px 12px",
-                fontSize: "0.62rem",
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                fontWeight: !selectedDesigner ? 700 : 500,
-                color: "#0D0D0D",
-                backgroundColor: !selectedDesigner ? "#FAFA5A" : "#FFFFFF",
-                border: "1px solid #0D0D0D",
-                cursor: "pointer",
-                fontFamily: FONT,
-              }}
-            >
-              All
-            </button>
-            {DESIGNERS.map((brand) => {
-              const active = selectedDesigner === brand;
-              return (
+        <div style={{ display: "flex", flexDirection: "column", gap: "22px", marginTop: "22px" }}>
+          <div>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginBottom: "10px" }}>
+              Shop
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 16px" }}>
+              {GARMENT_CATS.map((c) => (
                 <button
-                  key={brand}
+                  key={c}
                   type="button"
-                  onClick={() => setDesignerQuery(brand)}
+                  onClick={() => selectCategory(c)}
                   style={{
-                    flexShrink: 0,
-                    padding: "8px 12px",
-                    fontSize: "0.62rem",
-                    letterSpacing: "0.16em",
+                    fontSize: "0.72rem",
+                    letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    fontWeight: active ? 700 : 500,
-                    color: "#0D0D0D",
-                    backgroundColor: active ? "#FAFA5A" : "#FFFFFF",
-                    border: "1px solid #0D0D0D",
+                    fontWeight: c === cat ? 700 : 500,
+                    color: c === cat ? "#0D0D0D" : "#888888",
+                    borderBottom: c === cat ? "1.5px solid #0D0D0D" : "1.5px solid transparent",
+                    padding: "8px 0",
+                    background: "none",
                     cursor: "pointer",
                     fontFamily: FONT,
                   }}
                 >
-                  {brand}
+                  {c}
                 </button>
-              );
-            })}
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginBottom: "10px" }}>
+              Collections
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+              {[UNDERDOG, RUNWAY].map((label) => {
+                const active = cat === label;
+                return (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => selectCategory(label)}
+                    style={{
+                      padding: "8px 12px",
+                      fontSize: "0.78rem",
+                      fontWeight: active ? 700 : 500,
+                      color: "#0D0D0D",
+                      backgroundColor: active ? "#FAFA5A" : "#FFFFFF",
+                      border: active ? "1px solid #0D0D0D" : "1px solid rgba(13,13,13,0.18)",
+                      cursor: "pointer",
+                      fontFamily: FONT,
+                    }}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#888888", fontWeight: 600, marginBottom: "10px" }}>
+              Designers
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+              <button
+                type="button"
+                onClick={() => setDesignerQuery("")}
+                style={{
+                  padding: "8px 12px",
+                  fontSize: "0.78rem",
+                  fontWeight: !selectedDesigner ? 700 : 500,
+                  color: "#0D0D0D",
+                  backgroundColor: !selectedDesigner ? "#FAFA5A" : "#FFFFFF",
+                  border: !selectedDesigner ? "1px solid #0D0D0D" : "1px solid rgba(13,13,13,0.18)",
+                  cursor: "pointer",
+                  fontFamily: FONT,
+                }}
+              >
+                All
+              </button>
+              {DESIGNERS.map((brand) => {
+                const active = selectedDesigner === brand;
+                return (
+                  <button
+                    key={brand}
+                    type="button"
+                    onClick={() => setDesignerQuery(brand)}
+                    style={{
+                      padding: "8px 12px",
+                      fontSize: "0.78rem",
+                      fontWeight: active ? 700 : 500,
+                      color: "#0D0D0D",
+                      backgroundColor: active ? "#FAFA5A" : "#FFFFFF",
+                      border: active ? "1px solid #0D0D0D" : "1px solid rgba(13,13,13,0.18)",
+                      cursor: "pointer",
+                      fontFamily: FONT,
+                    }}
+                  >
+                    {brand}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -807,59 +862,7 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
           </p>
         )}
 
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 18px", padding: "16px 0 22px" }}>
-          <button
-            type="button"
-            onClick={() => selectCategory(UNDERDOG)}
-            style={{
-              flexShrink: 0,
-              padding: "8px 12px",
-              fontSize: "0.72rem",
-              letterSpacing: "0.02em",
-              textTransform: "none",
-              fontWeight: 700,
-              color: "#0D0D0D",
-              backgroundColor: cat === UNDERDOG ? "#FAFA5A" : "#FFFFFF",
-              border: "1px solid #0D0D0D",
-              cursor: "pointer",
-              fontFamily: FONT,
-            }}
-          >
-            {UNDERDOG}
-          </button>
-          <button
-            type="button"
-            onClick={() => selectCategory(RUNWAY)}
-            style={{
-              flexShrink: 0,
-              padding: "8px 12px",
-              fontSize: "0.72rem",
-              letterSpacing: "0.02em",
-              textTransform: "none",
-              fontWeight: 700,
-              color: "#0D0D0D",
-              backgroundColor: cat === RUNWAY ? "#FAFA5A" : "#FFFFFF",
-              border: "1px solid #0D0D0D",
-              cursor: "pointer",
-              fontFamily: FONT,
-            }}
-          >
-            {RUNWAY}
-          </button>
-          {GARMENT_CATS.map((c) => (
-            <button key={c} onClick={() => selectCategory(c)} style={{
-              flexShrink: 0, fontSize: "0.65rem", letterSpacing: "0.2em",
-              textTransform: "uppercase", fontWeight: c === cat ? 700 : 500,
-              color: c === cat ? "#0D0D0D" : "#888888",
-              borderBottom: c === cat ? "1.5px solid #0D0D0D" : "1.5px solid transparent",
-              paddingBottom: "8px", paddingTop: "8px", background: "none", border: "none",
-              borderBottomStyle: "solid",
-              cursor: "pointer", fontFamily: FONT,
-            }}>
-              {c}
-            </button>
-          ))}
-        </div>
+        <div style={{ height: "22px" }} />
 
         {cat === UNDERDOG && (
           <p style={{ fontSize: "0.82rem", lineHeight: 1.55, color: "#0D0D0D", margin: "0 0 20px", maxWidth: "36rem" }}>
