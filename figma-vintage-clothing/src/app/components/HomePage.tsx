@@ -48,13 +48,27 @@ import versaceAevitasTopImg from "../../imports/versace-aevitas-fuchsia-gallery/
 import versaceAevitasBackImg from "../../imports/versace-aevitas-fuchsia-gallery/04-back.png";
 import herveLegerDressFrontImg from "../../imports/herve-leger-bandage-dress-gallery/01-front.png";
 import cavalliAnimalKnitDressImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/01-front.png";
-import alaiaLaserCutBootsImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/01-front.png";
 import yslFuchsiaSuedePumpsImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/01-front.png";
+import fridaBootiesImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/01-front.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
 
 export const ALL_PRODUCTS: Product[] = [
+  {
+    id: 28,
+    name: "Frida Booties",
+    brand: "Giuseppe Zanotti",
+    price: 180,
+    size: "IT 39.5",
+    era: "2010s / Y2K",
+    condition: "Good",
+    category: "Shoes",
+    color: "Black",
+    image: fridaBootiesImg,
+    images: [fridaBootiesImg],
+    imageBackground: "#FFFFFF",
+  },
   {
     id: 24,
     name: "One-Shoulder Bandage Dress",
@@ -76,7 +90,7 @@ export const ALL_PRODUCTS: Product[] = [
     name: "Red & Gold Tribal Jeans",
     brand: "Roberto Cavalli",
     price: 450,
-    size: "XS but runs big",
+    size: "XS runs big",
     era: "Vintage",
     condition: "Good",
     category: "Bottoms",
@@ -104,15 +118,16 @@ export const ALL_PRODUCTS: Product[] = [
     name: "Laser Cut Suede Platform Ankle Boots",
     brand: "Alaïa",
     price: 200,
-    size: "IT 38 but runs a half size small",
+    size: "IT 38 runs a half size small",
     era: "2010s Archive",
     condition: "Good",
     category: "Shoes",
     origin: "Italy",
     details: ["Laser cut", "Suede", "Platform", "Ankle boots"],
-    image: alaiaLaserCutBootsImg,
-    images: [alaiaLaserCutBootsImg],
-    imageBackground: "#000000",
+    image: "",
+    images: [],
+    imageBackground: "#F4F4F4",
+    availableSoon: true,
   },
   {
     id: 21,
@@ -266,6 +281,7 @@ export const ALL_PRODUCTS: Product[] = [
       gucciSandalsSolesImg,
       gucciSandalsInsoleLogoImg,
     ],
+    sold: true,
   },
   {
     id: 19,

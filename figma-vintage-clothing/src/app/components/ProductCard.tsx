@@ -83,9 +83,11 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
         : inCart
           ? "Added to Bag"
           : "Add to Bag";
-  const gallery = (product.images && product.images.length > 0 ? product.images : [product.image]).map(resolveImageSrc);
-  const imageSrc = resolveImageSrc(product.image);
-  const activeGallerySrc = gallery[galleryIndex] ?? imageSrc;
+  const gallery = (product.images && product.images.length > 0 ? product.images : product.image ? [product.image] : [])
+    .map(resolveImageSrc)
+    .filter(Boolean);
+  const activeGallerySrc = gallery[galleryIndex] ?? "";
+  const hasImage = Boolean(activeGallerySrc);
   const imageFit = product.imageFit ?? "contain";
   const imageBackground = product.imageBackground ?? "#FFFFFF";
   const isDarkFrame = imageBackground.toLowerCase() === "#000" || imageBackground.toLowerCase() === "#000000" || imageBackground.toLowerCase() === "black";
@@ -259,16 +261,18 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
           className="relative overflow-hidden"
           style={{ aspectRatio: "3/4", backgroundColor: imageBackground }}
         >
-          <img
-            src={activeGallerySrc}
-            alt={product.name}
-            className="w-full h-full transition-transform duration-500"
-            style={{
-              objectFit: imageFit,
-              objectPosition: "center",
-              transform: hovered && imageFit === "cover" && !sold ? "scale(1.05)" : "scale(1)",
-            }}
-          />
+          {hasImage && (
+            <img
+              src={activeGallerySrc}
+              alt={product.name}
+              className="w-full h-full transition-transform duration-500"
+              style={{
+                objectFit: imageFit,
+                objectPosition: "center",
+                transform: hovered && imageFit === "cover" && !sold ? "scale(1.05)" : "scale(1)",
+              }}
+            />
+          )}
 
           {/* Wishlist — always visible on touch; hover-reveal on desktop */}
           <button
@@ -355,10 +359,10 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
 
         {/* Text */}
         <div className="pt-2.5">
-          <p style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", fontWeight: 500, marginBottom: "2px" }}>
+          <p style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#0D0D0D", fontWeight: 700, marginBottom: "2px" }}>
             {product.brand}
           </p>
-          <p style={{ fontSize: "0.88rem", color: "#0D0D0D", fontWeight: 400, lineHeight: 1.35 }}>
+          <p style={{ fontSize: "0.88rem", color: "#888888", fontWeight: 400, lineHeight: 1.35 }}>
             {product.name}
           </p>
           <p style={{ fontSize: "0.72rem", color: "#888888", marginTop: "2px" }}>
@@ -421,6 +425,7 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
             </button>
 
             <div className="flex min-h-[42vh] flex-col gap-3 sm:min-h-0" style={{ backgroundColor: imageBackground }}>
+              {hasImage ? (
               <button
                 type="button"
                 aria-label="Open photo fullscreen"
@@ -448,6 +453,9 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
                   Tap to expand
                 </span>
               </button>
+              ) : (
+                <div className="relative min-h-[42vh] flex-1 sm:min-h-0" />
+              )}
               {gallery.length > 1 && (
                 <div className="flex gap-2 overflow-x-auto pb-3 px-3" style={{ flexShrink: 0 }}>
                   {gallery.map((src, index) => (
