@@ -48,6 +48,7 @@ import versaceAevitasTopImg from "../../imports/versace-aevitas-fuchsia-gallery/
 import versaceAevitasBackImg from "../../imports/versace-aevitas-fuchsia-gallery/04-back.png";
 import herveLegerDressFrontImg from "../../imports/herve-leger-bandage-dress-gallery/01-front.png";
 import cavalliAnimalKnitDressImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/01-front.png";
+import cavalliAnimalKnitDressBackImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/02-back.png";
 import yslFuchsiaSuedePumpsImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/01-front.png";
 import fridaBootiesImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/01-front.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
@@ -77,7 +78,7 @@ export const ALL_PRODUCTS: Product[] = [
     size: "Small",
     era: "2010s Archive",
     condition: "Good",
-    category: "Tops",
+    category: "Dresses",
     color: "Black / White",
     collection: "Resort 2010 Collection by Hervé Léger by Max Azria",
     details: ["One-shoulder", "Short sleeve", "Bandage construction", "Color-block"],
@@ -162,10 +163,10 @@ export const ALL_PRODUCTS: Product[] = [
     size: "Small",
     era: "2010s Archive",
     condition: "Very Good",
-    category: "Tops",
+    category: "Dresses",
     details: ["Animal print", "Knit"],
     image: cavalliAnimalKnitDressImg,
-    images: [cavalliAnimalKnitDressImg],
+    images: [cavalliAnimalKnitDressImg, cavalliAnimalKnitDressBackImg],
     imageBackground: "#FFFFFF",
   },
   {
@@ -291,7 +292,7 @@ export const ALL_PRODUCTS: Product[] = [
     size: "IT 40",
     era: "Y2K / 2000s",
     condition: "Good",
-    category: "Tops",
+    category: "Dresses",
     color: "Pink / Cream Snakeskin",
     material: "Silk",
     details: ["Snakeskin print", "Halter neck", "Metal ring hardware", "Open back"],
@@ -348,7 +349,7 @@ export const ALL_PRODUCTS: Product[] = [
     size: "Small",
     era: "Contemporary / 2023",
     condition: "Good",
-    category: "Tops",
+    category: "Dresses",
     color: "Brown / Black",
     details: ["Mesh fabric", "Tattoo print", "Sleeveless bodycon", "Printed necklace & snake motifs"],
     image: jpgMeshTattooDressFrontImg,
@@ -406,7 +407,7 @@ export const ALL_PRODUCTS: Product[] = [
 
 const UNDERDOG = "The Underdog (Items under $150)";
 const RUNWAY = "As Seen on the Runway";
-const GARMENT_CATS = ["All", "Tops", "Bottoms", "Accessories", "Bags", "Shoes"];
+const GARMENT_CATS = ["All", "Dresses", "Bottoms", "Accessories", "Bags", "Shoes"];
 const FONT = "'Urbanist', sans-serif";
 
 // One column of the conveyor — different objectPosition shows a different crop of the bag photo

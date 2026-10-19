@@ -131,8 +131,8 @@ export function CheckoutPage({
         {cart.length === 0 ? (
           <div className="flex flex-col items-center py-24">
             <ShoppingBag size={36} strokeWidth={1.5} color="#888888" className="mb-5" />
-            <h2 style={{ fontSize: "1.8rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.01em" }}>Your Bag is Empty</h2>
-            <p style={{ fontSize: "0.88rem", color: "#888888", marginTop: "8px" }}>Browse our authenticated vintage collection.</p>
+            <h2 style={{ fontSize: "1.8rem", fontWeight: 800, letterSpacing: "-0.01em", textAlign: "center" }}>Oops... Your Goody Bag Is Empty</h2>
+            <p style={{ fontSize: "0.88rem", color: "#888888", marginTop: "8px", textAlign: "center" }}>Stuff it with goodies from our collection</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
