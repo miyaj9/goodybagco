@@ -42,10 +42,6 @@ import emilioPucciBootsSideImg from "../../imports/emilio-pucci-platform-boots-g
 import emilioPucciBootsProfileImg from "../../imports/emilio-pucci-platform-boots-gallery/03-profile.png";
 import emilioPucciBootsAngleImg from "../../imports/emilio-pucci-platform-boots-gallery/04-angle.png";
 import emilioPucciBootsSolesImg from "../../imports/emilio-pucci-platform-boots-gallery/05-soles.png";
-import versaceAevitasPairImg from "../../imports/versace-aevitas-fuchsia-gallery/01-pair.png";
-import versaceAevitasSolesImg from "../../imports/versace-aevitas-fuchsia-gallery/02-soles.png";
-import versaceAevitasTopImg from "../../imports/versace-aevitas-fuchsia-gallery/03-top.png";
-import versaceAevitasBackImg from "../../imports/versace-aevitas-fuchsia-gallery/04-back.png";
 import herveLegerDressFrontImg from "../../imports/herve-leger-bandage-dress-gallery/01-front.png";
 import cavalliAnimalKnitDressImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/01-front.png";
 import cavalliAnimalKnitDressBackImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/02-back.png";
@@ -74,7 +70,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 24,
     name: "One-Shoulder Bandage Dress",
     brand: "Hervé Léger",
-    price: 100,
+    price: 160,
     size: "Small",
     era: "2010s Archive",
     condition: "Good",
@@ -381,27 +377,6 @@ export const ALL_PRODUCTS: Product[] = [
     ],
     imageBackground: "#000000",
     sold: true,
-  },
-  {
-    id: 22,
-    name: "Aevitas Fuchsia Satin Platform Pumps",
-    brand: "Versace",
-    price: 400,
-    size: "IT 39",
-    era: "Contemporary",
-    condition: "Good",
-    category: "Shoes",
-    color: "Fuchsia",
-    material: "Satin",
-    details: ["Double platform", "Crystal ankle strap", "Medusa hardware", "Block heel"],
-    image: versaceAevitasPairImg,
-    images: [
-      versaceAevitasPairImg,
-      versaceAevitasTopImg,
-      versaceAevitasBackImg,
-      versaceAevitasSolesImg,
-    ],
-    imageBackground: "#000000",
   },
 ];
 
