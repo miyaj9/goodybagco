@@ -46,6 +46,14 @@ import herveLegerDressFrontImg from "../../imports/herve-leger-bandage-dress-gal
 import cavalliAnimalKnitDressImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/01-front.png";
 import cavalliAnimalKnitDressBackImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/02-back.png";
 import yslFuchsiaSuedePumpsImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/01-front.png";
+import yslFuchsiaSuedePumpsSideImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/02-side.png";
+import yslFuchsiaSuedePumpsHeelsImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/03-heels.png";
+import yslFuchsiaSuedePumpsAngleImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/04-angle.png";
+import yslFuchsiaSuedePumpsTopImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/05-top.png";
+import alaiaLaserCutBootsImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/01-front.png";
+import alaiaLaserCutBootsSolesImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/02-soles.png";
+import alaiaLaserCutBootsTopImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/03-top.png";
+import alaiaLaserCutBootsBackImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/04-back.png";
 import fridaBootiesImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/01-front.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
@@ -114,17 +122,21 @@ export const ALL_PRODUCTS: Product[] = [
     id: 26,
     name: "Laser Cut Suede Platform Ankle Boots",
     brand: "Alaïa",
-    price: 200,
+    price: 315,
     size: "IT 38 runs a half size small",
     era: "2010s Archive",
     condition: "Good",
     category: "Shoes",
     origin: "Italy",
     details: ["Laser cut", "Suede", "Platform", "Ankle boots"],
-    image: "",
-    images: [],
-    imageBackground: "#F4F4F4",
-    availableSoon: true,
+    image: alaiaLaserCutBootsImg,
+    images: [
+      alaiaLaserCutBootsImg,
+      alaiaLaserCutBootsSolesImg,
+      alaiaLaserCutBootsTopImg,
+      alaiaLaserCutBootsBackImg,
+    ],
+    imageBackground: "#FFFFFF",
   },
   {
     id: 21,
@@ -228,7 +240,13 @@ export const ALL_PRODUCTS: Product[] = [
     color: "Fuchsia",
     material: "Suede",
     image: yslFuchsiaSuedePumpsImg,
-    images: [yslFuchsiaSuedePumpsImg],
+    images: [
+      yslFuchsiaSuedePumpsImg,
+      yslFuchsiaSuedePumpsSideImg,
+      yslFuchsiaSuedePumpsHeelsImg,
+      yslFuchsiaSuedePumpsAngleImg,
+      yslFuchsiaSuedePumpsTopImg,
+    ],
     imageBackground: "#000000",
   },
   {
@@ -295,7 +313,6 @@ export const ALL_PRODUCTS: Product[] = [
     image: justCavalliSnakeskinDressImg,
     images: [justCavalliSnakeskinDressImg],
     imageBackground: "#000000",
-    availableSoon: true,
   },
   {
     id: 17,
@@ -384,6 +401,18 @@ const UNDERDOG = "The Underdog (Items under $150)";
 const RUNWAY = "As Seen on the Runway";
 const GARMENT_CATS = ["All", "Dresses", "Bottoms", "Accessories", "Bags", "Shoes"];
 const FONT = "'Urbanist', sans-serif";
+
+function interleaveAvailableAndSold(products: Product[]) {
+  const available = products.filter((product) => !product.sold);
+  const sold = products.filter((product) => product.sold);
+  const interleaved: Product[] = [];
+  const count = Math.max(available.length, sold.length);
+  for (let i = 0; i < count; i++) {
+    if (i < available.length) interleaved.push(available[i]);
+    if (i < sold.length) interleaved.push(sold[i]);
+  }
+  return interleaved;
+}
 
 // One column of the conveyor — different objectPosition shows a different crop of the bag photo
 function ConveyorColumn({ pos, duration, delay }: { pos: string; duration: number; delay: number }) {
@@ -481,7 +510,7 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
     searchInputRef.current?.blur();
   };
 
-  const filtered = ALL_PRODUCTS.filter((p) => {
+  const filtered = interleaveAvailableAndSold(ALL_PRODUCTS.filter((p) => {
     if (cat === UNDERDOG) {
       if (typeof p.price !== "number" || p.price >= 150) return false;
     } else if (cat === RUNWAY) {
@@ -491,7 +520,7 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
     }
     if (!foldedQuery) return true;
     return fold(p.brand).includes(foldedQuery);
-  });
+  }));
 
   const selectedDesigner = DESIGNERS.find((brand) => fold(brand) === foldedQuery) ?? null;
 

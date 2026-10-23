@@ -13,6 +13,7 @@ interface CheckoutPageProps {
 }
 
 function toAbsoluteImageUrl(image: string) {
+  if (!image) return "";
   if (image.startsWith("http")) return image;
   if (typeof window === "undefined") return image;
   return new URL(image, window.location.origin).href;
@@ -146,11 +147,13 @@ export function CheckoutPage({
                     className="w-24 h-32 overflow-hidden shrink-0"
                     style={{ backgroundColor: item.imageBackground ?? "#FFFFFF" }}
                   >
-                    <img
-                      src={getImageSrc(item.image, "w=200&h=267&fit=max&auto=format")}
-                      alt={item.name}
-                      className="w-full h-full object-contain"
-                    />
+                    {item.image ? (
+                      <img
+                        src={getImageSrc(item.image, "w=200&h=267&fit=max&auto=format")}
+                        alt={item.name}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : null}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p style={{ fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888", fontWeight: 500, marginBottom: "3px" }}>{item.brand}</p>
