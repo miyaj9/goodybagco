@@ -61,6 +61,21 @@ import authenticatedFeatureImg from "../../imports/authenticated-feature-backgro
 
 export const ALL_PRODUCTS: Product[] = [
   {
+    id: 29,
+    name: "Ariane Lace Up Wedge Platform",
+    brand: "Yves Saint Laurent",
+    price: 450,
+    size: "IT 37.5",
+    era: "Late 2000s / Early 2010s",
+    condition: "Good",
+    category: "Shoes",
+    details: ["Lace-up", "Wedge", "Platform"],
+    image: "",
+    images: [],
+    imageBackground: "#F4F4F4",
+    availableSoon: true,
+  },
+  {
     id: 28,
     name: "Frida Booties",
     brand: "Giuseppe Zanotti",
