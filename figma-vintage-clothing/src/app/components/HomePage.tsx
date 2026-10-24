@@ -55,6 +55,9 @@ import alaiaLaserCutBootsSolesImg from "../../imports/alaia-laser-cut-suede-plat
 import alaiaLaserCutBootsTopImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/03-top.png";
 import alaiaLaserCutBootsBackImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/04-back.png";
 import fridaBootiesImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/01-front.png";
+import fridaBootiesBackImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/02-back.png";
+import fridaBootiesHeelImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/03-heel.png";
+import fridaBootiesTopImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/04-top.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
@@ -80,13 +83,18 @@ export const ALL_PRODUCTS: Product[] = [
     name: "Frida Booties",
     brand: "Giuseppe Zanotti",
     price: 180,
-    size: "IT 39.5",
+    size: "IT 39.5 fits like a size 8 runs small",
     era: "2010s / Y2K",
     condition: "Good",
     category: "Shoes",
     color: "Black",
     image: fridaBootiesImg,
-    images: [fridaBootiesImg],
+    images: [
+      fridaBootiesImg,
+      fridaBootiesBackImg,
+      fridaBootiesHeelImg,
+      fridaBootiesTopImg,
+    ],
     imageBackground: "#FFFFFF",
   },
   {
