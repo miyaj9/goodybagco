@@ -358,7 +358,7 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
         </div>
 
         {/* Text */}
-        <div className="pt-2.5">
+        <div className="pt-4">
           <p style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#0D0D0D", fontWeight: 700, marginBottom: "2px" }}>
             {product.brand}
           </p>

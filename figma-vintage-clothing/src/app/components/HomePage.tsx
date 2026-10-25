@@ -234,7 +234,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 10,
     name: "Metal Coco Mark Frameless Sunglasses",
     brand: "Chanel",
-    price: 650,
+    price: 505,
     size: "One Size",
     era: "Vintage",
     condition: "Great",
@@ -595,7 +595,8 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
         .product-grid {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 12px;
+          column-gap: 16px;
+          row-gap: 28px;
         }
         .feature-strip {
           display: grid;
@@ -668,8 +669,9 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
             padding: 48px 40px;
           }
           .product-grid {
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            column-gap: 24px;
+            row-gap: 36px;
           }
           .feature-strip {
             grid-template-columns: repeat(3, 1fr);
@@ -699,6 +701,13 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
             align-items: center;
             gap: 32px;
             padding: 48px 64px;
+          }
+        }
+        @media (min-width: 1024px) {
+          .product-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            column-gap: 32px;
+            row-gap: 48px;
           }
         }
       `}</style>
