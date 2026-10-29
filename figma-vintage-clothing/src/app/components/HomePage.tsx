@@ -88,7 +88,6 @@ export const ALL_PRODUCTS: Product[] = [
       yslArianeBootsSolesImg,
     ],
     imageBackground: "#FFFFFF",
-    availableSoon: true,
   },
   {
     id: 28,
