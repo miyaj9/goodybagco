@@ -50,6 +50,12 @@ import yslFuchsiaSuedePumpsSideImg from "../../imports/ysl-fuchsia-suede-pumps-g
 import yslFuchsiaSuedePumpsHeelsImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/03-heels.png";
 import yslFuchsiaSuedePumpsAngleImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/04-angle.png";
 import yslFuchsiaSuedePumpsTopImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/05-top.png";
+import yslArianeBootsImg from "../../imports/ysl-ariane-lace-up-wedge-platform-gallery/01-pair.png";
+import yslArianeBootsFrontImg from "../../imports/ysl-ariane-lace-up-wedge-platform-gallery/02-front.png";
+import yslArianeBootsSideImg from "../../imports/ysl-ariane-lace-up-wedge-platform-gallery/03-side.png";
+import yslArianeBootsProfileImg from "../../imports/ysl-ariane-lace-up-wedge-platform-gallery/04-profile.png";
+import yslArianeBootsTopImg from "../../imports/ysl-ariane-lace-up-wedge-platform-gallery/05-top.png";
+import yslArianeBootsSolesImg from "../../imports/ysl-ariane-lace-up-wedge-platform-gallery/06-soles.png";
 import alaiaLaserCutBootsImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/01-front.png";
 import alaiaLaserCutBootsSolesImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/02-soles.png";
 import alaiaLaserCutBootsTopImg from "../../imports/alaia-laser-cut-suede-platform-ankle-boots-gallery/03-top.png";
@@ -73,9 +79,16 @@ export const ALL_PRODUCTS: Product[] = [
     condition: "Good",
     category: "Shoes",
     details: ["Lace-up", "Wedge", "Platform"],
-    image: "",
-    images: [],
-    imageBackground: "#F4F4F4",
+    image: yslArianeBootsImg,
+    images: [
+      yslArianeBootsImg,
+      yslArianeBootsFrontImg,
+      yslArianeBootsSideImg,
+      yslArianeBootsProfileImg,
+      yslArianeBootsTopImg,
+      yslArianeBootsSolesImg,
+    ],
+    imageBackground: "#FFFFFF",
     availableSoon: true,
   },
   {
