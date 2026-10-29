@@ -40,7 +40,6 @@ import cavalliTribalJeansLabelImg from "../../imports/roberto-cavalli-tribal-pan
 import emilioPucciBootsPairImg from "../../imports/emilio-pucci-platform-boots-gallery/01-pair.png";
 import emilioPucciBootsSideImg from "../../imports/emilio-pucci-platform-boots-gallery/02-side.png";
 import emilioPucciBootsProfileImg from "../../imports/emilio-pucci-platform-boots-gallery/03-profile.png";
-import emilioPucciBootsAngleImg from "../../imports/emilio-pucci-platform-boots-gallery/04-angle.png";
 import emilioPucciBootsSolesImg from "../../imports/emilio-pucci-platform-boots-gallery/05-soles.png";
 import herveLegerDressFrontImg from "../../imports/herve-leger-bandage-dress-gallery/01-front.png";
 import cavalliAnimalKnitDressImg from "../../imports/roberto-cavalli-animal-print-knit-dress-gallery/01-front.png";
@@ -188,15 +187,14 @@ export const ALL_PRODUCTS: Product[] = [
     origin: "Italy",
     material: "Patent leather & mesh",
     details: ["Peep-toe platform", "Mesh cage panels", "Silver-tone stiletto heel", "Rear zip"],
-    image: emilioPucciBootsAngleImg,
+    image: emilioPucciBootsSideImg,
     images: [
-      emilioPucciBootsAngleImg,
-      emilioPucciBootsPairImg,
       emilioPucciBootsSideImg,
+      emilioPucciBootsPairImg,
       emilioPucciBootsProfileImg,
       emilioPucciBootsSolesImg,
     ],
-    imageBackground: "#000000",
+    imageBackground: "#FFFFFF",
     sold: true,
   },
   {
