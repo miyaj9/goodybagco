@@ -30,9 +30,7 @@ import dgFloralCapriFrontImg from "../../imports/dg-floral-capri-gallery/01-fron
 import dgFloralCapriBackImg from "../../imports/dg-floral-capri-gallery/02-back.png";
 import dgFloralCapriDetailImg from "../../imports/dg-floral-capri-gallery/03-detail.png";
 import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/04-label.png";
-import jpgMeshTattooDressFrontImg from "../../imports/jpg-mesh-tattoo-dress-gallery/01-front.png";
-import jpgMeshTattooDressFrontAltImg from "../../imports/jpg-mesh-tattoo-dress-gallery/02-front-alt.png";
-import jpgMeshTattooDressBackImg from "../../imports/jpg-mesh-tattoo-dress-gallery/03-back.png";
+import cavalliGoldChainJeansImg from "../../imports/roberto-cavalli-gold-chain-animal-print-jeans-gallery/01-front.png";
 import cavalliTribalJeansFrontImg from "../../imports/roberto-cavalli-tribal-pants-gallery/01-front.png";
 import cavalliTribalJeansBackImg from "../../imports/roberto-cavalli-tribal-pants-gallery/02-back.png";
 import cavalliTribalJeansFrontAltImg from "../../imports/roberto-cavalli-tribal-pants-gallery/03-front-alt.png";
@@ -69,11 +67,26 @@ import authenticatedFeatureImg from "../../imports/authenticated-feature-backgro
 
 export const ALL_PRODUCTS: Product[] = [
   {
+    id: 30,
+    name: "Gold Chain Animal Print Jeans",
+    brand: "Roberto Cavalli",
+    price: 450,
+    size: "US 8",
+    era: "FW 2003 / Vintage",
+    condition: "Good",
+    category: "Bottoms",
+    collection: "Fall/Winter 2003",
+    material: "Cotton with leather waist lining",
+    image: cavalliGoldChainJeansImg,
+    images: [cavalliGoldChainJeansImg],
+    imageBackground: "#FFFFFF",
+  },
+  {
     id: 29,
     name: "Ariane Lace Up Wedge Platform",
     brand: "Yves Saint Laurent",
-    price: 450,
-    size: "IT 37.5",
+    price: 375,
+    size: "IT 37.5 runs small",
     era: "Late 2000s / Early 2010s",
     condition: "Good",
     category: "Shoes",
@@ -93,7 +106,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 28,
     name: "Frida Booties",
     brand: "Giuseppe Zanotti",
-    price: 180,
+    price: 150,
     size: "IT 39.5 fits like a size 8 runs small",
     era: "2010s / Y2K",
     condition: "Good",
@@ -128,7 +141,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: 23,
     name: "Red & Gold Tribal Jeans",
     brand: "Roberto Cavalli",
-    price: 450,
+    price: 375,
     size: "XS runs big",
     era: "Vintage",
     condition: "Good",
@@ -384,26 +397,6 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Bottoms",
     details: ["Leopard print", "Floral and butterfly motifs", "Gold star waistband"],
     image: justCavalliLeggingsImg,
-    imageBackground: "#000000",
-    sold: true,
-  },
-  {
-    id: 20,
-    name: "Mesh Tattoo Dress",
-    brand: "Jean Paul Gaultier",
-    price: 200,
-    size: "Small",
-    era: "Contemporary / 2023",
-    condition: "Good",
-    category: "Dresses",
-    color: "Brown / Black",
-    details: ["Mesh fabric", "Tattoo print", "Sleeveless bodycon", "Printed necklace & snake motifs"],
-    image: jpgMeshTattooDressFrontImg,
-    images: [
-      jpgMeshTattooDressFrontImg,
-      jpgMeshTattooDressFrontAltImg,
-      jpgMeshTattooDressBackImg,
-    ],
     imageBackground: "#000000",
     sold: true,
   },
