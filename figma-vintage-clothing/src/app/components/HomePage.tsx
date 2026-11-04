@@ -22,7 +22,6 @@ import gucciSandalsPairTopImg from "../../imports/gucci-sandals-gallery/01-pair-
 import gucciSandalsSolesImg from "../../imports/gucci-sandals-gallery/02-soles.png";
 import gucciSandalsInsoleLogoImg from "../../imports/gucci-sandals-gallery/03-insole-logo.png";
 import justCavalliLeggingsImg from "../../imports/just-cavalli-leopard-print-leggings.png";
-import justCavalliSnakeskinDressImg from "../../imports/just-cavalli-snakeskin-dress-gallery/01-front.png";
 import dsquared2BeltBuckleImg from "../../imports/dsquared2-belt-gallery/01-buckle.png";
 import dsquared2BeltCoiledImg from "../../imports/dsquared2-belt-gallery/02-coiled.png";
 import dsquared2BeltAngleImg from "../../imports/dsquared2-belt-gallery/03-angle.png";
@@ -31,10 +30,15 @@ import dgFloralCapriBackImg from "../../imports/dg-floral-capri-gallery/02-back.
 import dgFloralCapriDetailImg from "../../imports/dg-floral-capri-gallery/03-detail.png";
 import dgFloralCapriLabelImg from "../../imports/dg-floral-capri-gallery/04-label.png";
 import cavalliGoldChainJeansImg from "../../imports/roberto-cavalli-gold-chain-animal-print-jeans-gallery/01-front.png";
+import cavalliGoldChainJeansBackImg from "../../imports/roberto-cavalli-gold-chain-animal-print-jeans-gallery/02-back.png";
+import cavalliGoldChainJeansFrontAltImg from "../../imports/roberto-cavalli-gold-chain-animal-print-jeans-gallery/03-front-alt.png";
+import cavalliGoldChainJeansWaistImg from "../../imports/roberto-cavalli-gold-chain-animal-print-jeans-gallery/04-waist.png";
 import cavalliTribalJeansFrontImg from "../../imports/roberto-cavalli-tribal-pants-gallery/01-front.png";
 import cavalliTribalJeansBackImg from "../../imports/roberto-cavalli-tribal-pants-gallery/02-back.png";
-import cavalliTribalJeansFrontAltImg from "../../imports/roberto-cavalli-tribal-pants-gallery/03-front-alt.png";
-import cavalliTribalJeansLabelImg from "../../imports/roberto-cavalli-tribal-pants-gallery/04-label.png";
+import cavalliTribalJeansFlatImg from "../../imports/roberto-cavalli-tribal-pants-gallery/03-flat.png";
+import cavalliTribalJeansFrontAltImg from "../../imports/roberto-cavalli-tribal-pants-gallery/04-front-alt.png";
+import cavalliTribalJeansBackAltImg from "../../imports/roberto-cavalli-tribal-pants-gallery/05-back-alt.png";
+import cavalliTribalJeansLabelImg from "../../imports/roberto-cavalli-tribal-pants-gallery/06-label.png";
 import emilioPucciBootsPairImg from "../../imports/emilio-pucci-platform-boots-gallery/01-pair.png";
 import emilioPucciBootsSideImg from "../../imports/emilio-pucci-platform-boots-gallery/02-side.png";
 import emilioPucciBootsProfileImg from "../../imports/emilio-pucci-platform-boots-gallery/03-profile.png";
@@ -61,6 +65,7 @@ import fridaBootiesImg from "../../imports/giuseppe-zanotti-frida-booties-galler
 import fridaBootiesBackImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/02-back.png";
 import fridaBootiesHeelImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/03-heel.png";
 import fridaBootiesTopImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/04-top.png";
+import fridaBootiesSolesImg from "../../imports/giuseppe-zanotti-frida-booties-gallery/05-soles.png";
 import newInFreshDropsImg from "../../imports/new-in-fresh-drops-background.png";
 import consignFeatureImg from "../../imports/consign-feature-background.png";
 import authenticatedFeatureImg from "../../imports/authenticated-feature-background.png";
@@ -73,7 +78,7 @@ export const ALL_PRODUCTS: Product[] = [
     price: 150,
     size: "IT 39.5 fits like a size 8 runs small",
     era: "2010s / Y2K",
-    condition: "Good",
+    condition: "Good — scratch on the stiletto heel (not a crack)",
     category: "Shoes",
     color: "Black",
     image: fridaBootiesImg,
@@ -82,6 +87,7 @@ export const ALL_PRODUCTS: Product[] = [
       fridaBootiesBackImg,
       fridaBootiesHeelImg,
       fridaBootiesTopImg,
+      fridaBootiesSolesImg,
     ],
     imageBackground: "#FFFFFF",
   },
@@ -118,8 +124,13 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Bottoms",
     collection: "Fall/Winter 2003",
     material: "Cotton with leather waist lining",
-    image: cavalliGoldChainJeansImg,
-    images: [cavalliGoldChainJeansImg],
+    image: cavalliGoldChainJeansFrontAltImg,
+    images: [
+      cavalliGoldChainJeansFrontAltImg,
+      cavalliGoldChainJeansBackImg,
+      cavalliGoldChainJeansImg,
+      cavalliGoldChainJeansWaistImg,
+    ],
     imageBackground: "#FFFFFF",
   },
   {
@@ -161,10 +172,12 @@ export const ALL_PRODUCTS: Product[] = [
     images: [
       cavalliTribalJeansFrontImg,
       cavalliTribalJeansBackImg,
+      cavalliTribalJeansFlatImg,
       cavalliTribalJeansFrontAltImg,
+      cavalliTribalJeansBackAltImg,
       cavalliTribalJeansLabelImg,
     ],
-    imageBackground: "#000000",
+    imageBackground: "#FFFFFF",
   },
   {
     id: 26,
@@ -344,22 +357,6 @@ export const ALL_PRODUCTS: Product[] = [
       gucciSandalsInsoleLogoImg,
     ],
     sold: true,
-  },
-  {
-    id: 19,
-    name: "Snakeskin Dress",
-    brand: "Just Cavalli",
-    price: 450,
-    size: "IT 40",
-    era: "Y2K / 2000s",
-    condition: "Good",
-    category: "Dresses",
-    color: "Pink / Cream Snakeskin",
-    material: "Silk",
-    details: ["Snakeskin print", "Halter neck", "Metal ring hardware", "Open back"],
-    image: justCavalliSnakeskinDressImg,
-    images: [justCavalliSnakeskinDressImg],
-    imageBackground: "#000000",
   },
   {
     id: 17,
