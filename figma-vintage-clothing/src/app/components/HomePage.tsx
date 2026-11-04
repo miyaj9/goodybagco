@@ -49,8 +49,6 @@ import cavalliAnimalKnitDressBackImg from "../../imports/roberto-cavalli-animal-
 import yslFuchsiaSuedePumpsImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/01-front.png";
 import yslFuchsiaSuedePumpsSideImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/02-side.png";
 import yslFuchsiaSuedePumpsHeelsImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/03-heels.png";
-import yslFuchsiaSuedePumpsAngleImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/04-angle.png";
-import yslFuchsiaSuedePumpsTopImg from "../../imports/ysl-fuchsia-suede-pumps-gallery/05-top.png";
 import yslArianeBootsImg from "../../imports/ysl-ariane-lace-up-wedge-platform-gallery/01-pair.png";
 import yslArianeBootsFrontImg from "../../imports/ysl-ariane-lace-up-wedge-platform-gallery/02-front.png";
 import yslArianeBootsSideImg from "../../imports/ysl-ariane-lace-up-wedge-platform-gallery/03-side.png";
@@ -304,10 +302,8 @@ export const ALL_PRODUCTS: Product[] = [
       yslFuchsiaSuedePumpsImg,
       yslFuchsiaSuedePumpsSideImg,
       yslFuchsiaSuedePumpsHeelsImg,
-      yslFuchsiaSuedePumpsAngleImg,
-      yslFuchsiaSuedePumpsTopImg,
     ],
-    imageBackground: "#000000",
+    imageBackground: "#FFFFFF",
   },
   {
     id: 11,
