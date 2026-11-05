@@ -203,9 +203,39 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
     };
   }, [detailsOpen]);
 
+  // New photo: keep zoom level in lightbox, just recenter pan.
   useEffect(() => {
-    resetZoom();
-  }, [galleryIndex]);
+    setPan({ x: 0, y: 0 });
+    setIsDragging(false);
+    dragRef.current = null;
+    if (!lightboxOpen) {
+      setZoom(MIN_ZOOM);
+    }
+  }, [galleryIndex, lightboxOpen]);
+
+  useEffect(() => {
+    if (!detailsOpen && !lightboxOpen) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        if (lightboxOpen) closeLightbox();
+        else closeDetails();
+        return;
+      }
+      if (!hasGallery) return;
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToPrevPhoto();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToNextPhoto();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [detailsOpen, lightboxOpen, hasGallery, gallery.length]);
 
   useEffect(() => {
     if (!lightboxOpen) return;
@@ -218,26 +248,9 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
       zoomBy(e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP);
     };
 
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.stopPropagation();
-        closeLightbox();
-      } else if (e.key === "ArrowLeft" && hasGallery) {
-        e.preventDefault();
-        setGalleryIndex((current) => (current - 1 + gallery.length) % gallery.length);
-      } else if (e.key === "ArrowRight" && hasGallery) {
-        e.preventDefault();
-        setGalleryIndex((current) => (current + 1) % gallery.length);
-      }
-    };
-
     stage.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("keydown", onKeyDown);
-    return () => {
-      stage.removeEventListener("wheel", onWheel);
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [lightboxOpen, hasGallery, gallery.length]);
+    return () => stage.removeEventListener("wheel", onWheel);
+  }, [lightboxOpen]);
 
   return (
     <>
@@ -424,40 +437,84 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
               <X size={16} strokeWidth={1.8} />
             </button>
 
-            <div className="flex min-h-[42vh] flex-col gap-3 sm:min-h-0" style={{ backgroundColor: imageBackground }}>
+            <div className="flex min-h-[48vh] flex-col sm:min-h-0 md:h-full" style={{ backgroundColor: imageBackground }}>
               {hasImage ? (
-              <button
-                type="button"
-                aria-label="Open photo fullscreen"
-                onClick={openLightbox}
-                className="relative min-h-[42vh] flex-1 overflow-hidden sm:min-h-0"
-                style={{ cursor: "zoom-in", border: "none", padding: 0, background: "transparent" }}
-              >
-                <img
-                  src={activeGallerySrc}
-                  alt={product.name}
-                  className="h-full w-full"
-                  style={{ objectFit: "contain", objectPosition: "center" }}
-                />
-                <span
-                  className="absolute bottom-3 left-3 px-2.5 py-1"
-                  style={{
-                    backgroundColor: isDarkFrame ? "rgba(255,255,255,0.92)" : "rgba(13,13,13,0.82)",
-                    color: isDarkFrame ? "#0D0D0D" : "#FFFFFF",
-                    fontSize: "0.58rem",
-                    letterSpacing: "0.16em",
-                    textTransform: "uppercase",
-                    fontWeight: 700,
-                  }}
-                >
-                  Tap to expand
-                </span>
-              </button>
+                <div className="relative min-h-[48vh] flex-1 overflow-hidden sm:min-h-[420px]">
+                  <button
+                    type="button"
+                    aria-label="Open photo fullscreen"
+                    onClick={openLightbox}
+                    className="absolute inset-0 z-[1]"
+                    style={{ cursor: "zoom-in", border: "none", padding: 0, background: "transparent" }}
+                  >
+                    <img
+                      src={activeGallerySrc}
+                      alt={product.name}
+                      className="h-full w-full"
+                      style={{ objectFit: "contain", objectPosition: "center" }}
+                    />
+                  </button>
+
+                  {hasGallery && (
+                    <>
+                      <button
+                        type="button"
+                        aria-label="Previous photo"
+                        onClick={(e) => { e.stopPropagation(); goToPrevPhoto(); }}
+                        className="absolute left-2 top-1/2 z-[2] flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white sm:h-9 sm:w-9"
+                        style={{ border: "1px solid rgba(0,0,0,0.12)", boxShadow: "0 2px 10px rgba(0,0,0,0.12)" }}
+                      >
+                        <ChevronLeft size={18} strokeWidth={2} color="#0D0D0D" />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Next photo"
+                        onClick={(e) => { e.stopPropagation(); goToNextPhoto(); }}
+                        className="absolute right-2 top-1/2 z-[2] flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white sm:h-9 sm:w-9"
+                        style={{ border: "1px solid rgba(0,0,0,0.12)", boxShadow: "0 2px 10px rgba(0,0,0,0.12)" }}
+                      >
+                        <ChevronRight size={18} strokeWidth={2} color="#0D0D0D" />
+                      </button>
+                      <div
+                        className="pointer-events-none absolute left-1/2 top-3 z-[2] -translate-x-1/2 px-2.5 py-1"
+                        style={{
+                          backgroundColor: isDarkFrame ? "rgba(255,255,255,0.92)" : "rgba(13,13,13,0.78)",
+                          color: isDarkFrame ? "#0D0D0D" : "#FFFFFF",
+                          fontSize: "0.58rem",
+                          letterSpacing: "0.16em",
+                          textTransform: "uppercase",
+                          fontWeight: 700,
+                        }}
+                      >
+                        {galleryIndex + 1} / {gallery.length}
+                      </div>
+                    </>
+                  )}
+
+                  <button
+                    type="button"
+                    aria-label="Open photo fullscreen"
+                    onClick={openLightbox}
+                    className="absolute bottom-3 left-3 z-[2] px-2.5 py-1"
+                    style={{
+                      backgroundColor: isDarkFrame ? "rgba(255,255,255,0.92)" : "rgba(13,13,13,0.82)",
+                      color: isDarkFrame ? "#0D0D0D" : "#FFFFFF",
+                      fontSize: "0.58rem",
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      fontWeight: 700,
+                      border: "none",
+                      cursor: "zoom-in",
+                    }}
+                  >
+                    Tap to expand
+                  </button>
+                </div>
               ) : (
-                <div className="relative min-h-[42vh] flex-1 sm:min-h-0" />
+                <div className="relative min-h-[48vh] flex-1 sm:min-h-0" />
               )}
               {gallery.length > 1 && (
-                <div className="flex gap-2 overflow-x-auto pb-3 px-3" style={{ flexShrink: 0 }}>
+                <div className="flex gap-2 overflow-x-auto px-3 py-3" style={{ flexShrink: 0 }}>
                   {gallery.map((src, index) => (
                     <button
                       key={`${product.id}-gallery-${index}`}
@@ -465,11 +522,11 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
                       aria-label={`View photo ${index + 1}`}
                       className="shrink-0 overflow-hidden"
                       style={{
-                        width: "56px",
-                        height: "72px",
+                        width: "64px",
+                        height: "80px",
                         backgroundColor: imageBackground,
                         border: index === galleryIndex
-                          ? `1.5px solid ${isDarkFrame ? "#FAFA5A" : "#0D0D0D"}`
+                          ? `2px solid ${isDarkFrame ? "#FAFA5A" : "#0D0D0D"}`
                           : `1px solid ${isDarkFrame ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.12)"}`,
                       }}
                     >
@@ -660,36 +717,66 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
       {lightboxOpen && (
         <div
           className="fixed inset-0 z-[120] flex flex-col"
-          style={{ backgroundColor: "rgba(0,0,0,0.94)", fontFamily: FONT }}
+          style={{ backgroundColor: imageBackground, fontFamily: FONT }}
           onClick={closeLightbox}
         >
-          <div className="absolute top-4 right-4 z-30 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              aria-label="Zoom out"
-              onClick={() => zoomBy(-ZOOM_STEP)}
-              disabled={zoom <= MIN_ZOOM}
-              className="flex h-10 w-10 items-center justify-center bg-white disabled:opacity-40"
+          <div
+            className="absolute top-0 right-0 left-0 z-40 flex items-center justify-between gap-3 px-4 py-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p
+              style={{
+                color: isDarkFrame ? "rgba(255,255,255,0.85)" : "rgba(13,13,13,0.72)",
+                fontSize: "0.65rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                fontWeight: 700,
+                minHeight: "1em",
+              }}
             >
-              <Minus size={16} strokeWidth={2} color="#0D0D0D" />
-            </button>
-            <button
-              type="button"
-              aria-label="Zoom in"
-              onClick={() => zoomBy(ZOOM_STEP)}
-              disabled={zoom >= MAX_ZOOM}
-              className="flex h-10 w-10 items-center justify-center bg-white disabled:opacity-40"
-            >
-              <Plus size={16} strokeWidth={2} color="#0D0D0D" />
-            </button>
-            <button
-              type="button"
-              aria-label="Close expanded photo"
-              onClick={closeLightbox}
-              className="flex h-10 w-10 items-center justify-center bg-white"
-            >
-              <X size={18} strokeWidth={1.8} color="#0D0D0D" />
-            </button>
+              {hasGallery ? `${galleryIndex + 1} / ${gallery.length}` : "Expanded"}
+              {isZoomed ? ` · ${zoom.toFixed(1)}×` : ""}
+            </p>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                aria-label="Zoom out"
+                onClick={() => zoomBy(-ZOOM_STEP)}
+                disabled={zoom <= MIN_ZOOM}
+                className="flex h-10 w-10 items-center justify-center disabled:opacity-40"
+                style={{
+                  backgroundColor: isDarkFrame ? "#FFFFFF" : "#0D0D0D",
+                  border: isDarkFrame ? "none" : "1px solid rgba(0,0,0,0.08)",
+                }}
+              >
+                <Minus size={16} strokeWidth={2} color={isDarkFrame ? "#0D0D0D" : "#FFFFFF"} />
+              </button>
+              <button
+                type="button"
+                aria-label="Zoom in"
+                onClick={() => zoomBy(ZOOM_STEP)}
+                disabled={zoom >= MAX_ZOOM}
+                className="flex h-10 w-10 items-center justify-center disabled:opacity-40"
+                style={{
+                  backgroundColor: isDarkFrame ? "#FFFFFF" : "#0D0D0D",
+                  border: isDarkFrame ? "none" : "1px solid rgba(0,0,0,0.08)",
+                }}
+              >
+                <Plus size={16} strokeWidth={2} color={isDarkFrame ? "#0D0D0D" : "#FFFFFF"} />
+              </button>
+              <button
+                type="button"
+                aria-label="Close expanded photo"
+                onClick={closeLightbox}
+                className="flex h-10 w-10 items-center justify-center"
+                style={{
+                  backgroundColor: isDarkFrame ? "#FFFFFF" : "#0D0D0D",
+                  border: isDarkFrame ? "none" : "1px solid rgba(0,0,0,0.08)",
+                }}
+              >
+                <X size={18} strokeWidth={1.8} color={isDarkFrame ? "#0D0D0D" : "#FFFFFF"} />
+              </button>
+            </div>
           </div>
 
           {hasGallery && (
@@ -698,7 +785,12 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
                 type="button"
                 aria-label="Previous photo"
                 onClick={(e) => { e.stopPropagation(); goToPrevPhoto(); }}
-                className="absolute left-3 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center bg-white sm:left-5"
+                className="absolute left-3 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center sm:left-5"
+                style={{
+                  backgroundColor: isDarkFrame ? "#FFFFFF" : "#FFFFFF",
+                  border: "1px solid rgba(0,0,0,0.12)",
+                  boxShadow: "0 4px 18px rgba(0,0,0,0.12)",
+                }}
               >
                 <ChevronLeft size={22} strokeWidth={2} color="#0D0D0D" />
               </button>
@@ -706,7 +798,12 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
                 type="button"
                 aria-label="Next photo"
                 onClick={(e) => { e.stopPropagation(); goToNextPhoto(); }}
-                className="absolute right-3 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center bg-white sm:right-5"
+                className="absolute right-3 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center sm:right-5"
+                style={{
+                  backgroundColor: "#FFFFFF",
+                  border: "1px solid rgba(0,0,0,0.12)",
+                  boxShadow: "0 4px 18px rgba(0,0,0,0.12)",
+                }}
               >
                 <ChevronRight size={22} strokeWidth={2} color="#0D0D0D" />
               </button>
@@ -715,14 +812,14 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
 
           <div
             ref={zoomStageRef}
-            className={`relative min-h-0 flex-1 overflow-hidden touch-none ${hasGallery ? "mx-14 sm:mx-20" : ""}`}
+            className={`relative min-h-0 flex-1 overflow-hidden touch-none pt-16 ${hasGallery ? "mx-14 sm:mx-20" : ""} ${hasGallery ? "pb-28" : "pb-12"}`}
             onClick={(e) => e.stopPropagation()}
             onDoubleClick={handleLightboxDoubleClick}
             onPointerDown={handleImagePointerDown}
             onPointerMove={handleImagePointerMove}
             onPointerUp={handleImagePointerUp}
             onPointerCancel={handleImagePointerUp}
-            style={{ cursor: isZoomed ? (isDragging ? "grabbing" : "grab") : "zoom-in" }}
+            style={{ cursor: isZoomed ? (isDragging ? "grabbing" : "grab") : "zoom-in", backgroundColor: imageBackground }}
           >
             <img
               src={activeGallerySrc}
@@ -735,52 +832,62 @@ export function ProductCard({ product, onAddToCart, inCart }: ProductCardProps) 
                 transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
                 transition: isDragging ? "none" : "transform 0.18s ease-out",
                 transformOrigin: "center center",
-                padding: "24px",
               }}
             />
           </div>
 
-          {hasGallery && (
-            <div
-              className="z-30 flex flex-col items-center gap-3 px-4 pb-5 pt-2"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-center gap-2">
-                {gallery.map((_, index) => (
+          <div
+            className="absolute bottom-0 left-0 right-0 z-40 flex flex-col items-center gap-3 px-4 pb-5 pt-3"
+            style={{
+              background: isDarkFrame
+                ? "linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0))"
+                : "linear-gradient(to top, rgba(255,255,255,0.96), rgba(255,255,255,0))",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {hasGallery && (
+              <div className="flex max-w-full gap-2 overflow-x-auto px-1 pb-1">
+                {gallery.map((src, index) => (
                   <button
-                    key={`${product.id}-lightbox-dot-${index}`}
+                    key={`${product.id}-lightbox-thumb-${index}`}
                     type="button"
                     aria-label={`Go to photo ${index + 1}`}
                     onClick={() => setGalleryIndex(index)}
+                    className="shrink-0 overflow-hidden"
                     style={{
-                      width: index === galleryIndex ? "16px" : "6px",
-                      height: "6px",
-                      borderRadius: "999px",
-                      backgroundColor: index === galleryIndex ? "#FAFA5A" : "rgba(255,255,255,0.55)",
-                      border: "none",
-                      padding: 0,
-                      cursor: "pointer",
+                      width: "52px",
+                      height: "66px",
+                      backgroundColor: imageBackground,
+                      border: index === galleryIndex
+                        ? `2px solid ${isDarkFrame ? "#FAFA5A" : "#0D0D0D"}`
+                        : `1px solid ${isDarkFrame ? "rgba(255,255,255,0.28)" : "rgba(0,0,0,0.14)"}`,
+                      opacity: index === galleryIndex ? 1 : 0.78,
                     }}
-                  />
+                  >
+                    <img
+                      src={src}
+                      alt=""
+                      className="h-full w-full"
+                      style={{ objectFit: "contain", objectPosition: "center" }}
+                    />
+                  </button>
                 ))}
               </div>
-              <p
-                style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
-              >
-                {galleryIndex + 1} / {gallery.length} · Arrows or swipe for photos · Scroll to zoom · Esc to close
-              </p>
-            </div>
-          )}
-
-          {!hasGallery && (
+            )}
             <p
-              className="pb-5 text-center"
-              style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
-              onClick={(e) => e.stopPropagation()}
+              style={{
+                color: isDarkFrame ? "rgba(255,255,255,0.65)" : "rgba(13,13,13,0.55)",
+                fontSize: "0.62rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                textAlign: "center",
+              }}
             >
-              Scroll or use +/− to zoom · Drag to pan · Esc to close
+              {hasGallery
+                ? "Arrows or thumbs change photos while zoomed · Drag to pan · Esc to close"
+                : "Scroll or use +/− to zoom · Drag to pan · Esc to close"}
             </p>
-          )}
+          </div>
         </div>
       )}
     </>

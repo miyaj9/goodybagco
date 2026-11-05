@@ -22,9 +22,6 @@ import gucciSandalsPairTopImg from "../../imports/gucci-sandals-gallery/01-pair-
 import gucciSandalsSolesImg from "../../imports/gucci-sandals-gallery/02-soles.png";
 import gucciSandalsInsoleLogoImg from "../../imports/gucci-sandals-gallery/03-insole-logo.png";
 import justCavalliLeggingsImg from "../../imports/just-cavalli-leopard-print-leggings.png";
-import dsquared2BeltBuckleImg from "../../imports/dsquared2-belt-gallery/01-buckle.png";
-import dsquared2BeltCoiledImg from "../../imports/dsquared2-belt-gallery/02-coiled.png";
-import dsquared2BeltAngleImg from "../../imports/dsquared2-belt-gallery/03-angle.png";
 import dgFloralCapriFrontImg from "../../imports/dg-floral-capri-gallery/01-front.png";
 import dgFloralCapriBackImg from "../../imports/dg-floral-capri-gallery/02-back.png";
 import dgFloralCapriDetailImg from "../../imports/dg-floral-capri-gallery/03-detail.png";
@@ -330,7 +327,7 @@ export const ALL_PRODUCTS: Product[] = [
       fendiBagBackImg,
       fendiBagInteriorImg,
     ],
-    imageBackground: "#000000",
+    imageBackground: "#FFFFFF",
     sold: true,
   },
   {
@@ -378,7 +375,7 @@ export const ALL_PRODUCTS: Product[] = [
       dgFloralCapriDetailImg,
       dgFloralCapriLabelImg,
     ],
-    imageBackground: "#000000",
+    imageBackground: "#FFFFFF",
   },
   {
     id: 14,
@@ -391,28 +388,8 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Bottoms",
     details: ["Leopard print", "Floral and butterfly motifs", "Gold star waistband"],
     image: justCavalliLeggingsImg,
-    imageBackground: "#000000",
-    sold: true,
-  },
-  {
-    id: 15,
-    name: "DS2 Logo Belt",
-    brand: "Dsquared2",
-    price: 100,
-    size: "TBD",
-    era: "Contemporary / 2020s",
-    condition: "New with tags",
-    category: "Accessories",
-    color: "Black",
-    material: "Leather",
-    details: ["DS2 logo buckle", "American flag motif", "Silver-tone hardware"],
-    image: dsquared2BeltBuckleImg,
-    images: [
-      dsquared2BeltBuckleImg,
-      dsquared2BeltCoiledImg,
-      dsquared2BeltAngleImg,
-    ],
-    imageBackground: "#000000",
+    images: [justCavalliLeggingsImg],
+    imageBackground: "#FFFFFF",
     sold: true,
   },
 ];
