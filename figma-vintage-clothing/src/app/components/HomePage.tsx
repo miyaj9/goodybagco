@@ -8,11 +8,6 @@ import cavalliSkirtTigerImg from "../../imports/cavalli-skirt-gallery/02-tiger-d
 import cavalliSkirtLabelImg from "../../imports/cavalli-skirt-gallery/03-label-zipper.png";
 import cavalliSkirtAmourSideImg from "../../imports/cavalli-skirt-gallery/04-amour-side.png";
 import cavalliSkirtAmourDetailImg from "../../imports/cavalli-skirt-gallery/05-amour-detail.png";
-import chanelSunglassesImg from "../../imports/chanel-coco-mark-frameless-sunglasses.png";
-import chanelSunglassesThreeQuarterImg from "../../imports/chanel-sunglasses-gallery/01-three-quarter.png";
-import chanelSunglassesFrontImg from "../../imports/chanel-sunglasses-gallery/02-front.png";
-import chanelSunglassesLogoDetailAltImg from "../../imports/chanel-sunglasses-gallery/04-logo-detail-alt.png";
-import chanelSunglassesBridgeDetailImg from "../../imports/chanel-sunglasses-gallery/07-bridge-detail.png";
 import fendiBagFrontImg from "../../imports/fendi-bag-gallery/01-front.png";
 import fendiBagThreeQuarterImg from "../../imports/fendi-bag-gallery/02-three-quarter.png";
 import fendiBagBackImg from "../../imports/fendi-bag-gallery/03-back.png";
@@ -261,27 +256,6 @@ export const ALL_PRODUCTS: Product[] = [
     ],
     imageBackground: "#000000",
     sold: true,
-  },
-  {
-    id: 10,
-    name: "Metal Coco Mark Frameless Sunglasses",
-    brand: "Chanel",
-    price: 505,
-    size: "One Size",
-    era: "Vintage",
-    condition: "Great",
-    category: "Accessories",
-    color: "Light Purple",
-    serialNumber: "AC1751014",
-    details: ["Coco Mark", "Frameless", "Metal frame"],
-    image: chanelSunglassesImg,
-    images: [
-      chanelSunglassesImg,
-      chanelSunglassesThreeQuarterImg,
-      chanelSunglassesFrontImg,
-      chanelSunglassesLogoDetailAltImg,
-      chanelSunglassesBridgeDetailImg,
-    ],
   },
   {
     id: 27,
@@ -801,7 +775,6 @@ export function HomePage({ cart, onAddToCart, onNavigate, searchFocusToken = 0 }
       <section id="new-in" className="new-in-section">
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid #0D0D0D" }}>
           <h2 style={{ fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700 }}>New In</h2>
-          <span style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888888" }}>{filtered.length} Items</span>
         </div>
 
         <div style={{ position: "relative", marginTop: "18px", marginBottom: "8px" }}>
